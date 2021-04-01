@@ -1,0 +1,21 @@
+{
+  "name": "petitplats",
+  "version": "1.0.0",
+  "description": "Les petits plats",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch ./sass/main.scss:./public/css/style.css",
+    "prefix": "postcss ./public/css/style.css --use autoprefixer -d ./public/css/prefixed/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guillaume-Gozillon/Les-petits-plats.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Guillaume-Gozillon/Les-petits-plats/issues"
+  },
+  "homepage": "https://github.com/Guillaume-Gozillon/Les-petits-plats#readme"
+}
