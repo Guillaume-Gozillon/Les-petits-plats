@@ -1,4 +1,32 @@
-h1{
-    color: red;
-    background-color: aqua;
+header{
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & h1{
+        padding-top: 7px;
+        color: $redTitle;
+    }
+    & .searchbar{
+        margin-top: 20px;
+        background-color: #E7E7E7;
+        padding: 20px 23px;
+        width: 77%;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+        &:focus{
+            outline: none;
+        }
+    }
+}
+
+main{
+    width: 100%;
+    padding: 50px;
+    & .container{
+        display: flex;
+        width: 22%;
+        background-color: burlywood;
+    }
 }

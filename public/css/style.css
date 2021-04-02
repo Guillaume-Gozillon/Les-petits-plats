@@ -11,9 +11,37 @@ body {
   font-size: 18px;
 }
 
-h1 {
-  color: red;
-  background-color: aqua;
+header {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+header h1 {
+  padding-top: 7px;
+  color: #D04F4F;
+}
+header .searchbar {
+  margin-top: 20px;
+  background-color: #E7E7E7;
+  padding: 20px 23px;
+  width: 77%;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+}
+header .searchbar:focus {
+  outline: none;
+}
+
+main {
+  width: 100%;
+  padding: 50px;
+}
+main .container {
+  display: flex;
+  width: 22%;
+  background-color: burlywood;
 }
 
 /*# sourceMappingURL=style.css.map */
