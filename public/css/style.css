@@ -40,8 +40,27 @@ main {
 }
 main .container {
   display: flex;
-  width: 22%;
+  flex-direction: column;
+  width: 280px;
+  height: 400px;
   background-color: burlywood;
+  font-size: 12px;
+}
+main .container .content {
+  height: 100px;
+  background-color: coral;
+}
+main .container .empty {
+  height: 180px;
+  background-color: red;
+  width: 100%;
+}
+
+.recette {
+  display: flex;
+}
+.recette .ingredient {
+  width: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

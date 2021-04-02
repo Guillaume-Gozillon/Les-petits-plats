@@ -26,7 +26,26 @@ main{
     padding: 50px;
     & .container{
         display: flex;
-        width: 22%;
+        flex-direction: column;
+        width: 280px;
+        height: 400px;
         background-color: burlywood;
+        font-size: 12px;
+        & .content{
+            height: 100px;
+            background-color: coral;
+        }
+        & .empty{
+            height: 180px;
+            background-color: red;
+            width: 100%;
+        }
+    }
+}
+
+.recette{
+    display: flex;
+    & .ingredient{
+        width: 20px;
     }
 }
