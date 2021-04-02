@@ -16,6 +16,8 @@ header{
         border: none;
         font-size: 16px;
         &:focus{
+            border: black 1px solid;
+            border-radius: 5px;
             outline: none;
         }
     }
@@ -27,25 +29,45 @@ main{
     & .container{
         display: flex;
         flex-direction: column;
-        width: 280px;
-        height: 400px;
-        background-color: burlywood;
+        width: 390px;
+        height: 350px;
         font-size: 12px;
-        & .content{
-            height: 100px;
-            background-color: coral;
-        }
+        border-radius: 5px;
+        overflow: hidden;
         & .empty{
-            height: 180px;
-            background-color: red;
-            width: 100%;
+            height: 60%;
+            background-color: #C7BEBE;
+            width: 100%;      
         }
+        & .content{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            height: 66%;
+            background-color: #E7E7E7;
+            padding: 0px 20px;
+        }
+    }
+}
+
+.title{
+    display: flex;
+    justify-content: space-between;
+    & p:first-child{
+        font-size: 17px;
+    }
+    & p:last-child{
+        font-size: 17px;
+        font-weight: 800;
     }
 }
 
 .recette{
     display: flex;
     & .ingredient{
-        width: 20px;
+        width: 50%;
+    }
+    & p:last-child{
+        width: 50%;
     }
 }

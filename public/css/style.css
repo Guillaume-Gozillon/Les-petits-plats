@@ -31,6 +31,8 @@ header .searchbar {
   font-size: 16px;
 }
 header .searchbar:focus {
+  border: black 1px solid;
+  border-radius: 5px;
   outline: none;
 }
 
@@ -41,26 +43,46 @@ main {
 main .container {
   display: flex;
   flex-direction: column;
-  width: 280px;
-  height: 400px;
-  background-color: burlywood;
+  width: 390px;
+  height: 350px;
   font-size: 12px;
-}
-main .container .content {
-  height: 100px;
-  background-color: coral;
+  border-radius: 5px;
+  overflow: hidden;
 }
 main .container .empty {
-  height: 180px;
-  background-color: red;
+  height: 60%;
+  background-color: #C7BEBE;
   width: 100%;
+}
+main .container .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 66%;
+  background-color: #E7E7E7;
+  padding: 0px 20px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+.title p:first-child {
+  font-size: 17px;
+}
+.title p:last-child {
+  font-size: 17px;
+  font-weight: 800;
 }
 
 .recette {
   display: flex;
 }
 .recette .ingredient {
-  width: 20px;
+  width: 50%;
+}
+.recette p:last-child {
+  width: 50%;
 }
 
 /*# sourceMappingURL=style.css.map */
