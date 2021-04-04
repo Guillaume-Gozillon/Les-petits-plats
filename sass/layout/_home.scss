@@ -21,9 +21,9 @@ header{
         border: transparent 2px solid;
         border-radius: 5px;
         outline: none;
-        transition: .2s;
+        transition: .27s;
         &:focus{
-            border: $darkBrown 2px solid;   
+            border: rgba(0, 0, 0, 0.783) 2px solid;   
         }
     }
 }
