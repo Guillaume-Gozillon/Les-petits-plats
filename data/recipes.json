@@ -189,7 +189,7 @@
           {
             "ingredient": "Moutarde de Dijon",
             "quantity": 1,
-            "unite": "cuillères à soupe"
+            "unit": "cuillères à soupe"
           }
         ],
         "time": 45,
@@ -295,7 +295,8 @@
           },
           {
             "ingredient": "Oeuf",
-            "quantity": 2
+            "quantity": 2,
+            "unit": ""
           },
           {
             "ingredient": "Sucre en Poudre",
@@ -706,7 +707,8 @@
           },
           {
             "ingredient": "Banane",
-            "quantity": 1
+            "quantity": 1,
+            "unit":""
           }
         ],
         "time": 0,
@@ -1122,11 +1124,13 @@
         "ingredients": [
           {
             "ingredient": "Carotte",
-            "quantity": 2
+            "quantity": 2,
+            "unit": ""
           },
           {
             "ingredient": "Pommes de terre",
-            "quantity": 2
+            "quantity": 2,
+            "unit": ""
           },
           {
             "ingredient": "Haricots verts",
@@ -1398,7 +1402,8 @@
           },
           {
             "ingredient": "Oeuf",
-            "quantity": 3
+            "quantity": 3,
+            "unit": ""
           },
           {
             "ingredient": "Sucre roux",
@@ -1655,7 +1660,8 @@
           },
           {
             "ingredient": "Oeuf",
-            "quantity": 4
+            "quantity": 4,
+            "unit": ""
           },
           {
             "ingredient": "Lait",

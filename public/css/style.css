@@ -102,6 +102,18 @@ main .container .content {
   width: 50%;
 }
 
+.main-para {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+}
+
+.bolder {
+  font-weight: 800;
+}
+
 @media only screen and (max-width: 1230px) {
   main {
     grid-template-columns: 1fr 1fr;
