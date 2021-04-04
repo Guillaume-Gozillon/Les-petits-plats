@@ -23,7 +23,8 @@ header{
         outline: none;
         transition: .27s;
         &:focus{
-            border: rgba(0, 0, 0, 0.783) 2px solid;   
+            border: $redTitle 2px solid;   
+            // border: rgba(0, 0, 0, 0.783) 2px solid;   
         }
     }
 }
