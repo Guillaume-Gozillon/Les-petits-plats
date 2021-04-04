@@ -2,11 +2,11 @@ export class Card {
     constructor(data) {
         const mainHTML = document.querySelector('main')
 
-        this.recipesDOM = this.buildRecipeDOM(data)
+        this.recipesDOM = this.buildDOM(data)
         mainHTML.append(this.recipesDOM)
     }
 
-    buildRecipeDOM(data) {
+    buildDOM(data) {
         const recipeContent = document.createElement('div')
         recipeContent.classList.add('container')
         recipeContent.insertAdjacentHTML('afterbegin', `
@@ -14,7 +14,7 @@ export class Card {
         <div class="content">
             <div class="title">
                 <p>${data.name}</p>
-                <p>${data.time}min</p>
+                <p><i class="far fa-clock"></i> ${data.time}min</p>
             </div>
             <div class="recette">
                 ${this.listIngredient(data.ingredients)}

@@ -7,7 +7,7 @@ async function fetchData () {
 }
 
 fetchData().then((data) => {
-    console.log(data);
+    console.log(data)
     const mediaRecipes = data.recipes
     mediaRecipes.forEach(el => {
         new Card(el)

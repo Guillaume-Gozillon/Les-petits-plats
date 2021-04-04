@@ -23,7 +23,6 @@ header{
         outline: none;
         transition: .27s;
         &:focus{
-            // border: $redTitle 2px solid;   
             border: rgba(0, 0, 0, 0.783) 2px solid;   
         }
     }
@@ -73,6 +72,10 @@ main{
     justify-content: space-between;
     & p:first-child{
         font-size: 17px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 270px;
     }
     & p:last-child{
         font-size: 17px;
@@ -84,6 +87,7 @@ main{
     display: flex;
     & .ingredient{
         width: 50%;
+        line-height: 18px;
     }
     & p:last-child{
         width: 50%;
@@ -92,6 +96,7 @@ main{
 
 .main-para{
     display: -webkit-box;
+    margin: .125rem 0;
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-line-clamp: 7;
