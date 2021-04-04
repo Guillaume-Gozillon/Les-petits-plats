@@ -38,7 +38,7 @@ header .searchbar {
   transition: 0.27s;
 }
 header .searchbar:focus {
-  border: #D04F4F 2px solid;
+  border: rgba(0, 0, 0, 0.783) 2px solid;
 }
 
 main {
