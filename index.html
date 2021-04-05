@@ -8,23 +8,48 @@
     <link rel="preconnect" href="https://fonts.gstatic.com"> 
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/9ef4497e63.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/png" href="favicone.png" />
+    <link rel="icon" type="image/png" href="img/favicone.png" />
     <script type="module" src="./src/index.js" defer></script>
-    <script type="module" src="./src/dropdown.js" defer></script>
+    <script src="./src/dropdown.js" defer></script>
     <title>Les petits plats | Accueil</title>
 </head>
 <body>
     <header>
-        <img src="logo.svg" alt="logo">
+        <img src="img/logo.svg" alt="logo">
         <h1>Les petits plats</h1>
         <input type="text" class="searchbar" placeholder="Rechercher un ingrédient, un ustensile, un appareil ou une recette">
     </header>
-    <label id="inputTrigger--ingredients" class="inputTrigger" data-status="close">
-        <input type="text" placeholder="Ingredients" class="color--ingredients" data-placeholder="Ingredients"
-        data-sugg  data-js="search" data-context="ingredients" data-fields="ingredient" data-depth="lowerLevel">
-        <i class="fas fa-chevron-down" data-js="openListing" data-context="ingredients"></i>
-        <i class="fas fa-chevron-up elHidden" data-js="closeListing" data-context="ingredients"></i>                             
-    </label>
+    <section class="btn-section">
+        <label id="btn-ingredients">
+            <input type="text" placeholder="Ingredients" >
+            <div id="arrow" class="arrow"></div>
+            <ul class="interieur">
+                <li>premier test</li>
+                <li>premier test</li>
+                <li>premier test</li>
+            </ul>  
+        </label>
+        <label>
+            <input type="text" placeholder="Appareil" >
+            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-chevron-up elHidden"></i>
+            <ul>
+                <li>premier test</li>
+                <li>premier test</li>
+                <li>premier test</li>
+            </ul>      
+        </label>
+        <label>
+            <input type="text" placeholder="Ingredients" >
+            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-chevron-up elHidden"></i>
+            <ul>
+                <li>premier test</li>
+                <li>premier test</li>
+                <li>premier test</li>
+            </ul>      
+        </label>
+    </section>
     <main></main>
 </body>
 </html>

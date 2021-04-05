@@ -139,5 +139,82 @@ main .container .content {
     justify-content: center;
   }
 }
+.btn-section {
+  width: 100%;
+  max-width: 1240px;
+  margin: auto;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 40px;
+  position: relative;
+}
+.btn-section label {
+  background-color: #3282F7;
+  position: relative;
+  padding: 2px;
+  margin-right: 40px;
+  border-radius: 8px;
+  width: 200px;
+  color: white;
+  overflow: hidden;
+  cursor: pointer;
+  height: 100%;
+}
+.btn-section label input {
+  padding: 12px 6px;
+  background-color: #3282F7;
+  border: none;
+  color: white;
+  font-size: 18px;
+}
+.btn-section label input::placeholder {
+  color: rgba(255, 255, 255, 0.694);
+  margin-left: 10px;
+}
+.btn-section label input:focus {
+  outline: none;
+}
+.btn-section label .interieur {
+  list-style: none;
+  padding: 4px 20px 16px;
+}
+.btn-section label .interieur li {
+  padding: 4px;
+}
+
+.arrow {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  top: 15px;
+  right: 14px;
+}
+.arrow::before, .arrow::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 0.15rem;
+  height: 100%;
+  transition: all 0.5s;
+}
+.arrow::before {
+  left: -5px;
+  transform: rotate(45deg);
+  background-color: white;
+}
+.arrow::after {
+  left: 5px;
+  transform: rotate(-45deg);
+  background-color: white;
+}
+
+.open.arrow::before {
+  transform: rotate(-45deg);
+}
+
+.open.arrow::after {
+  transform: rotate(45deg);
+}
 
 /*# sourceMappingURL=style.css.map */
