@@ -107,6 +107,13 @@ main{
     font-weight: 800;
 }
 
+.ingredient p{
+    width: 165px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 @media only screen and (max-width: 1230px) {
     main {
         grid-template-columns: 1fr 1fr;
