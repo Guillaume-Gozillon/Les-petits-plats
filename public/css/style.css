@@ -154,18 +154,18 @@ main .container .content {
   padding: 2px;
   margin-right: 40px;
   border-radius: 8px;
-  width: 200px;
   color: white;
   overflow: hidden;
   cursor: pointer;
   height: 100%;
 }
 .btn-section label input {
-  padding: 12px 6px;
+  padding: 14px 0px 14px 27px;
   background-color: #3282F7;
   border: none;
   color: white;
   font-size: 18px;
+  width: 100%;
 }
 .btn-section label input::placeholder {
   color: rgba(255, 255, 255, 0.694);
@@ -177,9 +177,21 @@ main .container .content {
 .btn-section label .interieur {
   list-style: none;
   padding: 4px 20px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .btn-section label .interieur li {
-  padding: 4px;
+  padding: 5px 30px;
+}
+.btn-section label .interieur li:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  transition: 0.05s;
+  cursor: copy;
+}
+
+.appareil {
+  background-color: red;
 }
 
 .arrow {

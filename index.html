@@ -10,7 +10,6 @@
     <script src="https://kit.fontawesome.com/9ef4497e63.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="img/favicone.png" />
     <script type="module" src="./src/index.js" defer></script>
-    <script src="./src/dropdown.js" defer></script>
     <title>Les petits plats | Accueil</title>
 </head>
 <body>
@@ -20,29 +19,24 @@
         <input type="text" class="searchbar" placeholder="Rechercher un ingrédient, un ustensile, un appareil ou une recette">
     </header>
     <section class="btn-section">
-        <label id="btn-ingredients">
+        <label id="btn-search">
             <input type="text" placeholder="Ingredients" >
             <div id="arrow" class="arrow"></div>
-            <ul class="interieur">
-                <li>premier test</li>
-                <li>premier test</li>
-                <li>premier test</li>
+            <ul id="interieur" class="interieur">
             </ul>  
         </label>
-        <label>
+        <label id="btn-search" class="btn-search appareil">
             <input type="text" placeholder="Appareil" >
-            <i class="fas fa-chevron-down"></i>
-            <i class="fas fa-chevron-up elHidden"></i>
+            <div id="arrow" class="arrow"></div>
             <ul>
                 <li>premier test</li>
                 <li>premier test</li>
                 <li>premier test</li>
             </ul>      
         </label>
-        <label>
-            <input type="text" placeholder="Ingredients" >
-            <i class="fas fa-chevron-down"></i>
-            <i class="fas fa-chevron-up elHidden"></i>
+        <label id="btn-search">
+            <input type="text" placeholder="Ustensiles" >
+            <div id="arrow" class="arrow"></div>
             <ul>
                 <li>premier test</li>
                 <li>premier test</li>

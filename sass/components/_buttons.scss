@@ -12,17 +12,17 @@
         padding: 2px;
         margin-right: 40px;
         border-radius: 8px;
-        width: 200px;
         color: white;
         overflow: hidden;
         cursor: pointer;
         height: 100%;
         & input{
-            padding: 12px 6px;
+            padding: 14px 0px 14px 27px;
             background-color: $blue;
             border: none;
             color: white;
             font-size: 18px;
+            width: 100%;
             &::placeholder{
                 color: rgba(255, 255, 255, 0.694);
                 margin-left: 10px;
@@ -34,11 +34,23 @@
         & .interieur{
             list-style: none;
             padding: 4px 20px 16px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
             & li{
-                padding: 4px;
+                padding: 5px 30px;
+                &:hover{
+                  background-color: rgba(white, .2);
+                  border-radius: 5px;
+                  transition: .05s;
+                  cursor: copy;
+                }
             }
         }
     }
+}
+
+.appareil{
+    background-color: red;
 }
 
 .arrow {
@@ -75,3 +87,4 @@
   .open.arrow::after {
     transform: rotate(45deg);
   }
+

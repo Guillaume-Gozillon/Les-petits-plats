@@ -1,6 +1,17 @@
-const btnIngredient = document.getElementById('btn-ingredients')
+/* eslint-disable no-new */
+import { List } from './List.js'
 
-btnIngredient.addEventListener('click', () => {
-    const arrowBtn = document.getElementById('arrow')
-    arrowBtn.classList.toggle('open')
-})
+export class Dropdown {
+  constructor (data) {
+    this.openBox = this.getIngredient(data)
+  }
+
+  getIngredient (data) {
+    const btnIngredient = document.getElementById('btn-search')
+    btnIngredient.addEventListener('click', () => {
+      const arrowBtn = document.getElementById('arrow')
+      arrowBtn.classList.add('open')
+      new List(data)
+    })
+  }
+}
