@@ -1,11 +1,15 @@
 .btn-section{
+    position: relative;
     width: 100%;
     max-width: 1240px;
     margin: auto;
     display: flex;
     justify-content: flex-start;
     margin-top: 40px;
-    position: relative;
+    animation: .05s;
+    & .biggerInput{
+      width: 100%;
+    }
     & label{
         background-color: #3282F7;
         position: relative;
@@ -80,11 +84,10 @@
     }
   }
 
-  .open.arrow::before {
+  .arrowRotate.arrow::before {
     transform: rotate(-45deg);
   }
   
-  .open.arrow::after {
+  .arrowRotate.arrow::after {
     transform: rotate(45deg);
   }
-

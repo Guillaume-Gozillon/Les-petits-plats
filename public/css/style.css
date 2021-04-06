@@ -35,7 +35,7 @@ header .searchbar {
   border: transparent 2px solid;
   border-radius: 5px;
   outline: none;
-  transition: 0.27s;
+  transition: 0.2s;
 }
 header .searchbar:focus {
   border: rgba(0, 0, 0, 0.783) 2px solid;
@@ -140,13 +140,17 @@ main .container .content {
   }
 }
 .btn-section {
+  position: relative;
   width: 100%;
   max-width: 1240px;
   margin: auto;
   display: flex;
   justify-content: flex-start;
   margin-top: 40px;
-  position: relative;
+  animation: 0.05s;
+}
+.btn-section .biggerInput {
+  width: 100%;
 }
 .btn-section label {
   background-color: #3282F7;
@@ -221,11 +225,11 @@ main .container .content {
   background-color: white;
 }
 
-.open.arrow::before {
+.arrowRotate.arrow::before {
   transform: rotate(-45deg);
 }
 
-.open.arrow::after {
+.arrowRotate.arrow::after {
   transform: rotate(45deg);
 }
 
