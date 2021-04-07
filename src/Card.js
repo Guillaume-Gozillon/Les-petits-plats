@@ -1,15 +1,15 @@
 export class Card {
-    constructor(data) {
-        const mainHTML = document.querySelector('main')
+  constructor (data) {
+    const mainHTML = document.querySelector('main')
 
-        this.recipesDOM = this.buildDOM(data)
-        mainHTML.append(this.recipesDOM)
-    }
+    this.recipesDOM = this.buildDOM(data)
+    mainHTML.append(this.recipesDOM)
+  }
 
-    buildDOM(data) {
-        const recipeContent = document.createElement('div')
-        recipeContent.classList.add('container')
-        recipeContent.insertAdjacentHTML('afterbegin', `
+  buildDOM (data) {
+    const recipeContent = document.createElement('div')
+    recipeContent.classList.add('container')
+    recipeContent.insertAdjacentHTML('afterbegin', `
         <div class="empty"></div>
         <div class="content">
             <div class="title">
@@ -21,16 +21,16 @@ export class Card {
                 <p class="main-para">${data.description}</p>
             </div>
         </div>`)
-        return recipeContent
-    }
+    return recipeContent
+  }
 
-    listIngredient(data) {
-        return `
+  listIngredient (data) {
+    return `
         <div class="ingredient">
             ${data.map(function (items) {
                 return `
                 <p><span class="bolder">${items.ingredient}:</span> ${items.quantity}${items.unit}</p>`
             }).join('')}
         </div>`
-    }
+  }
 }

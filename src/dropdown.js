@@ -5,7 +5,6 @@ export class Dropdown {
   constructor (data) {
     this.openBox = this.openIngredientList(data)
     this.openInput()
-    this.closeTarget()
   }
 
   openIngredientList (data) {
@@ -27,12 +26,6 @@ export class Dropdown {
       const arrowBtn = document.getElementById('arrow')
       arrowBtn.classList.add('arrowRotate')
       btnIngredient.classList.add('biggerInput')
-    })
-  }
-
-  closeTarget () {
-    document.addEventListener('click', e => {
-      console.log(e.target)
     })
   }
 }

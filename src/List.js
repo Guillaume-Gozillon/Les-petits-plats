@@ -1,5 +1,6 @@
 export class List {
   constructor (data) {
+    const createUL = document.createElement('ul')
     const labelHTML = document.getElementById('interieur')
 
     this.listDOM = this.buildLI(data)
