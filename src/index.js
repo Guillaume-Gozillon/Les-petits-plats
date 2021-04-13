@@ -1,6 +1,6 @@
 /* eslint-disable no-new */
 import { Card } from './Card.js'
-import { Dropdown } from './Dropdown.js'
+import { DropdownIngredient } from './DropdownIngredient.js'
 
 async function fetchData () {
   const response = await fetch('./data/recipes.json')
@@ -13,6 +13,6 @@ fetchData().then((data) => {
   const mediaRecipes = data.recipes
   mediaRecipes.forEach(el => {
     new Card(el)
-    new Dropdown(el)
+    new DropdownIngredient(el)
   })
 })

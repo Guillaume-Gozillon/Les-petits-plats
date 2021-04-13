@@ -147,10 +147,6 @@ main .container .content {
   display: flex;
   justify-content: flex-start;
   margin-top: 40px;
-  animation: 0.05s;
-}
-.btn-section .biggerList {
-  width: 100%;
 }
 .btn-section .biggerInput {
   width: 23%;
@@ -181,20 +177,25 @@ main .container .content {
 .btn-section label input:focus {
   outline: none;
 }
-.btn-section label .interieur {
+.btn-section label .listUL {
+  max-height: 0;
   list-style: none;
-  padding: 4px 20px 16px;
-  display: none;
-  grid-template-columns: 1fr 1fr 1fr;
 }
-.btn-section label .interieur li {
+.btn-section label .listUL li {
   padding: 5px 30px;
 }
-.btn-section label .interieur li:hover {
+.btn-section label .listUL li:hover {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 5px;
-  transition: 0.05s;
   cursor: copy;
+}
+
+.ajoute {
+  max-height: 100% !important;
+  padding: 4px 20px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
 }
 
 .appareil {
