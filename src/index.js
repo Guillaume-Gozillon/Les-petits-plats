@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 import { Card } from './Card.js'
 import { Dropdown } from './Dropdown.js'
 

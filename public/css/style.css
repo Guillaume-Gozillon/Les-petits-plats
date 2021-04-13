@@ -149,8 +149,11 @@ main .container .content {
   margin-top: 40px;
   animation: 0.05s;
 }
-.btn-section .biggerInput {
+.btn-section .biggerList {
   width: 100%;
+}
+.btn-section .biggerInput {
+  width: 23%;
 }
 .btn-section label {
   background-color: #3282F7;
@@ -181,7 +184,7 @@ main .container .content {
 .btn-section label .interieur {
   list-style: none;
   padding: 4px 20px 16px;
-  display: grid;
+  display: none;
   grid-template-columns: 1fr 1fr 1fr;
 }
 .btn-section label .interieur li {

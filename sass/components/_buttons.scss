@@ -7,8 +7,11 @@
     justify-content: flex-start;
     margin-top: 40px;
     animation: .05s;
-    & .biggerInput{
+    & .biggerList{
       width: 100%;
+    }
+    & .biggerInput{
+      width: 23%;
     }
     & label{
         background-color: #3282F7;
@@ -38,7 +41,7 @@
         & .interieur{
             list-style: none;
             padding: 4px 20px 16px;
-            display: grid;
+            display: none;
             grid-template-columns: 1fr 1fr 1fr;
             & li{
                 padding: 5px 30px;
