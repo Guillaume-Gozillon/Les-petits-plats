@@ -1,12 +1,11 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable no-new */
-import { List } from './List.js'
 
 export class Dropdown {
   constructor (data) {
-    this.openBox = this.openIngredientList(data)
+    this.openIngredientList(data)
     this.rotateArrow()
-    this.closeIngredientList()
+    // this.closeIngredientList()
   }
 
   openIngredientList (data) {
@@ -14,11 +13,13 @@ export class Dropdown {
     const btnIngredient = document.getElementById('btn-search')
     const int = document.getElementById('interieur')
 
+    int.insertAdjacentHTML('afterbegin', `<li>${data.ingredients[1].ingredient}</li>`)
+
+    btnIngredient.classList.add('biggerList')
+    int.style.display = 'grid'
+
     arrowList.addEventListener('click', () => {
-      btnIngredient.classList.add('biggerList')
-      int.style.display = 'grid'
       this.rotateArrow()
-      new List(data)
     })
   }
 
@@ -32,15 +33,3 @@ export class Dropdown {
     console.log('CLOSE')
   }
 }
-
-/*
-  closeIngredientList () {
-    document.addEventListener('click', e => {
-      const elementToDelet = document.getElementsByClassName('biggerList')[0]
-      console.log('classe', e.target.classList[0])
-      if (e.target.classList == 'btn-section') {
-        console.log('OK')
-        this.openBox.remove(elementToDelet)
-      }
-    })
-  } */
