@@ -3,14 +3,15 @@
 export class DropdownIngredient {
   constructor (data) {
     this.openIngredientList(data)
+    // this.listenerInput()
   }
 
   openIngredientList (data) {
     const arrowList = document.getElementById('arrow')
     const listUL = document.getElementById('search-list')
 
-    const listArr = data.ingredients[1].ingredient
-    console.log(listArr)
+    // const listArr = data.ingredients[1].ingredient
+    // console.log(listArr)
 
     listUL.insertAdjacentHTML('afterbegin', `<li>${data.ingredients[1].ingredient}</li>`)
 
@@ -38,4 +39,18 @@ export class DropdownIngredient {
       int.classList.remove('ajoute')
     })
   }
+
+  /*
+  listenerInput () {
+    const listUL = document.getElementById('inputIngredient')
+    console.log(listUL);
+
+    listUL.addEventListener('input', e => {
+      console.log('SEARCH', e.target.value)
+      if (e.key === 'Enter') {
+        console.log('ENTER');
+      }
+    })
+  }
+  */
 }
