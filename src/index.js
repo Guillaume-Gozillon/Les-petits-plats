@@ -1,6 +1,7 @@
 /* eslint-disable no-new */
 import { Card } from './Card.js'
 import { DropdownIngredient } from './DropdownIngredient.js'
+import { InputGeneral } from './InputGeneral.js'
 
 async function fetchData () {
   const response = await fetch('./data/recipes.json')

@@ -1,67 +1,67 @@
 .btn-section{
+  position: relative;
+  width: 100%;
+  max-width: 1240px;
+  margin: auto;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 40px;
+  & .biggerInput{
+    width: 23%;
+  }
+  & label{
+    background-color: #3282F7;
     position: relative;
-    width: 100%;
-    max-width: 1240px;
-    margin: auto;
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 40px;
-    & .biggerInput{
-      width: 23%;
+    padding: 2px;
+    margin-right: 40px;
+    border-radius: 8px;
+    color: white;
+    overflow: hidden;
+    cursor: pointer;
+    height: 100%;
+    & input{
+      transition: .5s;
+      padding: 14px 0px 14px 27px;
+      background-color: $blue;
+      border: none;
+      color: white;
+      font-size: 18px;
+      width: 100%;
+      &::placeholder{
+        color: rgba(255, 255, 255, 0.694);
+        margin-left: 10px;
+      }
+      &:focus{
+          outline: none;
+      }
     }
-    & label{
-        background-color: #3282F7;
-        position: relative;
-        padding: 2px;
-        margin-right: 40px;
-        border-radius: 8px;
-        color: white;
-        overflow: hidden;
-        cursor: pointer;
-        height: 100%;
-        & input{
-            transition: .5s;
-            padding: 14px 0px 14px 27px;
-            background-color: $blue;
-            border: none;
-            color: white;
-            font-size: 18px;
-            width: 100%;
-            &::placeholder{
-                color: rgba(255, 255, 255, 0.694);
-                margin-left: 10px;
-            }
-            &:focus{
-                outline: none;
-            }
+    & .listUL{
+        transition: 1s;
+        max-height: 0px;
+        opacity: 0;
+        list-style: none;
+        & li{
+          padding: 5px 30px;
+          display: none;
+        &:hover{
+          background-color: rgba(white, .2);
+          border-radius: 5px;
+          cursor: copy;
         }
-        & .listUL{
-            transition: 1s;
-            max-height: 0px;
-            opacity: 0;
-            list-style: none;
-            & li{
-                padding: 5px 30px;
-                display: none;
-                &:hover{
-                  background-color: rgba(white, .2);
-                  border-radius: 5px;
-                  cursor: copy;
-                }
-            }
-        }
+      }
     }
+  }
 }
 
 .ajoute{
-    opacity: 1 !important;
-    max-height: 100% !important;
-    padding: 4px 20px 16px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    & > li {
-      display: list-item !important;
-    }
+  opacity: 1 !important;
+  max-height: 100% !important;
+  padding: 4px 20px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  & > li {
+    display: list-item !important;
+  }
 }
 
 .appareil{
@@ -69,36 +69,36 @@
 }
 
 .arrow {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  top: 15px;
+  right: 14px;
+  &::before, &::after {
+    content: "";
     position: absolute;
-    height: 15px;
-    width: 15px;
-    top: 15px;
-    right: 14px;
-    &::before, &::after {
-      content: "";
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      width: 0.15rem;
-      height: 100%;
-      transition: all 0.5s;
-    }
-    &::before {
-      left: -5px;
-      transform: rotate(45deg);
-      background-color: white;
-    }
-    &::after {
-      left: 5px;
-      transform: rotate(-45deg);
-      background-color: white;
-    }
+    top: 0px;
+    right: 0px;
+    width: 0.15rem;
+    height: 100%;
+    transition: all 0.5s;
   }
-
-  .arrowRotate.arrow::before {
-    transform: rotate(-45deg);
-  }
-  
-  .arrowRotate.arrow::after {
+  &::before {
+    left: -5px;
     transform: rotate(45deg);
+    background-color: white;
   }
+  &::after {
+    left: 5px;
+    transform: rotate(-45deg);
+    background-color: white;
+  }
+}
+
+.arrowRotate.arrow::before {
+  transform: rotate(-45deg);
+}
+
+.arrowRotate.arrow::after {
+  transform: rotate(45deg);
+}

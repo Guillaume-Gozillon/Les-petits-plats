@@ -3,17 +3,17 @@
 export class DropdownIngredient {
   constructor (data) {
     this.openIngredientList(data)
-    // this.listenerInput()
   }
 
   openIngredientList (data) {
     const arrowList = document.getElementById('arrow')
     const listUL = document.getElementById('search-list')
 
+    const listArr = data.ingredients[1].ingredient
     // const listArr = data.ingredients[1].ingredient
-    // console.log(listArr)
+    console.log(listArr)
 
-    listUL.insertAdjacentHTML('afterbegin', `<li>${data.ingredients[1].ingredient}</li>`)
+    listUL.insertAdjacentHTML('afterbegin', `<li>${listArr}</li>`)
 
     arrowList.addEventListener('click', e => {
       if (e.target.classList == 'arrow') {
