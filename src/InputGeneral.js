@@ -1,5 +1,9 @@
 export class InputGeneral {
-  constructor () {
- //   console.log('hey')
+  constructor (data) {
+    this.getInput()
+  }
+
+  getInput() {
+    console.log('say YES');
   }
 }

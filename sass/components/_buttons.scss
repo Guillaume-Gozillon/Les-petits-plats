@@ -70,26 +70,34 @@
 
 .arrow {
   position: absolute;
-  height: 15px;
-  width: 15px;
-  top: 15px;
-  right: 14px;
+  height: 40px;
+  width: 40px;
+  top: 7px;
+  right: 7px;
+  border-radius: 50%;
+  transition: .3s;
+  &:hover{
+    background-color: rgba(white, .1);
+    border-radius: 50%;
+  }
   &::before, &::after {
     content: "";
     position: absolute;
-    top: 0px;
+    top: 11px;
     right: 0px;
-    width: 0.15rem;
-    height: 100%;
+    width: 8%;
+    height: 39%;
     transition: all 0.5s;
+    border-radius: 37px;
+
   }
   &::before {
-    left: -5px;
+    left: 14px;
     transform: rotate(45deg);
     background-color: white;
   }
   &::after {
-    left: 5px;
+    left: 23px;
     transform: rotate(-45deg);
     background-color: white;
   }

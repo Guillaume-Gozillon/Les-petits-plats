@@ -1,19 +1,45 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable no-new */
 export class DropdownIngredient {
-  constructor (data) {
-    this.openIngredientList(data)
+  constructor () {
+    this.openIngredientList()
   }
 
-  openIngredientList (data) {
-    const arrowList = document.getElementById('arrow')
+  openIngredientList () {
+    const arrowList = document.getElementById('arrowIngredient')
     const listUL = document.getElementById('search-list')
 
-    const listArr = data.ingredients[1].ingredient
-    // const listArr = data.ingredients[1].ingredient
-    console.log(listArr)
-
-    listUL.insertAdjacentHTML('afterbegin', `<li>${listArr}</li>`)
+    listUL.insertAdjacentHTML('afterbegin', `
+    <li>${'Lait de coco'}</li>
+    <li>${'Jus de citron'}</li>
+    <li>${'Crème de coco'}</li>
+    <li>${'Sucre'}</li>
+    <li>${'Glaçons'}</li>
+    <li>${'Thon rouge'}</li>
+    <li>${'Concombre'}</li>
+    <li>${'Tomate'}</li>
+    <li>${'Carotte'}</li>
+    <li>${'Citron vert'}</li>
+    <li>${'Poulet'}</li>
+    <li>${'Coulis'}</li>
+    <li>${'Oignon'}</li>
+    <li>${'Poivron rouge'}</li>
+    <li>${'Huile d\'olive'}</li>
+    <li>${'Riz blanc'}</li>
+    <li>${'Thon en miettes'}</li>
+    <li>${'Oeuf dur'}</li>
+    <li>${'Maïs'}</li>
+    <li>${'Vinaigrette'}</li>
+    <li>${'Pâte feuilletée'}</li>
+    <li>${'Crème fraiche'}</li>
+    <li>${'Gruyère râpé'}</li>
+    <li>${'Moutarde'}</li>
+    <li>${'Pomme'}</li>
+    <li>${'Oeuf'}</li>
+    <li>${'Sucre en poudre'}</li>
+    <li>${'Chocolat au lait'}</li>
+    <li>${'Crème liquide'}</li>
+    <li>${'Beurre'}</li>`)
 
     arrowList.addEventListener('click', e => {
       if (e.target.classList == 'arrow') {
@@ -27,7 +53,7 @@ export class DropdownIngredient {
   openArrow () {
     const listUL = document.getElementById('search-list')
     document.getElementById('btn-search').addEventListener('click', () => {
-      document.getElementById('arrow').classList.add('arrowRotate')
+      document.getElementById('arrowIngredient').classList.add('arrowRotate')
       listUL.classList.add('ajoute')
     })
   }
@@ -35,22 +61,8 @@ export class DropdownIngredient {
   closeArrow () {
     const int = document.getElementById('search-list')
     document.getElementById('btn-search').addEventListener('click', () => {
-      document.getElementById('arrow').classList.remove('arrowRotate')
+      document.getElementById('arrowIngredient').classList.remove('arrowRotate')
       int.classList.remove('ajoute')
     })
   }
-
-  /*
-  listenerInput () {
-    const listUL = document.getElementById('inputIngredient')
-    console.log(listUL);
-
-    listUL.addEventListener('input', e => {
-      console.log('SEARCH', e.target.value)
-      if (e.key === 'Enter') {
-        console.log('ENTER');
-      }
-    })
-  }
-  */
 }
