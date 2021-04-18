@@ -1,22 +1,17 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable no-new */
 export class DropdownUstensile {
-  constructor () {
-    this.openIngredientList()
+  constructor (data) {
+    this.openIngredientList(data)
   }
 
-  openIngredientList () {
+  openIngredientList (data) {
     const arrowList = document.getElementById('arrowUstensile')
     const listUL = document.getElementById('searchUstensile')
 
     listUL.insertAdjacentHTML('afterbegin', `
-    <li>${'Lait de coco'}</li>
-    <li>${'Jus de citron'}</li>
-    <li>${'Crème de coco'}</li>
-    <li>${'Sucre'}</li>
-    <li>${'Glaçons'}</li>
-    <li>${'Crème liquide'}</li>
-    <li>${'Beurre'}</li>`)
+    <li>${data.ustensils[2]}</li>
+`)
 
     arrowList.addEventListener('click', e => {
       if (e.target.classList == 'arrow') {

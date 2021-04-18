@@ -1,8 +1,8 @@
 /* eslint-disable no-new */
 // import { Card } from './Card.js'
-import { DropdownIngredient } from './DropdownIngredient.js'
-import { DropdownAppliance } from './DropdownAppliance.js'
-import { DropdownUstensile } from './DropdownUstensile.js'
+import { DropdownIngredient } from './dropdown/DropdownIngredient.js'
+import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
+import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
 
 const mainHTML = document.querySelector('main')
 const searchInput = document.getElementById('searchbar')
@@ -17,8 +17,12 @@ const fetchRecettes = async () => {
 
 const showRecette = async () => {
   await fetchRecettes()
-  console.log(recettes)
   const recetteDOM = recettes.recipes
+
+  recetteDOM.forEach(i => {
+    new DropdownUstensile(i)
+  });
+
   mainHTML.innerHTML = (
     recetteDOM
       .filter(x => {
@@ -58,4 +62,3 @@ document.getElementById('searchIngredient').addEventListener('click', e => {
 showRecette()
 new DropdownIngredient()
 new DropdownAppliance()
-new DropdownUstensile()
