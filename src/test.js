@@ -1,28 +1,12 @@
 /* eslint-disable no-new */
 // import { Card } from './Card.js'
 import { DropdownIngredient } from './DropdownIngredient.js'
-import { Card } from './Card.js'
 
-const inputEl = document.querySelector('#searchbar')
-const inputIngredient = document.querySelector('#inputIngredient')
 const mainHTML = document.querySelector('main')
+const searchInput = document.getElementById('searchbar')
 
 let recettes
-const searchTerm = 'poulet'
-
-/*
-async function fetchData () {
-  const response = await fetch('./data/recipes.json')
-  const data = await response.json()
-  return data
-}
-
-fetchData().then((data) => {
-  data.recipes.forEach(el => {
-    new Card(el)
-  })
-})
-*/
+let searchTerm = ''
 
 const fetchRecettes = async () => {
   recettes = await fetch('./data/recipes.json')
@@ -55,6 +39,12 @@ const showRecette = async () => {
     ))
   ).join('')
 }
-showRecette()
 
+// SEARCH INPUT
+searchInput.addEventListener('input', e => {
+  searchTerm = e.target.value
+  showRecette()
+})
+
+showRecette()
 new DropdownIngredient()
