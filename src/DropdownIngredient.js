@@ -7,7 +7,7 @@ export class DropdownIngredient {
 
   openIngredientList () {
     const arrowList = document.getElementById('arrowIngredient')
-    const listUL = document.getElementById('search-list')
+    const listUL = document.getElementById('searchIngredient')
 
     listUL.insertAdjacentHTML('afterbegin', `
     <li>${'Lait de coco'}</li>
@@ -51,7 +51,7 @@ export class DropdownIngredient {
   }
 
   openArrow () {
-    const listUL = document.getElementById('search-list')
+    const listUL = document.getElementById('searchIngredient')
     document.getElementById('btn-search').addEventListener('click', () => {
       document.getElementById('arrowIngredient').classList.add('arrowRotate')
       listUL.classList.add('ajoute')
@@ -59,7 +59,7 @@ export class DropdownIngredient {
   }
 
   closeArrow () {
-    const int = document.getElementById('search-list')
+    const int = document.getElementById('searchIngredient')
     document.getElementById('btn-search').addEventListener('click', () => {
       document.getElementById('arrowIngredient').classList.remove('arrowRotate')
       int.classList.remove('ajoute')

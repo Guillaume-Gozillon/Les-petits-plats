@@ -1,48 +1,61 @@
 /* eslint-disable no-new */
 // import { Card } from './Card.js'
 import { DropdownIngredient } from './DropdownIngredient.js'
-import { Card } from './Card.js'
+import { DropdownAppliance } from './DropdownAppliance.js'
+import { DropdownUstensile } from './DropdownUstensile.js'
 
-const inputEl = document.querySelector('#searchbar')
-const inputIngredient = document.querySelector('#inputIngredient')
 const mainHTML = document.querySelector('main')
+const searchInput = document.getElementById('searchbar')
 
 let recettes
-const searchTerm = ''
+let searchTerm = ''
 
-async function fetchData () {
-  const response = await fetch('./data/recipes.json')
-  const data = await response.json()
-  return data
+const fetchRecettes = async () => {
+  recettes = await fetch('./data/recipes.json')
+    .then(res => res.json())
 }
 
-fetchData().then((data) => {
- //for (let i = 0; i < data.recipes.length; i++) {
- //  const element = data.recipes[i]
+const showRecette = async () => {
+  await fetchRecettes()
+  console.log(recettes)
+  const recetteDOM = recettes.recipes
+  mainHTML.innerHTML = (
+    recetteDOM
+      .filter(x => {
+        return (x.name).toLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
+        (x.description).toLowerCase().includes(searchTerm.toLocaleLowerCase())
+      })
+      .map(y => (`
+        <div class="container">
+            <div class="empty"></div>
+            <div class="content">
+                <div class="title">
+                    <p>${y.name}</p>
+                    <p><i class="far fa-clock"></i> ${y.time}min</p>
+                </div>
+                <div class="recette">
+                <div class="ingredient">
+                    
+                </div>
+                    <p class="main-para">${y.description}</p>
+                </div>
+            </div>
+        </div>`
+      ))
+  ).join('')
+}
 
- //  mainHTML.innerHTML = element
- //}
-
-  // --------------- TRY NEW THINGS --------------------
-
-   data.recipes.forEach(el => {
-     new Card(el)
-   })
-
-  const getMainInput = () => {
-    inputEl.addEventListener('input', e => {
-      console.log('main', e.target.value)
-    })
-  }
-
-  const getIngredientInput = () => {
-    inputIngredient.addEventListener('input', e => {
-      console.log('ingredient', e.target.value)
-    })
-  }
-
-  getIngredientInput()
-  getMainInput()
+// SEARCH INPUT
+searchInput.addEventListener('input', e => {
+  searchTerm = e.target.value
+  showRecette()
 })
 
+document.getElementById('searchIngredient').addEventListener('click', e => {
+  console.log(e.target.textContent)
+})
+
+showRecette()
 new DropdownIngredient()
+new DropdownAppliance()
+new DropdownUstensile()

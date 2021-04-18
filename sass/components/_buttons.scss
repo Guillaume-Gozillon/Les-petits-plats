@@ -33,7 +33,7 @@
       }
       &:focus{
           outline: none;
-      }
+      }      
     }
     & .listUL{
         transition: 1s;
@@ -50,6 +50,20 @@
         }
       }
     }
+  }
+}
+
+#btn-appliance{
+  background-color: $green;
+  & input{
+      background-color: $green;
+  }
+}
+
+#btn-ustensile{
+  background-color: $redDiv;
+  & input{
+      background-color: $redDiv;
   }
 }
 

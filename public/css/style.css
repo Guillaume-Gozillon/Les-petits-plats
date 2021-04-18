@@ -194,6 +194,20 @@ main .container .content {
   cursor: copy;
 }
 
+#btn-appliance {
+  background-color: #68D9A4;
+}
+#btn-appliance input {
+  background-color: #68D9A4;
+}
+
+#btn-ustensile {
+  background-color: #ED6454;
+}
+#btn-ustensile input {
+  background-color: #ED6454;
+}
+
 .ajoute {
   opacity: 1 !important;
   max-height: 100% !important;
