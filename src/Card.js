@@ -4,6 +4,13 @@ export class Card {
 
     this.recipesDOM = this.buildDOM(data)
     mainHTML.append(this.recipesDOM)
+
+    this.filterData(data)
+  }
+
+  filterData(data) {
+    //console.log(data.ingredients[1].ingredient);
+    console.log(data.ingredients)
   }
 
   buildDOM (data) {

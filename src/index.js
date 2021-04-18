@@ -1,6 +1,7 @@
 /* eslint-disable no-new */
 // import { Card } from './Card.js'
 import { DropdownIngredient } from './DropdownIngredient.js'
+import { Card } from './Card.js'
 
 const inputEl = document.querySelector('#searchbar')
 const inputIngredient = document.querySelector('#inputIngredient')
@@ -16,21 +17,17 @@ async function fetchData () {
 }
 
 fetchData().then((data) => {
-  console.log(data.recipes[1].ingredients.map(x => x.ingredient))
-  const toTeste = data.recipes
-  console.log('INSERT', toTeste)
+ //for (let i = 0; i < data.recipes.length; i++) {
+ //  const element = data.recipes[i]
 
-  mainHTML.innerHTML = (
-
-    console.log('MAIN', toTeste.filter(el => el.ingredients))
-
-  )
+ //  mainHTML.innerHTML = element
+ //}
 
   // --------------- TRY NEW THINGS --------------------
 
-  // data.recipes.forEach(el => {
-  //   new Card(el)
-  // })
+   data.recipes.forEach(el => {
+     new Card(el)
+   })
 
   const getMainInput = () => {
     inputEl.addEventListener('input', e => {
