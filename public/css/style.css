@@ -265,4 +265,26 @@ main .container .content {
   transform: rotate(45deg);
 }
 
+@media only screen and (max-width: 1290px) {
+  .btn-section {
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .btn-section label {
+    margin-bottom: 20px;
+    margin-right: 0;
+    width: 84%;
+  }
+}
+@media only screen and (max-width: 670px) {
+  .ajoute {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 470px) {
+  .ajoute {
+    grid-template-columns: 1fr;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
