@@ -1,5 +1,3 @@
-/* eslint-disable eqeqeq */
-/* eslint-disable no-new */
 export class DropdownUstensile {
   constructor (data) {
     this.openIngredientList(data)

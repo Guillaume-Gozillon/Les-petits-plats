@@ -1,5 +1,3 @@
-/* eslint-disable eqeqeq */
-/* eslint-disable no-new */
 export class DropdownAppliance {
   constructor () {
     this.openIngredientList()
