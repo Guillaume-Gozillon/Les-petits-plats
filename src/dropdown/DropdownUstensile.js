@@ -13,14 +13,14 @@ export class DropdownUstensile {
 
     arrowList.addEventListener('click', e => {
       if (e.target.classList == 'arrow') {
-        this.openArrow()
+        this.openList()
       } else {
-        this.closeArrow()
+        this.closeList()
       }
     })
   }
 
-  openArrow () {
+  openList () {
     const listUL = document.getElementById('searchUstensile')
     document.getElementById('btn-ustensile').addEventListener('click', () => {
       document.getElementById('arrowUstensile').classList.add('arrowRotate')
@@ -28,7 +28,7 @@ export class DropdownUstensile {
     })
   }
 
-  closeArrow () {
+  closeList () {
     const int = document.getElementById('searchUstensile')
     document.getElementById('btn-ustensile').addEventListener('click', () => {
       document.getElementById('arrowUstensile').classList.remove('arrowRotate')

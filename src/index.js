@@ -46,6 +46,17 @@ const showRecipes = async () => {
   ).join('')
 }
 
+// -----------APPLIANCE ---------------
+
+const applianceList = async () => {
+  await fetchData()
+  const data = recipes.recipes
+
+  new DropdownAppliance(data)
+}
+applianceList()
+// -----------FIN ---------------
+
 // SEARCH INPUT
 searchInput.addEventListener('input', e => {
   searchTerm = e.target.value
@@ -58,4 +69,18 @@ document.getElementById('searchIngredient').addEventListener('click', e => {
 
 showRecipes()
 new DropdownIngredient()
-new DropdownAppliance()
+
+/*
+let searchAppliance = ''
+
+const applianceList = async () => {
+  await fetchData()
+  const data = recipes.recipes
+
+  new DropdownAppliance(data.filter(x => x.appliance.toLocaleLowerCase().includes(searchAppliance.toLocaleLowerCase())))
+}
+searchInput.addEventListener('input', e => {
+  searchTerm = e.target.value
+  applianceList()
+})
+*/
