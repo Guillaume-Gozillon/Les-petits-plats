@@ -4,6 +4,7 @@ import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
 
 const mainHTML = document.querySelector('main')
 const searchInput = document.getElementById('searchbar')
+const applianceInput = document.getElementById('applianceInput')
 
 let recipes
 let searchTerm = ''
@@ -22,12 +23,13 @@ const showRecipes = async () => {
   })
 
   mainHTML.innerHTML = (
-    data
-      .filter(x => {
-        return (x.name).toLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
-        (x.description).toLowerCase().includes(searchTerm.toLocaleLowerCase())
-      })
-      .map(recipe => (`
+    data.filter(x => {
+      return x.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        x.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        x.ingredients.some(ingredient => { 
+          return ingredient.ingredient.includes(searchTerm.toLowerCase())
+        })
+    }).map(recipe => (`
         <div class="container">
           <div class="empty"></div>
           <div class="content">
@@ -37,34 +39,39 @@ const showRecipes = async () => {
             </div>
             <div class="recette">
             <div class="ingredient">
+              ${recipe.ingredients.map(x => `
+                <p><span class="bolder">${x.ingredient}:</span> ${x.quantity}${x.unit}</p>`).join('')}
+            </div>
+              <div class="ingredient">
             </div>
               <p class="main-para">${recipe.description}</p>
             </div>
           </div>
         </div>`
-      ))
+    ))
   ).join('')
 }
 
 // -----------APPLIANCE ---------------
+let searchAppliance = ''
 
 const applianceList = async () => {
   await fetchData()
   const data = recipes.recipes
 
-  new DropdownAppliance(data)
+  new DropdownAppliance(data.filter(x => x.appliance.toLowerCase().includes(searchAppliance.toLowerCase())))
 }
 applianceList()
+
+applianceInput.addEventListener('input', e => {
+  searchAppliance = e.target.value
+})
 // -----------FIN ---------------
 
 // SEARCH INPUT
 searchInput.addEventListener('input', e => {
   searchTerm = e.target.value
   showRecipes()
-})
-
-document.getElementById('searchIngredient').addEventListener('click', e => {
-  console.log(e.target.textContent)
 })
 
 showRecipes()
