@@ -26,8 +26,8 @@ const showRecipes = async () => {
     data.filter(x => {
       return x.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         x.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        x.ingredients.some(ingredient => { 
-          return ingredient.ingredient.includes(searchTerm.toLowerCase())
+        x.ingredients.some(ingredient => {
+          return ingredient.ingredient.toLowerCase().includes(searchTerm.toLowerCase())
         })
     }).map(recipe => (`
         <div class="container">
