@@ -1,5 +1,5 @@
 import { DropdownIngredient } from './dropdown/DropdownIngredient.js'
-import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
+// import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
 import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
 
 const mainHTML = document.querySelector('main')
@@ -26,8 +26,8 @@ const showRecipes = async () => {
     data.filter(x => {
       return x.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         x.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        x.ingredients.some(ingredient => {
-          return ingredient.ingredient.toLowerCase().includes(searchTerm.toLowerCase())
+        x.ingredients.some(y => {
+          return y.ingredient.toLowerCase().includes(searchTerm.toLowerCase())
         })
     }).map(recipe => (`
         <div class="container">
@@ -52,29 +52,39 @@ const showRecipes = async () => {
   ).join('')
 }
 
-// -----------APPLIANCE ---------------
-let searchAppliance = ''
-
-const applianceList = async () => {
-  await fetchData()
-  const data = recipes.recipes
-
-  new DropdownAppliance(data.filter(x => x.appliance.toLowerCase().includes(searchAppliance.toLowerCase())))
-}
-applianceList()
-
-applianceInput.addEventListener('input', e => {
-  searchAppliance = e.target.value
-})
-// -----------FIN ---------------
-
 // SEARCH INPUT
 searchInput.addEventListener('input', e => {
   searchTerm = e.target.value
   showRecipes()
 })
 
+// -----------APPLIANCE ---------------
+let searchAppliance = ''
+const listUL = document.getElementById('searchAppliance')
+
+const applianceList = async () => {
+  await fetchData()
+  const data = recipes.recipes
+
+  listUL.innerHTML = (
+    data.filter(x => {
+      return x.name.toLowerCase().includes(searchAppliance.toLowerCase()) ||
+        x.description.toLowerCase().includes(searchAppliance.toLowerCase()) ||
+        x.ingredients.some(y => {
+          return y.ingredient.toLowerCase().includes(searchAppliance.toLowerCase())
+        })
+    }).map(el => `<li>${el.appliance}</li>`)
+  ).join('')
+}
+
+// SEARCH INPUT
+applianceInput.addEventListener('input', e => {
+  searchAppliance = e.target.value
+  applianceList()
+})
+// -----------FIN ---------------
 showRecipes()
+applianceList()
 new DropdownIngredient()
 
 /*
@@ -84,10 +94,11 @@ const applianceList = async () => {
   await fetchData()
   const data = recipes.recipes
 
-  new DropdownAppliance(data.filter(x => x.appliance.toLocaleLowerCase().includes(searchAppliance.toLocaleLowerCase())))
+  new DropdownAppliance(data.filter(x => x.appliance.toLowerCase().includes(searchAppliance.toLowerCase())))
 }
-searchInput.addEventListener('input', e => {
-  searchTerm = e.target.value
+
+applianceInput.addEventListener('input', e => {
+  searchAppliance = e.target.value
   applianceList()
 })
 */
