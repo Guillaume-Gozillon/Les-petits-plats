@@ -5,12 +5,6 @@ export class DropdownAppliance {
 
   openIngredientList (data) {
     const arrowList = document.getElementById('arrowAppliance')
-    const listUL = document.getElementById('searchAppliance')
-
-    data.forEach(el => {
-      listUL.insertAdjacentHTML('afterbegin', `
-      <li>${el.appliance}</li>`)
-    })
 
     arrowList.addEventListener('click', e => {
       if (e.target.classList == 'arrow') {

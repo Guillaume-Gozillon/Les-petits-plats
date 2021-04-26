@@ -1,5 +1,5 @@
 import { DropdownIngredient } from './dropdown/DropdownIngredient.js'
-// import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
+import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
 import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
 
 const mainHTML = document.querySelector('main')
@@ -39,8 +39,8 @@ const showRecipes = async () => {
             </div>
             <div class="recette">
             <div class="ingredient">
-              ${recipe.ingredients.map(x => `
-                <p><span class="bolder">${x.ingredient}:</span> ${x.quantity}${x.unit}</p>`).join('')}
+              ${recipe.ingredients
+                .map(x => `<p><span class="bolder">${x.ingredient}:</span> ${x.quantity}${x.unit}</p>`).join('')}
             </div>
               <div class="ingredient">
             </div>
@@ -52,13 +52,12 @@ const showRecipes = async () => {
   ).join('')
 }
 
-// SEARCH INPUT
 searchInput.addEventListener('input', e => {
   searchTerm = e.target.value
   showRecipes()
 })
 
-// -----------APPLIANCE ---------------
+// -----------APPLIANCE -------------------------------
 let searchAppliance = ''
 const listUL = document.getElementById('searchAppliance')
 
@@ -73,7 +72,8 @@ const applianceList = async () => {
         x.ingredients.some(y => {
           return y.ingredient.toLowerCase().includes(searchAppliance.toLowerCase())
         })
-    }).map(el => `<li>${el.appliance}</li>`)
+    })
+      .map(el => `<li>${el.appliance}</li>`)
   ).join('')
 }
 
@@ -81,24 +81,28 @@ const applianceList = async () => {
 applianceInput.addEventListener('input', e => {
   searchAppliance = e.target.value
   applianceList()
+
+  if (e.key === 'ArrowRight') {
+    console.log('IT WORKS')
+  }
 })
+
+// EVENEMENT AU CLICK DU FILTRE
+document.getElementById('searchAppliance').addEventListener('click', e => {
+  document.getElementById('tags')
+    .insertAdjacentHTML('afterbegin', `<p class="tagAdd">${e.target.textContent}</p>`)
+  const leTest = document.querySelectorAll('.tagAdd')
+
+  const newArr = []
+  for (let i = 0; i < leTest.length; i++) {
+    const element = leTest[i].textContent
+    newArr.push(element)
+  }
+  console.log('element', newArr)
+})
+
 // -----------FIN ---------------
 showRecipes()
 applianceList()
 new DropdownIngredient()
-
-/*
-let searchAppliance = ''
-
-const applianceList = async () => {
-  await fetchData()
-  const data = recipes.recipes
-
-  new DropdownAppliance(data.filter(x => x.appliance.toLowerCase().includes(searchAppliance.toLowerCase())))
-}
-
-applianceInput.addEventListener('input', e => {
-  searchAppliance = e.target.value
-  applianceList()
-})
-*/
+new DropdownAppliance()
