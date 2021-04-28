@@ -5,7 +5,6 @@ import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
 const mainHTML = document.querySelector('main')
 const searchInput = document.getElementById('searchbar')
 const applianceInput = document.getElementById('applianceInput')
-const ingreInput = document.getElementById('inputIngredient')
 
 let recipes
 let searchTerm = ''
@@ -64,7 +63,7 @@ searchInput.addEventListener('input', e => {
   showRecipes()
 })
 
-//IICCICICICIICI
+// IICCICICICIICI
 const searchAppliance = document.getElementById('searchAppliance')
 searchAppliance.addEventListener('click', e => {
   console.log(e.target.textContent);
