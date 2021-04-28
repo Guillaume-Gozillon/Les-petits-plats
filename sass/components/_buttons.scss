@@ -1,10 +1,10 @@
 .btn-section{
-  position: relative;
+  position: absolute;
   width: 100%;
   max-width: 1240px;
   margin: auto;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   margin-top: 40px;
   & .biggerInput{
     width: 23%;
@@ -19,6 +19,8 @@
     overflow: hidden;
     cursor: pointer;
     height: 100%;
+    opacity: .9;
+    backdrop-filter: blur(4px);
     & input{
       transition: .5s;
       padding: 14px 0px 14px 27px;
