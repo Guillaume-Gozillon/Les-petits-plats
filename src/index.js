@@ -66,14 +66,13 @@ searchInput.addEventListener('input', e => {
 // IICCICICICIICI
 const searchAppliance = document.getElementById('searchAppliance')
 searchAppliance.addEventListener('click', e => {
-  console.log(e.target.textContent);
+  console.log(e.target.textContent)
 })
 
 applianceInput.addEventListener('input', e => {
   searchTerm = e.target.value
   showRecipes()
 })
-
 
 // EVENEMENT AU CLICK DU FILTRE
 document.getElementById('searchAppliance').addEventListener('click', e => {
