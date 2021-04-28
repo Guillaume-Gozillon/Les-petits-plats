@@ -1,6 +1,7 @@
 import { DropdownIngredient } from './dropdown/DropdownIngredient.js'
 import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
 // import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
+// TEST ALGO V1
 
 const mainHTML = document.querySelector('main')
 const searchInput = document.getElementById('searchbar')
