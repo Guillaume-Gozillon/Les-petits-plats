@@ -1,232 +1,323 @@
-import data from '../data/data'
-import { searching } from './search-engine'
-import { displayRecipes } from './recipes'
-import { sanitizeString, addFilterID, removeNodes } from './utils'
+/** *
+ * @param {string} str
+ * @returns Une chaine de caratère standart
+ */
+const normalizeString = (str) => {
+  return str
+    .toString()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+}
 
-let recipes = []
+/* Empeche la function passé en callBack
+de se déclencher à chaque event dans un certain délai : se déclenche si délay
+passé et supérieur entre deux event de même nature
+*/
 
-export let filtered = [
-  {
-    type: 'searchbar',
-    id: null,
-    value: null
+debounce = (callback, delay) => {
+  let timer
+  return function () {
+    const args = arguments
+    const context = this
+    clearTimeout(timer)
+    timer = setTimeout(function () {
+      callback.apply(context, args)
+    }, delay)
   }
-]
-
-/**
- * Getter for filter pushed into Filtered array (filters entered by user)
- * @returns {[{id: string, type: string, value: null}]} filtered - Array of filters
- */
-export function getFiltered () {
-  return filtered
 }
 
-/**
- * Set up the search engine for first launch, reset the filters of selects, fill selects and set comportement for input search
- * @param {Array} ingredientsArray
- * @param {Array} appliancesArray
- * @param {Array} ustensilsArray
- * @param {Array.<Object>} recipesArray
- */
-export function launchSearchEngine (ingredientsArray, appliancesArray, ustensilsArray, recipesArray) {
-  fillSelect('ingredients-filters', 'ingredients', ingredientsArray)
-  fillSelect('appliances-filters', 'appliances', appliancesArray)
-  fillSelect('ustensils-filters', 'ustensils', ustensilsArray)
-  setMainInput()
-  recipes = recipesArray
-  setCustomSelectInput()
-}
-/**
- * Reload the search when user add an entrie, reset the filters of selects, fill selects
- * @param {Array} ingredientsArray
- * @param {Array} appliancesArray
- * @param {Array} ustensilsArray
- * @param {Array.<Object>} recipesArray
- */
-export function reloadSearchEngine (ingredientsArray, appliancesArray, ustensilsArray, recipesArray) {
-  removeNodes('filter')
-  fillSelect('ingredients-filters', 'ingredients', ingredientsArray)
-  fillSelect('appliances-filters', 'appliances', appliancesArray)
-  fillSelect('ustensils-filters', 'ustensils', ustensilsArray)
-  recipes = recipesArray
+class Init {
+  constructor () {
+    // On passe le JSON dans l'atelier pour obtenir le Bloc HTML
+    // qui affiche toutes les recettes
+    this.recipes = dataJSON
+    this.globalOptions = [
+      { context: 'name', fields: 'name', depth: 'root' },
+      { context: 'ingredients', fields: 'ingredient', depth: 'lowerLevel' },
+      { context: 'description', fields: 'description', depth: 'root' }
+    ]
+  }
 
-  // remove filter (in custom select) already put in tag
-  const tagsElements = document.getElementsByClassName('tag')
+  /**
+   * Vire Tout les accents présent dans les champs de type string du fichier Json
+   * @param {*} JSON
+   * @returns newJson
+   */
 
-  Array.from(tagsElements).forEach(elt => {
-    const id = elt.getAttribute('id') + '-filters'
-    const filterToRemove = document.getElementById(id)
+  normalizeJSON (JSON) {
+    // console.log(JSON);
 
-    if (filterToRemove != null) {
-      filterToRemove.remove()
-    }
-  })
-}
+    const newJSON = []
 
-/**
- * Fill the custom select with appropriate filters
- * @param { String } selectType - type of select
- * @param { String } type - type of select for create ID unique
- * @param { array }  filters array
- */
-function fillSelect (selectType, type, array) {
-  const parentElt = document.getElementById(selectType)
-  const childrenElt = ''
+    JSON.forEach((recipe, key) => {
+      //  console.log(recipe);
+      const thisKey = Object.keys(recipe)
+      newJSON[key] = {}
 
-  array.forEach(elt => {
-    const id = addFilterID(elt) + '-' + selectType
-    const idTag = addFilterID(elt) + '-' + type
+      thisKey.forEach(fields => {
+        switch (typeof (recipe[fields])) {
+          case 'string':
+            newJSON[key][fields] = normalizeString(recipe[fields])
+            break
 
-    elt = elt.charAt(0).toUpperCase() + elt.slice(1)
+          case 'number':
+            newJSON[key][fields] = recipe[fields]
+            break
 
-    const filter = `<a href="#" class="filter" id="${id}" data-type="${selectType}" data-tagID="${idTag}">
-                    ${elt}
-                   </a>`
+          case 'object':
 
-    parentElt.insertAdjacentHTML('beforeend', filter)
-  })
-}
+            newJSON[key][fields] = []
 
-/**
- * Set up the main input search
- */
-function setMainInput () {
-  const inputSearch = document.getElementById('searchbar')
-  inputSearch.addEventListener('input', e => {
-    if (e.value.length < 3) {
-      // Reset array
-      filtered = filtered.filter(function (value) {
-        return value.type !== 'searchbar'
-      })
+            recipe[fields].forEach(lowerLevel => {
+              switch (typeof (lowerLevel)) {
+                case 'string':
 
-      filtered.unshift({
-        type: 'searchbar',
-        id: null,
-        value: null
-      })
-      // RE - init recipes
-      const tagsElements = document.getElementsByClassName('tag')
+                  newJSON[key][fields].push(normalizeString(lowerLevel))
 
-      // If a tag exists, don't init recipe
-      if (tagsElements != null) {
-        searching(filtered)
-      } else {
-        reloadRecipes()
-      }
-      return
-    }
+                  break
+                case 'object':
 
-    // If input.value > 2
-    const valuesInput = inputSearch.value.split(' ')
-    const valuesToSearch = []
+                  const newEntries = {}
+                  const lowerLevelKeys = Object.keys(lowerLevel)
 
-    valuesInput.forEach(value => {
-      if (value.length > 2) {
-        valuesToSearch.push(sanitizeString(value))
-      }
-    })
+                  lowerLevelKeys.forEach(thisKeys => {
+                    newEntries[thisKeys] = normalizeString(lowerLevel[thisKeys])
+                  })
 
-    filtered = filtered.filter(function (value) {
-      return value.type !== 'searchbar'
-    })
+                  newJSON[key][fields].push(newEntries)
 
-    // console.log(filtered)
-    valuesToSearch.forEach(value => {
-      filtered.unshift({
-        type: 'searchbar',
-        id: value,
-        value: value
-      })
-    })
-
-    searching(filtered)
-  })
-}
-
-/**
- * Set up the custom select input search
- */
-function setCustomSelectInput () {
-  const customInput = document.getElementsByClassName('custom-input')
-
-  Array.from(customInput).forEach(input => {
-    input.addEventListener('input', e => {
-      const typeOfInput = input.className.substring(input.className.indexOf(' ') + 1) + '-filters'
-      const container = document.getElementById(typeOfInput)
-      const filters = container.querySelectorAll('a')
-
-      filters.forEach(filter => {
-        filter.style.display = 'none'
-        if (sanitizeString(filter.innerText).includes(sanitizeString(input.value))) {
-          filter.style.display = 'flex'
+                  break
+              }
+            })
+            break
         }
       })
     })
+    return newJSON
+  }
+}
+
+const init = new Init()
+
+class GetData {
+  constructor () {
+    console.log(init.recipes)
+    this.JSON = init.recipes // Si fetch {new getJSON(dataJSON)}
+  }
+
+  allDataType (options) {
+    const result = []
+    switch (options.depth) {
+      case 'root':
+
+        this.JSON.forEach(recipe => {
+          if (!normalizeString(result).includes(recipe[options.fields])) {
+            result.push(recipe[options.fields])
+          }
+        })
+
+        break
+
+      case 'lowerLevel':
+
+        this.JSON.forEach(recipe => {
+          recipe[options.context].forEach(el => {
+            // Tableau associatif {else} tableau unidimensionelle [ternaire]
+            options.context !== options.fields ? el = el[options.fields] : el
+            if (!normalizeString(result).includes(el)) { result.push(el) }
+          })
+        })
+
+        break
+    }
+    return result
+  }
+
+  specificData (options) {
+    const result = []
+    switch (options.depth) {
+      case 'root':
+        this.JSON.forEach((recipe) => {
+          if (recipe[options.fields].includes(options.search)) {
+            result.push({
+              idRecipe: recipe.id,
+              value: recipe[options.fields],
+              context: options.context,
+              fields: options.fields,
+              depth: options.depth,
+              search: options.search
+            })
+          }
+        })
+
+        break
+
+      case 'lowerLevel':
+        this.JSON.forEach(recipe => {
+          const thisArray = recipe[options.context]
+
+          thisArray.filter((el) => {
+            if (options.fields !== options.context) { el = el[options.fields] }
+
+            if (el.includes(options.search)) {
+              result.push({
+                idRecipe: recipe.id,
+                value: el,
+                context: options.context,
+                fields: options.fields,
+                depth: options.depth,
+                search: options.search
+              })
+            }
+          })
+        })
+
+        break
+    }
+    return result
+  }
+
+  getRecipeByID (data) {
+    const result = []
+    data.forEach((el) => {
+      result.push(this.JSON.find(recipes => recipes.id === el))
+    })
+    return result
+  }
+}
+
+const getData = new GetData()
+
+/** */
+
+/**
+* Recheche les ID des recettes par mots clef
+* Renvoie un Tableau d'object contenant les resultat obtenue
+* sur les 3 champs de la recherche global
+* {name , description, ingredients} *
+* @param {string} keyWords
+* @returns {array}
+*/
+const idByGlobalSearch = (keyWords) => {
+  const idByGlobal = new Set()
+
+  /*  const lengthKey = keyWords.length
+   for(let i = 0 ; i < lengthKey ; i++){
+      const search = keyWords[i]
+      const lengthOptions = init.globalOptions.length
+      for(let inc = 0 ; inc < lengthOptions ; inc++){
+          options = init.globalOptions[inc]
+          options.search = search
+          const result  = getData.specificData(options)
+
+          const hasValid = idByGlobal.has(result)
+          if(!hasValid){
+              idByGlobal.add(result)
+          }
+      }
+   } */
+
+  keyWords.forEach(search => {
+    init.globalOptions.forEach(Options => {
+      Options.search = search
+      const result = getData.specificData(Options)
+
+      const hasValid = idByGlobal.has(result)
+      if (!hasValid) {
+        idByGlobal.add(result)
+      }
+    })
   })
+
+  return idByGlobal
 }
 
 /**
- * Create a tag HTML element when user select a filter, display it under main search input, and remove it from custom select
- * @param { String } elt
- * @param { String } eltType
- * @param { String } eltID
- */
-export function createTag (elt, eltType, eltID) {
-  const parentElt = document.getElementById('tag-container')
-  const dataType = eltType.substr(0, eltType.lastIndexOf('-'))
+* Trie les ID des différents tableaux de resultat {idByGlobalSearch}
+* pour ne conserver que les ID unique.
+* @param {*} thisData
+* @returns
+*/
+const getUniqueID = (thisData) => {
+  uniqueID = new Set()
 
-  const tag = `<a href="#" class="tag ${eltType}" id="${eltID}" data-type="${dataType}">
-                    <span>${elt}</span><em class="far fa-times-circle"></em>
-               </a>`
-
-  parentElt.insertAdjacentHTML('beforeend', tag)
-
-  filtered.push({
-    type: dataType,
-    id: eltID,
-    value: sanitizeString(elt)
+  thisData.forEach((data) => {
+    if (data.length > 0) {
+      data.forEach((value) => {
+        const hasValid = uniqueID.has(value.idRecipe)
+        if (!hasValid) {
+          uniqueID.add(value.idRecipe)
+        }
+      })
+    }
   })
-
-  resetCustomSelectInput(dataType)
-
-  searching(filtered)
+  return uniqueID
 }
 
-/**
- * Remove input value
- * @param {String} dataType - type of input
- */
-function resetCustomSelectInput (dataType) {
-  Array.from(document.getElementsByClassName('custom-input ' + dataType)).forEach(elt => {
-    elt.value = ''
+/*
+const algoBasique = (keyWords) => {
+  //Nettoyage de tous les espaces comprit dans la chaîne de caractères
+  const keyWordsArray = keyWords.trim().replace(/  +/g, ' ').split(' ')
+  const idByGlobal = idByGlobalSearch(keyWordsArray)
+  const uniqueID = getUniqueID(idByGlobal)
+  return  getData.getRecipeByID(uniqueID);
+
+} */
+
+const algoBasique = (keyWords) => {
+  const optionsLenght = init.globalOptions.length
+  const keyWordsArray = keyWords.trim().replace(/  +/g, ' ').split(' ')
+  const keyWordLength = keyWordsArray.length
+  const finalResult = []
+
+  // On boucle pour chaque mots saisie dans la barre de recherche
+  for (let inc = 0; inc < keyWordLength; inc++) {
+    for (let incOptions = 0; incOptions < optionsLenght; incOptions++) {
+      const fields = init.globalOptions[incOptions].fields
+      const context = init.globalOptions[incOptions].context
+      const depth = init.globalOptions[incOptions].depth
+
+      const search = normalizeString(keyWordsArray[inc])
+      const regex = new RegExp(search, 'g')
+      const jsonLength = init.recipes.length
+
+      for (let incJson = 0; incJson < jsonLength; incJson++) {
+        if (depth === 'root') {
+          if (normalizeString(init.recipes[incJson][context]).match(regex)) {
+            finalResult.push({
+              idRecipe: dataJSON[incJson].id
+            })
+          }
+        }
+
+        if (depth === 'lowerLevel') {
+          init.recipes[incJson][context].forEach(ing => {
+            if (normalizeString(ing[fields]).match(regex)) {
+              finalResult.push({
+                idRecipe: dataJSON[incJson].id
+              })
+            }
+          })
+        }
+      }
+    }
+  }
+
+  // On boucle sur les tableau D'id pour ne conserver que les id uniques
+
+  // console.log(finalResult);
+
+  uniqueID = []
+
+  finalResult.forEach((data) => {
+    // console.log(data);
+
+    if (!uniqueID.includes(data.idRecipe)) {
+      uniqueID.push(data.idRecipe)
+    }
   })
-}
 
-/**
- * Remove HTML tag and re-push it in custom select
- * @param eltID
- * @param type
- * @param text
- */
-export function removeTagNodeByID (eltID, type, text) {
-  const elt = document.getElementById(eltID)
-
-  document.getElementById(eltID).remove()
-  filtered = filtered.filter(function (tag) {
-    return tag.id !== eltID
-  })
-
-  let array = [text]
-  array = new Set(array)
-  // Refill select custom
-  fillSelect(type + '-filters', type, array)
-}
-
-/**
- * Remove all recipes reload recipes from origin
- */
-function reloadRecipes () {
-  removeNodesRecipes()
-  const filters = displayRecipes(data.recipes)
-  reloadSearchEngine(filters[0], filters[1], filters[2], data.recipes)
+  const idRecipe = getData.getRecipeByID(uniqueID)
+  return idRecipe
 }

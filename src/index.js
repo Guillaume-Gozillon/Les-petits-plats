@@ -1,79 +1,63 @@
 import { DropdownIngredient } from './dropdown/DropdownIngredient.js'
 import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
-// import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
-// TEST ALGO V1
+import { dataJSON } from '../data/secondRecipes.js'
 
+/*
 const mainHTML = document.querySelector('main')
-const searchInput = document.getElementById('searchbar')
-const applianceInput = document.getElementById('applianceInput')
 
 let recipes
 let searchTerm = ''
+*/
 
-const fetchData = async () => {
-  recipes = await fetch('./data/recipes.json')
-    .then(res => res.json())
+const splitWords = str => {
+  return str
+    .trim()
+    .replace(/  +/g, ' ')
+    .split(' ')
 }
 
-const showRecipes = async () => {
-  await fetchData()
-  const data = recipes.recipes
-  const listAppliance = document.getElementById('searchAppliance')
+class ListEVENT {
+  constructor () {
+    this.resultArr = []
+    this.searchbar = document.getElementById('searchbar')
+    this.applianceNODE = document.getElementById('applianceInput')
 
-  // Filtre les ingredients avec le terme recherché
-  const dataFiltered = data.filter(x => {
-    return x.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      x.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      x.ingredients.some(y => {
-        return y.ingredient.toLowerCase().includes(searchTerm.toLowerCase())
-      })
-  })
+    console.log(this.searchbar.textContent)
 
-  const dataAppliance = data.filter(x => x.appliance.toLowerCase().includes(searchTerm.toLowerCase()))
+    document.querySelector('main').innerHTML = this.resultArr
 
-  // Initialise et créer le DOM
-  mainHTML.innerHTML = dataFiltered.map(recipe => (`
-        <div class="container">
-          <div class="empty"></div>
-          <div class="content">
-            <div class="title">
-              <p>${recipe.name}</p>
-              <p><i class="far fa-clock"></i> ${recipe.time}min</p>
-            </div>
-            <div class="recette">
-            <div class="ingredient">
-              ${recipe.ingredients.map(x =>
-                `<p><span class="bolder">${x.ingredient}:</span> ${x.quantity}${x.unit}</p>`).join('')}
-            </div>
-              <div class="ingredient">
-            </div>
-              <p class="main-para">${recipe.description}</p>
-            </div>
-          </div>
-        </div>`
-  )).join('')
+    this.getEVENT()
+  }
 
-  listAppliance.innerHTML = (
-    dataAppliance.map(el => `<li>${el.appliance}</li>`)
-  ).join('')
+  getEVENT () {
+    this.searchbar.addEventListener('input', e => {
+      console.log(splitWords(e.target.value))
+    })
+  }
 }
 
-// Initialisation de l'algo
-searchInput.addEventListener('input', e => {
-  searchTerm = e.target.value
-  showRecipes()
-})
+new ListEVENT()
 
-// IICCICICICIICI
-const searchAppliance = document.getElementById('searchAppliance')
-searchAppliance.addEventListener('click', e => {
-  console.log(e.target.textContent)
-})
+// TEST --------------
+const normalizeString = str => {
+  return str
+    .toString()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+}
 
-applianceInput.addEventListener('input', e => {
-  searchTerm = e.target.value
-  showRecipes()
-})
+class InitJSON {
+  constructor (JSON) {
+    this.recipesArr = []
+    this.recipes = JSON
+
+    // console.log('JSONArr', this.recipesArr);
+    console.log(normalizeString(this.recipes[1].id))
+  }
+}
+
+new InitJSON(dataJSON)
 
 // EVENEMENT AU CLICK DU FILTRE
 document.getElementById('searchAppliance').addEventListener('click', e => {
@@ -82,6 +66,6 @@ document.getElementById('searchAppliance').addEventListener('click', e => {
 })
 
 // -----------FIN ---------------
-showRecipes()
+
 new DropdownIngredient()
 new DropdownAppliance()
