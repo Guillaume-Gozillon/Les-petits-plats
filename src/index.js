@@ -22,16 +22,22 @@ class ListEVENT {
     this.searchbar = document.getElementById('searchbar')
     this.applianceNODE = document.getElementById('applianceInput')
 
-    console.log(this.searchbar.textContent)
-
-    document.querySelector('main').innerHTML = this.resultArr
-
     this.getEVENT()
   }
 
   getEVENT () {
     this.searchbar.addEventListener('input', e => {
-      console.log(splitWords(e.target.value))
+      this.resultArr = []
+      this.resultArr.push(splitWords(e.target.value))
+      let p = document.createElement('p')
+      p.textContent = this.resultArr
+      console.log('1', document.querySelector('main').firstChild)
+      document.querySelector('main').removeChild(document.querySelector('main').querySelector('p'))
+      console.log('2', document.querySelector('main').firstChild)
+
+      document.querySelector('main').appendChild(p)
+
+      console.log('RESULT', this.resultArr)
     })
   }
 }
