@@ -9,32 +9,30 @@ const splitWords = str => {
     .split(' ')
 }
 
-const normalizeString = str => {
-  return str
-    .toString()
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-}
-
 class ListEVENT {
   constructor () {
     this.searchbar = document.getElementById('searchbar')
     this.applianceNODE = document.getElementById('applianceInput')
 
-    this.test = 'salut'
     this.keywords = []
     console.log(this.keywords)
 
     this.getEVENTsearchBar()
+    this.getEVENTapplicance()
   }
 
   // RAJOUTER STOPWORD
 
   getEVENTsearchBar () {
     this.searchbar.addEventListener('input', e => {
-      console.log(this.test)
-      this.keywords = [...splitWords(e.target.value)]
+      this.keywords = splitWords(e.target.value)
+      dom.setKeywords(this.keywords)
+    })
+  }
+
+  getEVENTapplicance () {
+    this.applianceNODE.addEventListener('input', e => {
+      this.keywords = splitWords(e.target.value)
       dom.setKeywords(this.keywords)
     })
   }
@@ -48,11 +46,6 @@ class BuildDOM {
   constructor (JSON) {
     this.recipesArr = []
     this.recipes = JSON
-
-    console.log(this.keywords)
-
-    // console.log('JSONArr', this.recipesArr);
-    // console.log(normalizeString(this.recipes[1].id))
   }
 
   setKeywords (keywords) {
@@ -62,6 +55,14 @@ class BuildDOM {
 }
 
 const dom = new BuildDOM(dataJSON)
+
+const normalizeString = str => {
+  return str
+    .toString()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+}
 
 // EVENEMENT AU CLICK DU FILTRE
 document.getElementById('searchAppliance').addEventListener('click', e => {
