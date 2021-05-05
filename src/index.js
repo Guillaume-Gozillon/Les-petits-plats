@@ -2,13 +2,6 @@ import { DropdownIngredient } from './dropdown/DropdownIngredient.js'
 import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
 import { dataJSON } from '../data/secondRecipes.js'
 
-/*
-const mainHTML = document.querySelector('main')
-
-let recipes
-let searchTerm = ''
-*/
-
 const splitWords = str => {
   return str
     .trim()
@@ -16,35 +9,6 @@ const splitWords = str => {
     .split(' ')
 }
 
-class ListEVENT {
-  constructor () {
-    this.resultArr = []
-    this.searchbar = document.getElementById('searchbar')
-    this.applianceNODE = document.getElementById('applianceInput')
-
-    this.getEVENT()
-  }
-
-  getEVENT () {
-    this.searchbar.addEventListener('input', e => {
-      this.resultArr = []
-      this.resultArr.push(splitWords(e.target.value))
-      let p = document.createElement('p')
-      p.textContent = this.resultArr
-      console.log('1', document.querySelector('main').firstChild)
-      document.querySelector('main').removeChild(document.querySelector('main').querySelector('p'))
-      console.log('2', document.querySelector('main').firstChild)
-
-      document.querySelector('main').appendChild(p)
-
-      console.log('RESULT', this.resultArr)
-    })
-  }
-}
-
-new ListEVENT()
-
-// TEST --------------
 const normalizeString = str => {
   return str
     .toString()
@@ -53,17 +17,51 @@ const normalizeString = str => {
     .replace(/[\u0300-\u036f]/g, '')
 }
 
-class InitJSON {
+class ListEVENT {
+  constructor () {
+    this.searchbar = document.getElementById('searchbar')
+    this.applianceNODE = document.getElementById('applianceInput')
+
+    this.test = 'salut'
+    this.keywords = []
+    console.log(this.keywords)
+
+    this.getEVENTsearchBar()
+  }
+
+  // RAJOUTER STOPWORD
+
+  getEVENTsearchBar () {
+    this.searchbar.addEventListener('input', e => {
+      console.log(this.test)
+      this.keywords = [...splitWords(e.target.value)]
+      dom.setKeywords(this.keywords)
+    })
+  }
+}
+
+new ListEVENT()
+
+// build DOM --------------
+
+class BuildDOM {
   constructor (JSON) {
     this.recipesArr = []
     this.recipes = JSON
 
+    console.log(this.keywords)
+
     // console.log('JSONArr', this.recipesArr);
-    console.log(normalizeString(this.recipes[1].id))
+    // console.log(normalizeString(this.recipes[1].id))
+  }
+
+  setKeywords (keywords) {
+    this.keywords = keywords
+    console.log('KEYWORDS', keywords)
   }
 }
 
-new InitJSON(dataJSON)
+const dom = new BuildDOM(dataJSON)
 
 // EVENEMENT AU CLICK DU FILTRE
 document.getElementById('searchAppliance').addEventListener('click', e => {
@@ -75,3 +73,18 @@ document.getElementById('searchAppliance').addEventListener('click', e => {
 
 new DropdownIngredient()
 new DropdownAppliance()
+
+/*
+THE FOR METHODE TO SORT ARRAY
+      for (let i = 0; i < this.keywords.length; i++) {
+        // console.log(splitWords(this.resultArr[i]))
+        // console.log(dataJSON.map(x => x.name))
+        if (normalizeString(dataJSON.map(x => x.name)).includes(this.keywords[i])) {
+          console.log('CA FONCTIONNE')
+        }
+
+        this.newArr = []
+        this.newArr.push(this.keywords.filter(normalizeString(dataJSON.map(x => x.name)).includes(this.keywords[i])))
+        console.log('newARR', this.newArr)
+      }
+*/

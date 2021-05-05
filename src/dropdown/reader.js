@@ -240,7 +240,7 @@ const idByGlobalSearch = (keyWords) => {
 * @returns
 */
 const getUniqueID = (thisData) => {
-  uniqueID = new Set()
+  let uniqueID = new Set()
 
   thisData.forEach((data) => {
     if (data.length > 0) {
