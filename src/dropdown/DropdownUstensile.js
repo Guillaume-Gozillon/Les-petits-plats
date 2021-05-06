@@ -5,11 +5,6 @@ export class DropdownUstensile {
 
   openIngredientList (data) {
     const arrowList = document.getElementById('arrowUstensile')
-    const listUL = document.getElementById('searchUstensile')
-
-    listUL.insertAdjacentHTML('afterbegin', `
-    <li>${data.ustensils[2]}</li>
-`)
 
     arrowList.addEventListener('click', e => {
       if (e.target.classList == 'arrow') {

@@ -1,5 +1,7 @@
 import { DropdownIngredient } from './dropdown/DropdownIngredient.js'
 import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
+import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
+
 import { dataJSON } from '../data/secondRecipes.js'
 
 const splitWords = str => {
@@ -15,25 +17,23 @@ class ListEVENT {
     this.applianceNODE = document.getElementById('applianceInput')
 
     this.keywords = []
-    console.log(this.keywords)
+    this.secondKeywords = []
 
-    this.getEVENTsearchBar()
-    this.getEVENTapplicance()
+    this.getInputSearchbar()
+    this.getInputApplicance()
   }
 
-  // RAJOUTER STOPWORD
-
-  getEVENTsearchBar () {
+  getInputSearchbar () {
     this.searchbar.addEventListener('input', e => {
       this.keywords = splitWords(e.target.value)
       dom.setKeywords(this.keywords)
     })
   }
 
-  getEVENTapplicance () {
+  getInputApplicance () {
     this.applianceNODE.addEventListener('input', e => {
-      this.keywords = splitWords(e.target.value)
-      dom.setKeywords(this.keywords)
+      this.secondKeywords = splitWords(e.target.value)
+      dom.setKeywords(this.secondKeywords)
     })
   }
 }
@@ -44,25 +44,40 @@ new ListEVENT()
 
 class BuildDOM {
   constructor (JSON) {
-    this.recipesArr = []
     this.recipes = JSON
+
+    this.buildAppliance(this.recipes)
+    this.buildUstensils(this.recipes)
   }
 
-  setKeywords (keywords) {
+  buildAppliance (obj) {
+    document.getElementById('searchAppliance').innerHTML = obj
+      .map(x => `<li>${x.appliance}</li>`).join('')
+  }
+
+  buildUstensils (obj) {
+    document.getElementById('searchUstensile').innerHTML = obj
+      .map(x => `<li>${x.ustensils}</li>`).join('')
+  }
+
+  setKeywords (keywords, secondKeywords) {
     this.keywords = keywords
-    console.log('KEYWORDS', keywords)
+    this.secondKeywords = secondKeywords
+
+    console.log(this.keywords)
   }
 }
 
 const dom = new BuildDOM(dataJSON)
+console.log(dom)
 
-const normalizeString = str => {
-  return str
-    .toString()
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-}
+// const normalizeString = str => {
+//   return str
+//     .toString()
+//     .toLowerCase()
+//     .normalize('NFD')
+//     .replace(/[\u0300-\u036f]/g, '')
+// }
 
 // EVENEMENT AU CLICK DU FILTRE
 document.getElementById('searchAppliance').addEventListener('click', e => {
@@ -74,6 +89,7 @@ document.getElementById('searchAppliance').addEventListener('click', e => {
 
 new DropdownIngredient()
 new DropdownAppliance()
+new DropdownUstensile()
 
 /*
 THE FOR METHODE TO SORT ARRAY
