@@ -11,29 +11,37 @@ const splitWords = str => {
     .split(' ')
 }
 
+Array.prototype.unique = function () {
+  return this.filter(function (value, index, self) {
+    return self.indexOf(value) === index
+  })
+}
+
 class ListEVENT {
   constructor () {
     this.searchbar = document.getElementById('searchbar')
     this.applianceNODE = document.getElementById('applianceInput')
 
-    this.keywords = []
-    this.secondKeywords = []
-
     this.getInputSearchbar()
     this.getInputApplicance()
+
+    const testARR = [1, 1, 2, 2, 3, 4]
+
+    console.log(testARR.unique())
   }
 
   getInputSearchbar () {
     this.searchbar.addEventListener('input', e => {
       this.keywords = splitWords(e.target.value)
-      dom.setKeywords(this.keywords)
+      dom.setKeywords(this.keywords.unique())
+      console.log(dom.setKeywords(this.keywords.unique()))
     })
   }
 
   getInputApplicance () {
     this.applianceNODE.addEventListener('input', e => {
       this.secondKeywords = splitWords(e.target.value)
-      dom.setKeywords(this.secondKeywords)
+      dom.setKeywords(this.secondKeywords.unique())
     })
   }
 }
@@ -50,9 +58,11 @@ class BuildDOM {
     this.buildUstensils(this.recipes)
   }
 
-  buildAppliance (obj) {
-    document.getElementById('searchAppliance').innerHTML = obj
-      .map(x => `<li>${x.appliance}</li>`).join('')
+  buildAppliance (item) {
+    const appareil = item.map(x => x.appliance).unique()
+    console.log('TEST', appareil)
+
+    document.getElementById('searchAppliance').innerHTML = `<li>${appareil}</li>`
   }
 
   buildUstensils (obj) {
@@ -64,7 +74,7 @@ class BuildDOM {
     this.keywords = keywords
     this.secondKeywords = secondKeywords
 
-    console.log(this.keywords)
+    console.log(this.keywords, this.secondKeywords)
   }
 }
 
