@@ -2,6 +2,8 @@ import { DropdownIngredient } from './dropdown/DropdownIngredient.js'
 import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
 import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
 
+import { BuildDOM } from './BuildDOM.js'
+
 import { dataJSON } from '../data/secondRecipes.js'
 
 const splitWords = str => {
@@ -23,10 +25,9 @@ class ListEVENT {
     this.applianceNODE = document.getElementById('applianceInput')
 
     this.getInputSearchbar()
-    this.getInputApplicance()
+    // this.getInputApplicance()
 
     const testARR = [1, 1, 2, 2, 3, 4]
-
     console.log(testARR.unique())
   }
 
@@ -34,7 +35,8 @@ class ListEVENT {
     this.searchbar.addEventListener('input', e => {
       this.keywords = splitWords(e.target.value)
       dom.setKeywords(this.keywords.unique())
-      console.log(dom.setKeywords(this.keywords.unique()))
+      // NE MARCHE PAS ?
+      // console.log(dom.setKeywords(this.keywords.unique()))
     })
   }
 
@@ -49,35 +51,6 @@ class ListEVENT {
 new ListEVENT()
 
 // build DOM --------------
-
-class BuildDOM {
-  constructor (JSON) {
-    this.recipes = JSON
-
-    this.buildAppliance(this.recipes)
-    this.buildUstensils(this.recipes)
-  }
-
-  buildAppliance (item) {
-    const appareil = item.map(x => x.appliance).unique()
-    console.log('TEST', appareil)
-
-    document.getElementById('searchAppliance').innerHTML = `<li>${appareil}</li>`
-  }
-
-  buildUstensils (obj) {
-    document.getElementById('searchUstensile').innerHTML = obj
-      .map(x => `<li>${x.ustensils}</li>`).join('')
-  }
-
-  setKeywords (keywords, secondKeywords) {
-    this.keywords = keywords
-    this.secondKeywords = secondKeywords
-
-    console.log(this.keywords, this.secondKeywords)
-  }
-}
-
 const dom = new BuildDOM(dataJSON)
 console.log(dom)
 
@@ -100,18 +73,3 @@ document.getElementById('searchAppliance').addEventListener('click', e => {
 new DropdownIngredient()
 new DropdownAppliance()
 new DropdownUstensile()
-
-/*
-THE FOR METHODE TO SORT ARRAY
-      for (let i = 0; i < this.keywords.length; i++) {
-        // console.log(splitWords(this.resultArr[i]))
-        // console.log(dataJSON.map(x => x.name))
-        if (normalizeString(dataJSON.map(x => x.name)).includes(this.keywords[i])) {
-          console.log('CA FONCTIONNE')
-        }
-
-        this.newArr = []
-        this.newArr.push(this.keywords.filter(normalizeString(dataJSON.map(x => x.name)).includes(this.keywords[i])))
-        console.log('newARR', this.newArr)
-      }
-*/

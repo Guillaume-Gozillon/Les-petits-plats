@@ -193,7 +193,7 @@ main .container .content {
 .btn-section label .listUL li:hover {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 5px;
-  cursor: copy;
+  cursor: pointer;
 }
 
 #btn-appliance {
