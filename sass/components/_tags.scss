@@ -1,0 +1,15 @@
+#tags{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    & .tagAdd{
+        color: rgb(255, 255, 255);
+        margin: 10px 15px;
+        background-color: rgb(237, 106, 77);
+        padding: 6px 19px;
+        border-radius: 8px;
+    }
+}
+
+

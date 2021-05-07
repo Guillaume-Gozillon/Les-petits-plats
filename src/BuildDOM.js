@@ -24,7 +24,7 @@ export class BuildDOM {
   buildAppliance (item) {
     const appareil = item.map(x => x.appliance).unique()
     document.getElementById('searchAppliance').innerHTML =
-      appareil.map(y => `<li>${y}</li>`).join('')
+      appareil.map(y => `<li id="liTargeted">${y}</li>`).join('')
   }
 
   buildUstensils (item) {
@@ -44,6 +44,7 @@ export class BuildDOM {
     this.keywords = keywords
     this.secondKeywords = secondKeywords
 
-    console.log(this.keywords)
+    // MERGE PLUSIEURS TABLEAU
+    console.log([...this.keywords, this.secondKeywords])
   }
 }

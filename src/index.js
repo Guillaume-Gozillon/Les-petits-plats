@@ -13,6 +13,7 @@ const splitWords = str => {
     .split(' ')
 }
 
+// eslint-disable-next-line no-extend-native
 Array.prototype.unique = function () {
   return this.filter(function (value, index, self) {
     return self.indexOf(value) === index
@@ -23,18 +24,21 @@ class ListEVENT {
   constructor () {
     this.searchbar = document.getElementById('searchbar')
     this.applianceNODE = document.getElementById('applianceInput')
+    this.liTargeted = document.getElementById('liTargeted')
 
     this.getInputSearchbar()
-    // this.getInputApplicance()
+    this.getInputApplicance()
 
-    const testARR = [1, 1, 2, 2, 3, 4]
-    console.log(testARR.unique())
+    // const testARR = [1, 1, 2, 2, 3, 4]
+    // console.log(testARR.unique())
+
+    //this.getApplicanceByClick()
   }
 
   getInputSearchbar () {
     this.searchbar.addEventListener('input', e => {
       this.keywords = splitWords(e.target.value)
-      dom.setKeywords(this.keywords.unique())
+      dom.setKeywords(this.keywords.unique(), '4')
       // NE MARCHE PAS ?
       // console.log(dom.setKeywords(this.keywords.unique()))
     })
@@ -43,7 +47,14 @@ class ListEVENT {
   getInputApplicance () {
     this.applianceNODE.addEventListener('input', e => {
       this.secondKeywords = splitWords(e.target.value)
-      dom.setKeywords(this.secondKeywords.unique())
+      // dom.setKeywords(this.keywords.unique())
+    })
+  }
+
+  getApplicanceByClick () {
+    this.liTargeted.addEventListener('click', e => {
+      console.log(e.target.value)
+      // dom.setKeywords(this.keywords.unique())
     })
   }
 }

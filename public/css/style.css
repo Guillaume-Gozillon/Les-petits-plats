@@ -292,5 +292,18 @@ main .container .content {
     grid-template-columns: 1fr;
   }
 }
+#tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+#tags .tagAdd {
+  color: white;
+  margin: 10px 15px;
+  background-color: #ed6a4d;
+  padding: 6px 19px;
+  border-radius: 8px;
+}
 
 /*# sourceMappingURL=style.css.map */
