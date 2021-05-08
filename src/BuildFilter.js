@@ -1,4 +1,4 @@
-export class BuildDOM {
+export class BuildFilter {
   constructor (JSON) {
     this.recipes = JSON
 
@@ -24,7 +24,7 @@ export class BuildDOM {
   buildAppliance (item) {
     const appareil = item.map(x => x.appliance).unique()
     document.getElementById('searchAppliance').innerHTML =
-      appareil.map(y => `<li id="liTargeted">${y}</li>`).join('')
+      appareil.map(y => `<li class="liTargeted">${y}</li>`).join('')
   }
 
   buildUstensils (item) {
@@ -37,14 +37,15 @@ export class BuildDOM {
 
     const ustensilsDom = ustensilArr.unique()
     document.getElementById('searchUstensile').innerHTML =
-      ustensilsDom.map(x => `<li>${x}</li>`).join('')
+      ustensilsDom.map(z => `<li>${z}</li>`).join('')
   }
 
-  setKeywords (keywords, secondKeywords) {
+  setKeywords (keywords, secondKeywords, thirthKeywords) {
     this.keywords = keywords
     this.secondKeywords = secondKeywords
+    this.thirthKeywords = thirthKeywords
 
     // MERGE PLUSIEURS TABLEAU
-    console.log([...this.keywords, this.secondKeywords])
+    console.log([...this.keywords, this.secondKeywords, this.thirthKeywords])
   }
 }

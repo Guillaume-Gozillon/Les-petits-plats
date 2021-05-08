@@ -2,7 +2,7 @@ import { DropdownIngredient } from './dropdown/DropdownIngredient.js'
 import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
 import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
 
-import { BuildDOM } from './BuildDOM.js'
+import { BuildFilter } from './BuildFilter.js'
 
 import { dataJSON } from '../data/secondRecipes.js'
 
@@ -19,12 +19,12 @@ Array.prototype.unique = function () {
     return self.indexOf(value) === index
   })
 }
-
+// _-_-_-_-_-_-_-_-_-_-_-_EVENT_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 class ListEVENT {
   constructor () {
     this.searchbar = document.getElementById('searchbar')
     this.applianceNODE = document.getElementById('applianceInput')
-    this.liTargeted = document.getElementById('liTargeted')
+    this.liTargeted = document.getElementsByClassName('liTargeted')
 
     this.getInputSearchbar()
     this.getInputApplicance()
@@ -32,21 +32,20 @@ class ListEVENT {
     // const testARR = [1, 1, 2, 2, 3, 4]
     // console.log(testARR.unique())
 
-    //this.getApplicanceByClick()
+    // this.getApplicanceByClick()
   }
 
   getInputSearchbar () {
     this.searchbar.addEventListener('input', e => {
       this.keywords = splitWords(e.target.value)
-      dom.setKeywords(this.keywords.unique(), '4')
-      // NE MARCHE PAS ?
-      // console.log(dom.setKeywords(this.keywords.unique()))
+      dom.setKeywords(this.keywords.unique(), '4', 'YES')
     })
   }
 
   getInputApplicance () {
     this.applianceNODE.addEventListener('input', e => {
-      this.secondKeywords = splitWords(e.target.value)
+      this.carotte = splitWords(e.target.value)
+      console.log(splitWords(e.target.value))
       // dom.setKeywords(this.keywords.unique())
     })
   }
@@ -54,16 +53,31 @@ class ListEVENT {
   getApplicanceByClick () {
     this.liTargeted.addEventListener('click', e => {
       console.log(e.target.value)
-      // dom.setKeywords(this.keywords.unique())
     })
   }
 }
 
 new ListEVENT()
+// _-_-_-_-_-_-_-_-_-_-_-_FIN_EVENT_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+class TrieDATA {
+  constructor (JSON) {
+    this.data = JSON
+    console.log(this.data)
+  }
+}
+
+new TrieDATA(dataJSON)
 
 // build DOM --------------
-const dom = new BuildDOM(dataJSON)
+const dom = new BuildFilter(dataJSON)
 console.log(dom)
+
+const toTest = document.getElementsByClassName('tagAdd')
+for (let i = 0; i < toTest.length; i++) {
+  const el = toTest[i]
+  console.log(el.textContent)
+}
 
 // const normalizeString = str => {
 //   return str
