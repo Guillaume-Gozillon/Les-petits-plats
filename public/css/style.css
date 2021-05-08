@@ -140,7 +140,7 @@ main .container .content {
   }
 }
 .btn-section {
-  position: absolute;
+  position: relative;
   width: 100%;
   max-width: 1240px;
   margin: auto;
@@ -187,7 +187,7 @@ main .container .content {
   list-style: none;
 }
 .btn-section label .listUL li {
-  padding: 5px 30px;
+  padding: 5px 20px;
   display: none;
 }
 .btn-section label .listUL li:hover {

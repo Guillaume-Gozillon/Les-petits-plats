@@ -1,3 +1,4 @@
+/* eslint-disable no-extend-native */
 import { DropdownIngredient } from './dropdown/DropdownIngredient.js'
 import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
 import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
@@ -6,47 +7,57 @@ import { BuildFilter } from './BuildFilter.js'
 
 import { dataJSON } from '../data/secondRecipes.js'
 
-const splitWords = str => {
-  return str
+String.prototype.splitWords = function () {
+  return this
     .trim()
     .replace(/  +/g, ' ')
     .split(' ')
 }
 
-// eslint-disable-next-line no-extend-native
 Array.prototype.unique = function () {
   return this.filter(function (value, index, self) {
     return self.indexOf(value) === index
   })
 }
 // _-_-_-_-_-_-_-_-_-_-_-_EVENT_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-class ListEVENT {
+class ListEvent {
   constructor () {
     this.searchbar = document.getElementById('searchbar')
-    this.applianceNODE = document.getElementById('applianceInput')
-    this.liTargeted = document.getElementsByClassName('liTargeted')
+    this.ingredientNode = document.getElementById('inputIngredient')
+    this.applianceNode = document.getElementById('applianceInput')
+    this.ustensileNode = document.getElementById('ustensileInput')
+
+    // this.liTargeted = document.getElementsByClassName('liTargeted')
 
     this.getInputSearchbar()
+    this.getInputIngredient()
     this.getInputApplicance()
-
-    // const testARR = [1, 1, 2, 2, 3, 4]
-    // console.log(testARR.unique())
-
+    this.getInputUstensile()
     // this.getApplicanceByClick()
   }
 
   getInputSearchbar () {
     this.searchbar.addEventListener('input', e => {
-      this.keywords = splitWords(e.target.value)
+      this.keywords = e.target.value.splitWords()
       dom.setKeywords(this.keywords.unique(), '4', 'YES')
     })
   }
 
+  getInputIngredient () {
+    this.ingredientNode.addEventListener('input', e => {
+      console.log(e.target.value.splitWords())
+    })
+  }
+
   getInputApplicance () {
-    this.applianceNODE.addEventListener('input', e => {
-      this.carotte = splitWords(e.target.value)
-      console.log(splitWords(e.target.value))
-      // dom.setKeywords(this.keywords.unique())
+    this.applianceNode.addEventListener('input', e => {
+      console.log(e.target.value.splitWords())
+    })
+  }
+
+  getInputUstensile () {
+    this.ustensileNode.addEventListener('input', e => {
+      console.log(e.target.value.splitWords())
     })
   }
 
@@ -57,17 +68,17 @@ class ListEVENT {
   }
 }
 
-new ListEVENT()
+new ListEvent()
 // _-_-_-_-_-_-_-_-_-_-_-_FIN_EVENT_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 
-class TrieDATA {
+class SortData {
   constructor (JSON) {
     this.data = JSON
     console.log(this.data)
   }
 }
 
-new TrieDATA(dataJSON)
+new SortData(dataJSON)
 
 // build DOM --------------
 const dom = new BuildFilter(dataJSON)

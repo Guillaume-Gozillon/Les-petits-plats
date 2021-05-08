@@ -1,5 +1,5 @@
 .btn-section{
-  position: absolute;
+  position: relative;
   width: 100%;
   max-width: 1240px;
   margin: auto;
@@ -43,7 +43,7 @@
         opacity: 0;
         list-style: none;
         & li{
-          padding: 5px 30px;
+          padding: 5px 20px;
           display: none;
         &:hover{
           background-color: rgba(white, .2);

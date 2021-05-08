@@ -16,7 +16,7 @@ export class BuildFilter {
         ingredientArr.push(arrIngredient.ingredient))
     })
 
-    const ingredientsDom = ingredientArr.unique()
+    const ingredientsDom = ingredientArr.unique().slice(0, 30)
     document.getElementById('searchIngredient').innerHTML =
       ingredientsDom.map(x => `<li>${x}</li>`).join('')
   }
