@@ -1,4 +1,4 @@
-export const dataJSON = [
+export const Recipes = [
   {
     id: 1,
     name: 'Limonade de Coco',

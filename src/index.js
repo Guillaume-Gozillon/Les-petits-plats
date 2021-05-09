@@ -5,7 +5,31 @@ import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
 
 import { BuildFilter } from './BuildFilter.js'
 
-import { dataJSON } from '../data/secondRecipes.js'
+import { Recipes } from '../data/Recipes.js'
+import { dataFetch } from './Fetch.js'
+import { Search } from './Search.js'
+
+function updateView () {
+  console.log('####################### Filtres disponibles : ####################### ')
+
+  console.log('----- Ingredients -----')
+  //console.log(dataFetch.extractIngredient())
+
+  console.log('----- Ustensibles -----')
+  console.log(dataFetch.extractUstensibles())
+
+  console.log('----- Tools -----')
+  console.log(dataFetch.extractTools())
+
+  console.log('### Recettes trouvées (' + dataFetch.recipes.length + ') ###')
+}
+
+updateView()
+Search.selectIngredient('Tomate')
+Search.selectUstensils('verres')
+updateView()
+Search.reset()
+updateView()
 
 String.prototype.splitWords = function () {
   return this
@@ -60,10 +84,10 @@ class SortData {
   }
 }
 
-const askData = new SortData(dataJSON)
+const askData = new SortData(Recipes)
 
 // build DOM --------------
-const dom = new BuildFilter(dataJSON)
+const dom = new BuildFilter(Recipes)
 console.log(dom)
 
 // const normalizeString = str => {
