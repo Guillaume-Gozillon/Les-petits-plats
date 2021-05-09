@@ -17,13 +17,13 @@ export class BuildFilter {
     })
 
     const ingredientsDom = ingredientArr.unique().slice(0, 30)
-    document.getElementById('searchIngredient').innerHTML =
+    document.querySelector('#searchIngredient').innerHTML =
       ingredientsDom.map(x => `<li>${x}</li>`).join('')
   }
 
   buildAppliance (item) {
     const appareil = item.map(x => x.appliance).unique()
-    document.getElementById('searchAppliance').innerHTML =
+    document.querySelector('#searchAppliance').innerHTML =
       appareil.map(y => `<li class="liTargeted">${y}</li>`).join('')
   }
 
@@ -36,7 +36,7 @@ export class BuildFilter {
     })
 
     const ustensilsDom = ustensilArr.unique()
-    document.getElementById('searchUstensile').innerHTML =
+    document.querySelector('#searchUstensile').innerHTML =
       ustensilsDom.map(z => `<li>${z}</li>`).join('')
   }
 

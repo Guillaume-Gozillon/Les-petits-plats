@@ -20,20 +20,20 @@ Array.prototype.unique = function () {
   })
 }
 // _-_-_-_-_-_-_-_-_-_-_-_EVENT_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
 class ListEvent {
   constructor () {
-    this.searchbar = document.getElementById('searchbar')
-    this.ingredientNode = document.getElementById('inputIngredient')
-    this.applianceNode = document.getElementById('applianceInput')
-    this.ustensileNode = document.getElementById('ustensileInput')
+    this.searchbar = document.querySelector('#searchbar')
+    this.searchKeyword = document.querySelectorAll('.searchKeyword')
+    this.liTargeted = document.querySelectorAll('.liTargeted')
 
-    // this.liTargeted = document.getElementsByClassName('liTargeted')
+    this.getAllFilters()
+  }
 
-    this.getInputSearchbar()
-    this.getInputIngredient()
-    this.getInputApplicance()
-    this.getInputUstensile()
-    // this.getApplicanceByClick()
+  getAllFilters () {
+    this.searchKeyword.forEach(tags => tags.addEventListener('input', e => {
+      askData.askKeywords(e.target.value.splitWords())
+    }))
   }
 
   getInputSearchbar () {
@@ -42,6 +42,62 @@ class ListEvent {
       dom.setKeywords(this.keywords.unique(), '4', 'YES')
     })
   }
+}
+
+new ListEvent()
+// _-_-_-_-_-_-_-_-_-_-_-_FIN_EVENT_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+class SortData {
+  constructor (JSON) {
+    this.data = JSON
+
+    this.askKeywords()
+  }
+
+  askKeywords (keywords) {
+    this.keywords = keywords
+    console.log(this.keywords)
+  }
+}
+
+const askData = new SortData(dataJSON)
+
+// build DOM --------------
+const dom = new BuildFilter(dataJSON)
+console.log(dom)
+
+// const normalizeString = str => {
+//   return str
+//     .toString()
+//     .toLowerCase()
+//     .normalize('NFD')
+//     .replace(/[\u0300-\u036f]/g, '')
+// }
+
+// EVENEMENT AU CLICK DU FILTRE
+document.querySelector('#searchAppliance').addEventListener('click', e => {
+  document.querySelector('#tags')
+    .insertAdjacentHTML('afterbegin', `<p class="tagAdd">${e.target.textContent}</p>`)
+})
+
+// -----------FIN ---------------
+
+new DropdownIngredient()
+new DropdownAppliance()
+new DropdownUstensile()
+
+// this.tagsLink = document.querySelectorAll(`#inputList--${options.context} [data-js="getTag"]`)
+//
+// this.tagsLink.forEach((tags) => tags.addEventListener('click', (e) => {
+//  e.preventDefault(); e.stopPropagation()
+//  this.getTag(e.target)
+// }))
+
+// ========== TOUT LES EVENT SAUVEGARDE ==========
+/*
+  this.ingredientNode = document.querySelector('#inputIngredient')
+  this.applianceNode = document.querySelector('#applianceInput')
+  this.ustensileNode = document.querySelector('#ustensileInput')
 
   getInputIngredient () {
     this.ingredientNode.addEventListener('input', e => {
@@ -66,46 +122,10 @@ class ListEvent {
       console.log(e.target.value)
     })
   }
-}
 
-new ListEvent()
-// _-_-_-_-_-_-_-_-_-_-_-_FIN_EVENT_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-
-class SortData {
-  constructor (JSON) {
-    this.data = JSON
-    console.log(this.data)
-  }
-}
-
-new SortData(dataJSON)
-
-// build DOM --------------
-const dom = new BuildFilter(dataJSON)
-console.log(dom)
-
-const toTest = document.getElementsByClassName('tagAdd')
-for (let i = 0; i < toTest.length; i++) {
-  const el = toTest[i]
-  console.log(el.textContent)
-}
-
-// const normalizeString = str => {
-//   return str
-//     .toString()
-//     .toLowerCase()
-//     .normalize('NFD')
-//     .replace(/[\u0300-\u036f]/g, '')
-// }
-
-// EVENEMENT AU CLICK DU FILTRE
-document.getElementById('searchAppliance').addEventListener('click', e => {
-  document.getElementById('tags')
-    .insertAdjacentHTML('afterbegin', `<p class="tagAdd">${e.target.textContent}</p>`)
-})
-
-// -----------FIN ---------------
-
-new DropdownIngredient()
-new DropdownAppliance()
-new DropdownUstensile()
+  // this.getInputSearchbar()
+  // this.getInputIngredient()
+  // this.getInputApplicance()
+  // this.getInputUstensile()
+  // this.getApplicanceByClick()
+  */
