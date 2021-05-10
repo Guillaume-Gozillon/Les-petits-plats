@@ -14,12 +14,13 @@ const Search = {
     dataFetch.updateRecipes()
   },
 
-  selectIngredient: function (ingredient) {
-    this.selected.ingredient.push(ingredient)
+  selectIngredient: function (test) {
+    this.selected.ingredients.push(test)
     dataFetch.updateRecipes()
   },
   selectUstensils: function (ustensil) {
     this.selected.ustensils.push(ustensil)
+    dataFetch.updateRecipes()
   }
 }
 

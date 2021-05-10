@@ -9,27 +9,28 @@ import { Recipes } from '../data/Recipes.js'
 import { dataFetch } from './Fetch.js'
 import { Search } from './Search.js'
 
-function updateView () {
-  console.log('####################### Filtres disponibles : ####################### ')
+  function updateView () {
+//   console.log('####################### Filtres disponibles : ####################### ')
+//
+//   console.log('update', dataFetch.updateRecipes());
+//
+//   console.log('----- Ingredients -----')
+//   console.log(dataFetch.extractIngredient())
+//
+//   console.log('----- Ustensibles -----')
+//   console.log(dataFetch.extractUstensibles())
+//
+//   console.log('----- Tools -----')
+//   // console.log(dataFetch.extractTools())
+//
+   console.log(`### Recettes trouvées ${dataFetch.recipes.length} ${dataFetch}###`)
+  }
 
-  console.log('----- Ingredients -----')
-  //console.log(dataFetch.extractIngredient())
-
-  console.log('----- Ustensibles -----')
-  console.log(dataFetch.extractUstensibles())
-
-  console.log('----- Tools -----')
-  console.log(dataFetch.extractTools())
-
-  console.log('### Recettes trouvées (' + dataFetch.recipes.length + ') ###')
-}
-
-updateView()
+//updateView()
 Search.selectIngredient('Tomate')
-Search.selectUstensils('verres')
+Search.selectUstensils('couteau')
 updateView()
-Search.reset()
-updateView()
+
 
 String.prototype.splitWords = function () {
   return this

@@ -8,17 +8,16 @@ Array.prototype.unique = function () {
   })
 }
 
-const dataFetch = {
+export const dataFetch = {
   recipes: Recipes,
 
   updateRecipes: function () {
     this.recipes = Recipes.filter(function (recipe) {
-      // MATCH AVEC LES INGREDIENTS SELECTIONNÉS
-
+      // MATCH AVEC LES INGREDIENTS SELECTIONNÉS = TRUE sinon FALSE (n'est pas ajouté a la list)
       const ingredientName = []
 
-      recipe.ingredient.forEach(function (ingredient) {
-        ingredientName.push(ingredient.name)
+      recipe.ingredients.forEach(test => {
+        ingredientName.push(test.ingredient)
       })
 
       const matchIngredients = Search.selected.ingredients.every((el) => {
@@ -43,21 +42,22 @@ const dataFetch = {
   // extract Keyword
   extractIngredient: function () {
     const ingredientArr = []
+    console.log(ingredientArr)
 
-    this.recipes.forEach(function (test) {
-      ingredientArr.push(test.ingredient)
+    this.recipes.forEach(test => {
+      return test.ingredients.forEach(x => {
+        ingredientArr.push(x.ingredient)
+      })
     })
-    return ingredientArr.unique().filter(x => !Search.selected.ingredientArr.includes(x))
+    return ingredientArr.unique().filter(x => !Search.selected.ingredients.includes(x))
   },
   extractUstensibles: function () {
     let ustensils = []
+    console.log(ustensils)
 
     this.recipes.forEach(function (recipe) {
       ustensils = ustensils.concat(recipe.ustensils)
     })
     return ustensils.unique().filter(x => !Search.selected.ustensils.includes(x))
   }
-
 }
-
-export { dataFetch }
