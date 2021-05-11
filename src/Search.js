@@ -1,6 +1,6 @@
 import { dataFetch } from './Fetch.js'
 
-export const Search = {
+const Search = {
   selected: {
     ingredients: [],
     ustensils: []
@@ -13,7 +13,6 @@ export const Search = {
     }
     dataFetch.updateRecipes()
   },
-
   selectIngredient: function (ingredient) {
     this.selected.ingredients.push(ingredient)
     dataFetch.updateRecipes()
@@ -23,3 +22,5 @@ export const Search = {
     dataFetch.updateRecipes()
   }
 }
+
+export { Search }

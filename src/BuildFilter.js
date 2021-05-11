@@ -5,6 +5,7 @@ export class BuildFilter {
     this.buildAppliance(this.recipes)
     this.buildUstensils(this.recipes)
     this.buildIngredient(this.recipes)
+    this.buildRecipes(this.recipes)
   }
 
   buildIngredient (data) {
@@ -38,6 +39,29 @@ export class BuildFilter {
     const ustensilsDom = ustensilArr.unique()
     document.querySelector('#searchUstensile').innerHTML =
       ustensilsDom.map(item => `<li>${item}</li>`).join('')
+  }
+
+  buildRecipes (data) {
+    document.querySelector('main').innerHTML = data.map(recipe => (`
+    <div class="container">
+      <div class="empty"></div>
+      <div class="content">
+        <div class="title">
+          <p>${recipe.name}</p>
+          <p><i class="far fa-clock"></i> ${recipe.time}min</p>
+        </div>
+        <div class="recette">
+        <div class="ingredient">
+          ${recipe.ingredients.map(x =>
+            `<p><span class="bolder">${x.ingredient}:</span> ${x.quantity}${x.unit}</p>`).join('')}
+        </div>
+          <div class="ingredient">
+        </div>
+          <p class="main-para">${recipe.description}</p>
+        </div>
+      </div>
+    </div>`
+    )).join('')
   }
 }
 

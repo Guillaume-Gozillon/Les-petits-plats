@@ -8,25 +8,33 @@ Array.prototype.unique = function () {
   })
 }
 
-export const dataFetch = {
+const dataFetch = {
   recipes: Recipes,
 
   updateRecipes: function () {
-    this.recipes = Recipes.filter(sortWith => {
+    this.recipes = Recipes.filter(sortBy => {
       // MATCH AVEC LES INGREDIENTS SELECTIONNÉS = TRUE sinon FALSE (n'est pas ajouté a la list)
-      const ingredientName = []
+      const ingredientArray = []
 
-      sortWith.ingredients.forEach(item => {
-        ingredientName.push(item.ingredient)
+      sortBy.ingredients.forEach(item => ingredientArray.push(item.ingredient))
+
+      const matchIngredients = Search.selected.ingredients.every(item => ingredientArray.includes(item))
+
+      /*
+      POUR RECHERCHE GLOBALE:
+      const matchIngredient = Search.selected.ingredients.every(x => {
+        return sortBy.name.includes(x) ||
+        sortBy.description.includes(x) ||
+        ingredientArray.includes(x)
       })
+      */
 
-      const matchIngredients = Search.selected.ingredients.every(item => ingredientName.includes(item))
       if (!matchIngredients) {
         return false
       }
 
       // MATCH AVEC LES ustensils SELECTIONN
-      const matchUstensils = Search.selected.ustensils.every(item => sortWith.ustensils.includes(item))
+      const matchUstensils = Search.selected.ustensils.every(item => sortBy.ustensils.includes(item))
 
       if (!matchUstensils) {
         return false
@@ -39,8 +47,8 @@ export const dataFetch = {
   extractIngredient: function () {
     const ingredientArr = []
 
-    this.recipes.forEach(test => {
-      return test.ingredients.forEach(x => ingredientArr.push(x.ingredient))
+    this.recipes.forEach(item => {
+      return item.ingredients.forEach(x => ingredientArr.push(x.ingredient))
     })
     return ingredientArr.unique().filter(item => !Search.selected.ingredients.includes(item))
   },
@@ -54,3 +62,5 @@ export const dataFetch = {
     return ustensils.unique().filter(item => !Search.selected.ustensils.includes(item))
   }
 }
+
+export { dataFetch }
