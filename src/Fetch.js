@@ -12,24 +12,24 @@ export const dataFetch = {
   recipes: Recipes,
 
   updateRecipes: function () {
-    this.recipes = Recipes.filter(function (recipe) {
+    this.recipes = Recipes.filter(sortWith => {
       // MATCH AVEC LES INGREDIENTS SELECTIONNÉS = TRUE sinon FALSE (n'est pas ajouté a la list)
       const ingredientName = []
 
-      recipe.ingredients.forEach(test => {
-        ingredientName.push(test.ingredient)
+      sortWith.ingredients.forEach(item => {
+        ingredientName.push(item.ingredient)
       })
 
-      const matchIngredients = Search.selected.ingredients.every((el) => {
-        return ingredientName.includes(el)
+      const matchIngredients = Search.selected.ingredients.every(item => {
+        return ingredientName.includes(item)
       })
       if (!matchIngredients) {
         return false
       }
 
       // MATCH AVEC LES ustensils SELECTIONN
-      const matchUstensils = Search.selected.ustensils.every(el => {
-        return recipe.ustensils.includes(el)
+      const matchUstensils = Search.selected.ustensils.every(item => {
+        return sortWith.ustensils.includes(item)
       })
 
       if (!matchUstensils) {
@@ -42,22 +42,21 @@ export const dataFetch = {
   // extract Keyword
   extractIngredient: function () {
     const ingredientArr = []
-    console.log(ingredientArr)
 
     this.recipes.forEach(test => {
       return test.ingredients.forEach(x => {
         ingredientArr.push(x.ingredient)
       })
     })
-    return ingredientArr.unique().filter(x => !Search.selected.ingredients.includes(x))
+    return ingredientArr.unique().filter(item => !Search.selected.ingredients.includes(item))
   },
+
   extractUstensibles: function () {
     let ustensils = []
-    console.log(ustensils)
 
-    this.recipes.forEach(function (recipe) {
+    this.recipes.forEach(recipe => {
       ustensils = ustensils.concat(recipe.ustensils)
     })
-    return ustensils.unique().filter(x => !Search.selected.ustensils.includes(x))
+    return ustensils.unique().filter(item => !Search.selected.ustensils.includes(item))
   }
 }

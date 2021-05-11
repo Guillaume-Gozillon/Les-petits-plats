@@ -5,32 +5,18 @@ import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
 
 import { BuildFilter } from './BuildFilter.js'
 
-import { Recipes } from '../data/Recipes.js'
 import { dataFetch } from './Fetch.js'
 import { Search } from './Search.js'
 
-  function updateView () {
-//   console.log('####################### Filtres disponibles : ####################### ')
-//
-//   console.log('update', dataFetch.updateRecipes());
-//
-//   console.log('----- Ingredients -----')
-//   console.log(dataFetch.extractIngredient())
-//
-//   console.log('----- Ustensibles -----')
-//   console.log(dataFetch.extractUstensibles())
-//
-//   console.log('----- Tools -----')
-//   // console.log(dataFetch.extractTools())
-//
-   console.log(`### Recettes trouvées ${dataFetch.recipes.length} ${dataFetch}###`)
-  }
+function updateView () {
+  console.log(`### Recettes trouvées ${dataFetch.recipes.length} 
+  ${dataFetch.recipes.forEach(x => console.log(x))}###`)
+}
 
-//updateView()
+// updateView()
 Search.selectIngredient('Tomate')
 Search.selectUstensils('couteau')
-updateView()
-
+// updateView()
 
 String.prototype.splitWords = function () {
   return this
@@ -57,14 +43,14 @@ class ListEvent {
 
   getAllFilters () {
     this.searchKeyword.forEach(tags => tags.addEventListener('input', e => {
-      askData.askKeywords(e.target.value.splitWords())
+      e.target.value.splitWords()
     }))
   }
 
   getInputSearchbar () {
     this.searchbar.addEventListener('input', e => {
       this.keywords = e.target.value.splitWords()
-      dom.setKeywords(this.keywords.unique(), '4', 'YES')
+      // dom.setKeywords(this.keywords.unique(), '4', 'YES')
     })
   }
 }
@@ -72,24 +58,12 @@ class ListEvent {
 new ListEvent()
 // _-_-_-_-_-_-_-_-_-_-_-_FIN_EVENT_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 
-class SortData {
-  constructor (JSON) {
-    this.data = JSON
-
-    this.askKeywords()
-  }
-
-  askKeywords (keywords) {
-    this.keywords = keywords
-    console.log(this.keywords)
-  }
-}
-
-const askData = new SortData(Recipes)
-
+updateView()
 // build DOM --------------
-const dom = new BuildFilter(Recipes)
-console.log(dom)
+new BuildFilter(dataFetch.recipes)
+
+// const dom = new BuildFilter(Recipes)
+// console.log(dom)
 
 // const normalizeString = str => {
 //   return str

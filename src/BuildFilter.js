@@ -1,16 +1,16 @@
 export class BuildFilter {
-  constructor (JSON) {
-    this.recipes = JSON
+  constructor (data) {
+    this.recipes = data
 
     this.buildAppliance(this.recipes)
     this.buildUstensils(this.recipes)
     this.buildIngredient(this.recipes)
   }
 
-  buildIngredient (item) {
+  buildIngredient (data) {
     const ingredientArr = []
 
-    item.forEach(multiArrIngredients => {
+    data.forEach(multiArrIngredients => {
       const ingredient = multiArrIngredients.ingredients
       ingredient.forEach(arrIngredient =>
         ingredientArr.push(arrIngredient.ingredient))
@@ -18,28 +18,30 @@ export class BuildFilter {
 
     const ingredientsDom = ingredientArr.unique().slice(0, 30)
     document.querySelector('#searchIngredient').innerHTML =
-      ingredientsDom.map(x => `<li>${x}</li>`).join('')
+      ingredientsDom.map(item => `<li>${item}</li>`).join('')
   }
 
-  buildAppliance (item) {
-    const appareil = item.map(x => x.appliance).unique()
+  buildAppliance (data) {
+    const appareil = data.map(x => x.appliance).unique()
     document.querySelector('#searchAppliance').innerHTML =
-      appareil.map(y => `<li class="liTargeted">${y}</li>`).join('')
+      appareil.map(item => `<li class="liTargeted">${item}</li>`).join('')
   }
 
-  buildUstensils (item) {
+  buildUstensils (data) {
     const ustensilArr = []
 
-    item.forEach(multiArrUstensils => {
+    data.forEach(multiArrUstensils => {
       const ustensil = multiArrUstensils.ustensils
       ustensil.forEach(ArrUstensils => ustensilArr.push(ArrUstensils))
     })
 
     const ustensilsDom = ustensilArr.unique()
     document.querySelector('#searchUstensile').innerHTML =
-      ustensilsDom.map(z => `<li>${z}</li>`).join('')
+      ustensilsDom.map(item => `<li>${item}</li>`).join('')
   }
+}
 
+/*
   setKeywords (keywords, secondKeywords, thirthKeywords) {
     this.keywords = keywords
     this.secondKeywords = secondKeywords
@@ -48,4 +50,4 @@ export class BuildFilter {
     // MERGE PLUSIEURS TABLEAU
     console.log([...this.keywords, this.secondKeywords, this.thirthKeywords])
   }
-}
+  */
