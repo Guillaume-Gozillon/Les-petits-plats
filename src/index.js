@@ -14,7 +14,8 @@ function updateView () {
 
 // updateView()
 Search.selectIngredient('Tomate')
-// Search.selectUstensils('aze')
+Search.selectUstensils('couteau')
+Search.selectAppliance('Mixer')
 
 // updateView()
 
