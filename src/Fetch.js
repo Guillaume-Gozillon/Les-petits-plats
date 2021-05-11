@@ -20,17 +20,13 @@ export const dataFetch = {
         ingredientName.push(item.ingredient)
       })
 
-      const matchIngredients = Search.selected.ingredients.every(item => {
-        return ingredientName.includes(item)
-      })
+      const matchIngredients = Search.selected.ingredients.every(item => ingredientName.includes(item))
       if (!matchIngredients) {
         return false
       }
 
       // MATCH AVEC LES ustensils SELECTIONN
-      const matchUstensils = Search.selected.ustensils.every(item => {
-        return sortWith.ustensils.includes(item)
-      })
+      const matchUstensils = Search.selected.ustensils.every(item => sortWith.ustensils.includes(item))
 
       if (!matchUstensils) {
         return false
@@ -44,9 +40,7 @@ export const dataFetch = {
     const ingredientArr = []
 
     this.recipes.forEach(test => {
-      return test.ingredients.forEach(x => {
-        ingredientArr.push(x.ingredient)
-      })
+      return test.ingredients.forEach(x => ingredientArr.push(x.ingredient))
     })
     return ingredientArr.unique().filter(item => !Search.selected.ingredients.includes(item))
   },

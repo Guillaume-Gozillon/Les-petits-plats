@@ -9,13 +9,13 @@ import { dataFetch } from './Fetch.js'
 import { Search } from './Search.js'
 
 function updateView () {
-  console.log(`### Recettes trouvées ${dataFetch.recipes.length} 
-  ${dataFetch.recipes.forEach(x => console.log(x))}###`)
+  console.log(dataFetch.recipes.forEach(x => console.log(x)), `------ ${dataFetch.recipes.length} Recettes trouvées ------`)
 }
 
 // updateView()
 Search.selectIngredient('Tomate')
-Search.selectUstensils('couteau')
+// Search.selectUstensils('aze')
+
 // updateView()
 
 String.prototype.splitWords = function () {
