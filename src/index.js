@@ -8,16 +8,25 @@ import { BuildFilter } from './BuildFilter.js'
 import { dataFetch } from './Fetch.js'
 import { Search } from './Search.js'
 
+// Search.reset()
 function updateView () {
-  console.log(dataFetch.recipes.forEach(x => console.log(x)), `------ ${dataFetch.recipes.length} Recettes trouvées ------`)
+  console.log(dataFetch.recipes, `${dataFetch.recipes.length} Recettes trouvées`)
 }
 
+// Search.selectUstensils('couteau')
+// Search.selectAppliance('Four')
 
+let toTest = ''
 
+document.querySelector('#inputIngredient').addEventListener('input', e => {
+  toTest = e.target.value
+  Search.reset()
+  console.log(toTest)
+  Search.selectIngredient(toTest)
+  updateView()
 
-
-
-// updateView()
+  new BuildFilter(dataFetch.recipes)
+})
 
 String.prototype.splitWords = function () {
   return this
@@ -31,64 +40,8 @@ Array.prototype.unique = function () {
     return self.indexOf(value) === index
   })
 }
-// ------ EVENT ------
 
-class ListEvent {
-  constructor () {
-    this.searchbar = document.querySelector('#searchbar')
-    this.searchKeyword = document.querySelectorAll('.searchKeyword')
-    this.liTargeted = document.querySelectorAll('.liTargeted')
-    this.ingredientNode = document.querySelector('#inputIngredient')
 
-    this.getAllFilters()
-    this.getInputIngredient()
-  }
-
-  getInputIngredient () {
-    this.ingredientNode.addEventListener('input', e => {
-      console.log(e.target.value.splitWords())
-      Search.reset()
-      updateView()
-      Search.selectIngredient(e.target.value)
-    })
-  }
-
-  getAllFilters () {
-    this.searchKeyword.forEach(tags => tags.addEventListener('input', e => {
-      e.target.value.splitWords()
-    }))
-  }
-
-  getInputSearchbar () {
-    this.searchbar.addEventListener('input', e => {
-      this.keywords = e.target.value.splitWords()
-      // dom.setKeywords(this.keywords.unique(), '4', 'YES')
-    })
-  }
-}
-
-const dom = new ListEvent()
-// ------ FIN_EVENT ------
-// updateView()
-//Search.selectIngredient('')
-
-Search.selectUstensils('couteau')
-Search.selectAppliance('Four')
-
-updateView()
-
-new BuildFilter(dataFetch.recipes)
-
-// const dom = new BuildFilter(Recipes)
-// console.log(dom)
-
-// const normalizeString = str => {
-//   return str
-//     .toString()
-//     .toLowerCase()
-//     .normalize('NFD')
-//     .replace(/[\u0300-\u036f]/g, '')
-// }
 
 // EVENEMENT AU CLICK DU FILTRE
 document.querySelector('#searchAppliance').addEventListener('click', e => {
@@ -101,6 +54,17 @@ document.querySelector('#searchAppliance').addEventListener('click', e => {
 new DropdownIngredient()
 new DropdownAppliance()
 new DropdownUstensile()
+
+// const dom = new BuildFilter(Recipes)
+// console.log(dom)
+
+// const normalizeString = str => {
+//   return str
+//     .toString()
+//     .toLowerCase()
+//     .normalize('NFD')
+//     .replace(/[\u0300-\u036f]/g, '')
+// }
 
 // this.tagsLink = document.querySelectorAll(`#inputList--${options.context} [data-js="getTag"]`)
 //
@@ -145,3 +109,42 @@ new DropdownUstensile()
   // this.getInputUstensile()
   // this.getApplicanceByClick()
   */
+
+/*
+  class ListEvent {
+  constructor () {
+    this.searchbar = document.querySelector('#searchbar')
+    this.searchKeyword = document.querySelectorAll('.searchKeyword')
+    this.liTargeted = document.querySelectorAll('.liTargeted')
+    this.ingredientNode = document.querySelector('#inputIngredient')
+
+    this.getAllFilters()
+    this.getInputIngredient()
+  }
+
+  getInputIngredient () {
+    this.ingredientNode.addEventListener('input', e => {
+      console.log(e.target.value.splitWords())
+      const toTest = e.target.value.splitWords()
+      Search.reset()
+
+      // updateView()
+    })
+  }
+
+  getAllFilters () {
+    this.searchKeyword.forEach(tags => tags.addEventListener('input', e => {
+      e.target.value.splitWords()
+    }))
+  }
+
+  getInputSearchbar () {
+    this.searchbar.addEventListener('input', e => {
+      this.keywords = e.target.value.splitWords()
+      // dom.setKeywords(this.keywords.unique(), '4', 'YES')
+    })
+  }
+}
+
+new ListEvent()
+*/
