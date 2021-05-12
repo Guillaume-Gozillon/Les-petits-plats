@@ -12,15 +12,10 @@ function updateView () {
   console.log(dataFetch.recipes.forEach(x => console.log(x)), `------ ${dataFetch.recipes.length} Recettes trouvées ------`)
 }
 
-// updateView()
-document.querySelector('#inputIngredient').addEventListener('input', e => {
-  console.log(e.target.value.splitWords())
-  return Search.selectIngredient(e.target.value.splitWords())
-})
-// To be continued..
 
-Search.selectUstensils('couteau')
-Search.selectAppliance('Four')
+
+
+
 
 // updateView()
 
@@ -43,8 +38,19 @@ class ListEvent {
     this.searchbar = document.querySelector('#searchbar')
     this.searchKeyword = document.querySelectorAll('.searchKeyword')
     this.liTargeted = document.querySelectorAll('.liTargeted')
+    this.ingredientNode = document.querySelector('#inputIngredient')
 
     this.getAllFilters()
+    this.getInputIngredient()
+  }
+
+  getInputIngredient () {
+    this.ingredientNode.addEventListener('input', e => {
+      console.log(e.target.value.splitWords())
+      Search.reset()
+      updateView()
+      Search.selectIngredient(e.target.value)
+    })
   }
 
   getAllFilters () {
@@ -61,8 +67,13 @@ class ListEvent {
   }
 }
 
-new ListEvent()
+const dom = new ListEvent()
 // ------ FIN_EVENT ------
+// updateView()
+//Search.selectIngredient('')
+
+Search.selectUstensils('couteau')
+Search.selectAppliance('Four')
 
 updateView()
 
