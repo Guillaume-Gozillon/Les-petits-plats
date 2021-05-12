@@ -64,14 +64,3 @@ export class BuildFilter {
     )).join('')
   }
 }
-
-/*
-  setKeywords (keywords, secondKeywords, thirthKeywords) {
-    this.keywords = keywords
-    this.secondKeywords = secondKeywords
-    this.thirthKeywords = thirthKeywords
-
-    // MERGE PLUSIEURS TABLEAU
-    console.log([...this.keywords, this.secondKeywords, this.thirthKeywords])
-  }
-  */

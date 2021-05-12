@@ -13,9 +13,14 @@ function updateView () {
 }
 
 // updateView()
-Search.selectIngredient('Tomate')
+document.querySelector('#inputIngredient').addEventListener('input', e => {
+  console.log(e.target.value.splitWords())
+  return Search.selectIngredient(e.target.value.splitWords())
+})
+// To be continued..
+
 Search.selectUstensils('couteau')
-Search.selectAppliance('Mixer')
+Search.selectAppliance('Four')
 
 // updateView()
 
@@ -31,7 +36,7 @@ Array.prototype.unique = function () {
     return self.indexOf(value) === index
   })
 }
-// _-_-_-_-_-_-_-_-_-_-_-_EVENT_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+// ------ EVENT ------
 
 class ListEvent {
   constructor () {
@@ -57,10 +62,10 @@ class ListEvent {
 }
 
 new ListEvent()
-// _-_-_-_-_-_-_-_-_-_-_-_FIN_EVENT_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+// ------ FIN_EVENT ------
 
 updateView()
-// build DOM --------------
+
 new BuildFilter(dataFetch.recipes)
 
 // const dom = new BuildFilter(Recipes)
