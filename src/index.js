@@ -8,7 +8,6 @@ import { BuildFilter } from './BuildFilter.js'
 import { dataFetch } from './Fetch.js'
 import { Search } from './Search.js'
 
-// Search.reset()
 function updateView () {
   console.log(dataFetch.recipes, `${dataFetch.recipes.length} Recettes trouvées`)
 }
@@ -28,32 +27,22 @@ document.querySelector('#inputIngredient').addEventListener('input', e => {
   new BuildFilter(dataFetch.recipes)
 })
 
-String.prototype.splitWords = function () {
-  return this
-    .trim()
-    .replace(/  +/g, ' ')
-    .split(' ')
-}
-
-Array.prototype.unique = function () {
-  return this.filter(function (value, index, self) {
-    return self.indexOf(value) === index
-  })
-}
-
-
-
 // EVENEMENT AU CLICK DU FILTRE
 document.querySelector('#searchAppliance').addEventListener('click', e => {
   document.querySelector('#tags')
     .insertAdjacentHTML('afterbegin', `<p class="tagAdd">${e.target.textContent}</p>`)
 })
 
-// -----------FIN ---------------
-
 new DropdownIngredient()
 new DropdownAppliance()
 new DropdownUstensile()
+
+String.prototype.splitWords = function () {
+  return this
+    .trim()
+    .replace(/  +/g, ' ')
+    .split(' ')
+}
 
 // const dom = new BuildFilter(Recipes)
 // console.log(dom)
