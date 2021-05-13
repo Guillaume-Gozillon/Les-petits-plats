@@ -12,9 +12,6 @@ function updateView () {
   console.log(dataFetch.recipes, `${dataFetch.recipes.length} Recettes trouvées`)
 }
 
-// Search.selectUstensils('couteau')
-// Search.selectAppliance('Four')
-
 let toTest = ''
 
 document.querySelector('#inputIngredient').addEventListener('input', e => {
@@ -26,6 +23,19 @@ document.querySelector('#inputIngredient').addEventListener('input', e => {
 
   new BuildFilter(dataFetch.recipes)
 })
+
+document.querySelector('#applianceInput').addEventListener('input', e => {
+  toTest = e.target.value
+  Search.reset()
+  console.log(toTest)
+  Search.selectAppliance(toTest)
+  updateView()
+
+  new BuildFilter(dataFetch.recipes)
+})
+
+// Search.selectUstensils('couteau')
+// Search.selectAppliance('Four')
 
 // EVENEMENT AU CLICK DU FILTRE
 document.querySelector('#searchAppliance').addEventListener('click', e => {

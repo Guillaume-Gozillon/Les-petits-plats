@@ -18,19 +18,10 @@ const dataFetch = {
 
       sortDataBy.ingredients.forEach(item => ingredientArray.push(item.ingredient))
 
+      // POUR RESOUDRE LE PROBLEME ICI IL FAUT SUPPRIMER LE TABLEAU GENERAL (ingredientArray)
       const sortByIngredients = Search.selected.ingredients.every(item => {
         return ingredientArray.includes(item)
       })
-
-      /*
-      POUR RECHERCHE GLOBALE:
-      const matchIngredient = Search.selected.ingredients.every(x => {
-        return sortDataBy.name.includes(x) ||
-        sortDataBy.description.includes(x) ||
-        ingredientArray.includes(x)
-      })
-      */
-
       if (!sortByIngredients) {
         return false
       }
@@ -54,6 +45,14 @@ const dataFetch = {
       }
       return true
     })
+    /*
+    POUR RECHERCHE GLOBALE:
+    const matchIngredient = Search.selected.ingredients.every(x => {
+      return sortDataBy.name.includes(x) ||
+      sortDataBy.description.includes(x) ||
+      ingredientArray.includes(x)
+    })
+    */
   },
 
   // extract Keyword
