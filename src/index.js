@@ -12,27 +12,38 @@ function updateView () {
   console.log(dataFetch.recipes, `${dataFetch.recipes.length} Recettes trouvées`)
 }
 
-let toTest = ''
+let keyword = ''
 
 document.querySelector('#inputIngredient').addEventListener('input', e => {
-  toTest = e.target.value
+  keyword = e.target.value
   Search.reset()
-  console.log(toTest)
-  Search.selectIngredient(toTest)
+  Search.selectIngredient(keyword)
   updateView()
 
   new BuildFilter(dataFetch.recipes)
 })
 
 document.querySelector('#applianceInput').addEventListener('input', e => {
-  toTest = e.target.value
+  keyword = e.target.value
   Search.reset()
-  console.log(toTest)
-  Search.selectAppliance(toTest)
+  Search.selectAppliance(keyword)
   updateView()
 
   new BuildFilter(dataFetch.recipes)
 })
+
+document.querySelector('#ustensileInput').addEventListener('input', e => {
+  keyword = e.target.value
+  Search.reset()
+  Search.selectUstensils(keyword)
+  updateView()
+
+  new BuildFilter(dataFetch.recipes)
+})
+
+
+
+
 
 // EVENEMENT AU CLICK DU FILTRE
 document.querySelector('#searchAppliance').addEventListener('click', e => {
