@@ -6,6 +6,15 @@ export class BuildFilter {
     this.buildUstensils(this.recipes)
     this.buildIngredient(this.recipes)
     this.buildRecipes(this.recipes)
+
+    this.toTest()
+    this.addTag()
+  }
+
+  toTest () {
+    document.addEventListener('click', e => {
+      console.log('TEST', e.target.id)
+    })
   }
 
   buildIngredient (data) {
@@ -23,9 +32,12 @@ export class BuildFilter {
   }
 
   buildAppliance (data) {
-    const appareil = data.map(x => x.appliance).unique()
+    const appareil = data.map(x => x).unique()
+
+    console.log(appareil)
+
     document.querySelector('#searchAppliance').innerHTML =
-      appareil.map(item => `<li class="liTargeted">${item}</li>`).join('')
+    appareil.map(item => `<li id="${item.id}" class="liTargeted">${item.appliance}</li>`).join('')
   }
 
   buildUstensils (data) {
@@ -39,6 +51,14 @@ export class BuildFilter {
     const ustensilsDom = ustensilArr.unique()
     document.querySelector('#searchUstensile').innerHTML =
       ustensilsDom.map(item => `<li>${item}</li>`).join('')
+  }
+
+  addTag () {
+    document.querySelector('#searchAppliance').addEventListener('click', e => {
+      const idTag = e.target.id
+      document.querySelector('#tags')
+        .insertAdjacentHTML('afterbegin', `<p id="${idTag}" class="tagAdd">${e.target.textContent}</p>`)
+    })
   }
 
   buildRecipes (data) {
