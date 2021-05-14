@@ -14,15 +14,12 @@ const dataFetch = {
   updateRecipes: function () {
     this.recipes = Recipes.filter(sortDataBy => {
       // MATCH AVEC LES INGREDIENTS SELECTIONNÉS = TRUE sinon FALSE (n'est pas ajouté a la list)
-      const ingredientArray = []
 
-      sortDataBy.ingredients.forEach(item => ingredientArray.push(item.ingredient))
-
-      // POUR RESOUDRE LE PROBLEME ICI IL FAUT SUPPRIMER LE TABLEAU GENERAL (ingredientArray)
-      const sortByIngredients = Search.selected.ingredients.every(item => {
-        return ingredientArray.includes(item)
+      const matchIngredients = Search.selected.ingredients.every(item => {
+        return sortDataBy.ingredients.some(x => x.ingredient.includes(item))
       })
-      if (!sortByIngredients) {
+
+      if (!matchIngredients) {
         return false
       }
 
@@ -60,7 +57,7 @@ const dataFetch = {
     const ingredientArr = []
 
     this.recipes.forEach(item => {
-      return item.ingredients.forEach(x => ingredientArr.push(x.ingredient))
+      return item.ingredients.forEach(item => ingredientArr.push(item.ingredient))
     })
     return ingredientArr.unique().filter(item => {
       return !Search.selected.ingredients.includes(item)

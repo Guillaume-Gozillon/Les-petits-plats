@@ -34,9 +34,6 @@ document.querySelector('#applianceInput').addEventListener('input', e => {
   new BuildFilter(dataFetch.recipes)
 })
 
-// Search.selectUstensils('couteau')
-// Search.selectAppliance('Four')
-
 // EVENEMENT AU CLICK DU FILTRE
 document.querySelector('#searchAppliance').addEventListener('click', e => {
   document.querySelector('#tags')
