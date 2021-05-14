@@ -18,7 +18,6 @@ const dataFetch = {
       const matchIngredients = Search.selected.ingredients.every(item => {
         return sortDataBy.ingredients.some(x => x.ingredient.includes(item))
       })
-
       if (!matchIngredients) {
         return false
       }
@@ -27,14 +26,13 @@ const dataFetch = {
       const matchAppliance = Search.selected.appliance.every(item => {
         return sortDataBy.appliance.includes(item)
       })
-
       if (!matchAppliance) {
         return false
       }
 
       // MATCH AVEC LES USTENSILE SELECTIONN
       const matchUstensils = Search.selected.ustensils.every(item => {
-        return sortDataBy.ustensils.includes(item)
+        return sortDataBy.ustensils.some(y => y.includes(item))
       })
 
       if (!matchUstensils) {
@@ -42,14 +40,6 @@ const dataFetch = {
       }
       return true
     })
-    /*
-    POUR RECHERCHE GLOBALE:
-    const matchIngredient = Search.selected.ingredients.every(x => {
-      return sortDataBy.name.includes(x) ||
-      sortDataBy.description.includes(x) ||
-      ingredientArray.includes(x)
-    })
-    */
   },
 
   // extract Keyword
@@ -84,3 +74,12 @@ const dataFetch = {
 }
 
 export { dataFetch }
+
+/*
+POUR RECHERCHE GLOBALE:
+const matchIngredient = Search.selected.ingredients.every(x => {
+  return sortDataBy.name.includes(x) ||
+  sortDataBy.description.includes(x) ||
+  ingredientArray.includes(x)
+})
+*/

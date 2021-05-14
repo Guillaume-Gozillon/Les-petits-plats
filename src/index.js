@@ -14,6 +14,10 @@ function updateView () {
 
 let keyword = ''
 
+if (keyword === '') {
+  new BuildFilter(dataFetch.recipes)
+}
+
 document.querySelector('#inputIngredient').addEventListener('input', e => {
   keyword = e.target.value
   Search.reset()
@@ -40,10 +44,6 @@ document.querySelector('#ustensileInput').addEventListener('input', e => {
 
   new BuildFilter(dataFetch.recipes)
 })
-
-
-
-
 
 // EVENEMENT AU CLICK DU FILTRE
 document.querySelector('#searchAppliance').addEventListener('click', e => {

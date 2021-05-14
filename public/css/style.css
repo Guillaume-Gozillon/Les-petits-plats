@@ -43,7 +43,7 @@ header .searchbar:focus {
 
 main {
   width: 100%;
-  padding: 140px 0;
+  padding: 50px 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
