@@ -1,4 +1,3 @@
-/* eslint-disable no-extend-native */
 import { DropdownIngredient } from './dropdown/DropdownIngredient.js'
 import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
 import { DropdownUstensile } from './dropdown/DropdownUstensile.js'

@@ -1,4 +1,3 @@
-/* eslint-disable no-extend-native */
 import { Recipes } from './data/Recipes.js'
 import { Search } from './Search.js'
 
