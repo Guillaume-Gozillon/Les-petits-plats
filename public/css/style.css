@@ -146,7 +146,7 @@ main .container .content {
   margin: auto;
   display: flex;
   justify-content: space-evenly;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 .btn-section .biggerInput {
   width: 23%;
@@ -296,14 +296,22 @@ main .container .content {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 0 auto;
+  margin: 20px 5%;
 }
 #tags .tagAdd {
   color: white;
   margin: 10px 15px;
-  background-color: #ed6a4d;
   padding: 6px 19px;
   border-radius: 8px;
+}
+#tags .tagAdd.appliance {
+  background-color: #68D9A4;
+}
+#tags .tagAdd.ingredient {
+  background-color: #3282F7;
+}
+#tags .tagAdd.ustensils {
+  background-color: #ED6454;
 }
 
 /*# sourceMappingURL=style.css.map */

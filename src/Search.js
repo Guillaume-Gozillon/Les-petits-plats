@@ -18,6 +18,7 @@ const Search = {
     dataFetch.updateRecipes()
   },
   selectMain: function (main) {
+    console.log('TEST', this.selected.main)
     this.selected.main.push(main)
     dataFetch.updateRecipes()
   },

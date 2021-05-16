@@ -1,4 +1,4 @@
-export class BuildFilter {
+class BuildFilter {
   constructor (data) {
     this.recipes = data
 
@@ -7,14 +7,9 @@ export class BuildFilter {
     this.buildIngredient(this.recipes)
     this.buildRecipes(this.recipes)
 
-    this.toTest()
-    this.addTag()
-  }
-
-  toTest () {
-    document.addEventListener('click', e => {
-      console.log('TEST', e.target.id)
-    })
+    this.ingredientTag()
+    this.applianceTag()
+    this.ustensilsTag()
   }
 
   buildIngredient (data) {
@@ -26,18 +21,17 @@ export class BuildFilter {
         ingredientArr.push(arrIngredient.ingredient))
     })
 
-    const ingredientsDom = ingredientArr.unique().slice(0, 30)
+    const ingredientsDom = [...new Set(ingredientArr)].slice(0, 30)
     document.querySelector('#searchIngredient').innerHTML =
       ingredientsDom.map(item => `<li>${item}</li>`).join('')
   }
 
   buildAppliance (data) {
-    const appareil = data.map(x => x).unique()
-
-    console.log(appareil)
+    const dataAppliance = data.map(x => x.appliance)
+    const applianceArray = [...new Set(dataAppliance)]
 
     document.querySelector('#searchAppliance').innerHTML =
-    appareil.map(item => `<li id="${item.id}" class="liTargeted">${item.appliance}</li>`).join('')
+    applianceArray.map(item => `<li class="liTargeted">${item}</li>`).join('')
   }
 
   buildUstensils (data) {
@@ -48,18 +42,36 @@ export class BuildFilter {
       ustensil.forEach(ArrUstensils => ustensilArr.push(ArrUstensils))
     })
 
-    const ustensilsDom = ustensilArr.unique()
+    const ustensilsDom = [...new Set(ustensilArr)]
     document.querySelector('#searchUstensile').innerHTML =
       ustensilsDom.map(item => `<li>${item}</li>`).join('')
   }
 
-  addTag () {
-    document.querySelector('#searchAppliance').addEventListener('click', e => {
-      const idTag = e.target.id
+  ingredientTag () {
+    document.querySelector('#searchIngredient').addEventListener('click', e => {
       document.querySelector('#tags')
-        .insertAdjacentHTML('afterbegin', `<p id="${idTag}" class="tagAdd">${e.target.textContent}</p>`)
+        .insertAdjacentHTML('afterbegin', `
+        <p class="tagAdd ingredient">${e.target.textContent}</p>`)
     })
   }
+
+  applianceTag () {
+    document.querySelector('#searchAppliance').addEventListener('click', e => {
+      document.querySelector('#tags')
+        .insertAdjacentHTML('afterbegin', `
+        <p class="tagAdd appliance">${e.target.textContent}</p>`)
+    })
+  }
+
+  ustensilsTag () {
+    document.querySelector('#searchUstensile').addEventListener('click', e => {
+      document.querySelector('#tags')
+        .insertAdjacentHTML('afterbegin', `
+      <p class="tagAdd ustensils">${e.target.textContent}</p>`)
+    })
+  }
+
+  // POUR CONSTRUIRE LE TABLEAU IL FAUT FAIRE UN RESET
 
   buildRecipes (data) {
     document.querySelector('main').innerHTML = data.map(recipe => (`
@@ -84,3 +96,5 @@ export class BuildFilter {
     )).join('')
   }
 }
+
+export { BuildFilter }

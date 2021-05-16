@@ -250,7 +250,7 @@ export const Recipes = [
     time: 50,
     description: "Etaler la pate dans les moules à tartelette. Faire cuire la pate 30 minutes. Découper le chocolat en morceau et le faire chauffer, y ajouter la crême liquide, ajouter le beurre et remuer jusqu'à avoir une pâte homogène. Verser la pate sur les tartelettes. Couper les fraises en 2 et les positionner sur ",
     appliance: 'Four',
-    ustensils: ['moule à tartelettes (6)', 'Casserole']
+    ustensils: ['moule à tartelettes', 'Casserole']
   }, {
     id: 8,
     name: 'Brownie',

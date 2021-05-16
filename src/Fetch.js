@@ -15,6 +15,15 @@ const dataFetch = {
     this.recipes = Recipes.filter(sortDataBy => {
       // MATCH AVEC LES INGREDIENTS SELECTIONNÉS = TRUE sinon FALSE (n'est pas ajouté a la list)
 
+      const matchMain = Search.selected.main.every(item => {
+        return sortDataBy.name.includes(item) ||
+        sortDataBy.description.includes(item) ||
+        sortDataBy.ingredients.some(x => x.ingredient.includes(item))
+      })
+      if (!matchMain) {
+        return false
+      }
+
       const matchIngredients = Search.selected.ingredients.every(item => {
         return sortDataBy.ingredients.some(x => x.ingredient.includes(item))
       })
@@ -60,7 +69,7 @@ const dataFetch = {
     this.recipes.forEach(recipe => {
       appliance = appliance.concat(recipe.appliance)
     })
-    return appliance.unique().filter(item => !Search.selected.appliance.includes(item))
+    return appliance.filter(item => !Search.selected.appliance.includes(item))
   },
 
   extractUstensibles: function () {
@@ -69,17 +78,8 @@ const dataFetch = {
     this.recipes.forEach(recipe => {
       ustensils = ustensils.concat(recipe.ustensils)
     })
-    return ustensils.unique().filter(item => !Search.selected.ustensils.includes(item))
+    return ustensils.filter(item => !Search.selected.ustensils.includes(item))
   }
 }
 
 export { dataFetch }
-
-/*
-POUR RECHERCHE GLOBALE:
-const matchIngredient = Search.selected.ingredients.every(x => {
-  return sortDataBy.name.includes(x) ||
-  sortDataBy.description.includes(x) ||
-  ingredientArray.includes(x)
-})
-*/
