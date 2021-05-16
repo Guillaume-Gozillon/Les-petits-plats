@@ -2,11 +2,10 @@
 import { Recipes } from '../data/Recipes.js'
 import { Search } from './Search.js'
 
-Array.prototype.unique = function () {
-  return this.filter(function (value, index, self) {
-    return self.indexOf(value) === index
-  })
-}
+/**
+ * Trie en fonction des keywords
+ * @param {Object} dataFetch contient les méthodes de trie
+ */
 
 const dataFetch = {
   recipes: Recipes,

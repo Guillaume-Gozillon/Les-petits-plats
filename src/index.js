@@ -3,13 +3,19 @@ import { DropdownIngredient } from './dropdown/DropdownIngredient.js'
 import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
 import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
 
-import { BuildFilter } from './BuildFilter.js'
-import { dataFetch } from './Fetch.js'
 import { Search } from './Search.js'
+import { dataFetch } from './Fetch.js'
+import { BuildFilter } from './BuildFilter.js'
 
 function updateView () {
   console.log(dataFetch.recipes, `${dataFetch.recipes.length} Recettes trouvées`)
 }
+
+/**
+ * Retourn les differents valeurs separée dans un array
+ * @param {String}
+ * @returns {Array}
+ */
 
 const splitWords = str => {
   return str
@@ -23,6 +29,14 @@ let keyword = ''
 if (keyword === '') {
   new BuildFilter(dataFetch.recipes)
 }
+
+/**
+ * Crée les differentes instances pour construire le DOM
+ * @param {EventListener} keyword récupère le keyword dans l'input
+ * @param {string} reset vide l'array pour mettre à jours
+ * @param {string} Search.selectMain remplit l'array avec le keyword
+ * @returns {Object} Construit le DOM
+ */
 
 document.querySelector('#searchbar').addEventListener('input', e => {
   keyword = splitWords(e.target.value)
@@ -74,18 +88,17 @@ String.prototype.splitWords = function () {
     .split(' ')
 }
 
-const splitWords = str => {
-  return str
-    .trim()
-    .replace(/  +/g, ' ')
-    .split(' ')
-}
-
 const normalizeString = str => {
   return str
     .toString()
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
+}
+
+Array.prototype.unique = function () {
+  return this.filter(function (value, index, self) {
+    return self.indexOf(value) === index
+  })
 }
 */
