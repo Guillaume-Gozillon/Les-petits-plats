@@ -2,7 +2,7 @@ import { DropdownIngredient } from './dropdown/DropdownIngredient.js'
 import { DropdownAppliance } from './dropdown/DropdownAppliance.js'
 import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
 
-import { Search } from './Search.js'
+import { SearchMain } from './Search.js'
 import { dataFetch } from './Fetch.js'
 
 import { BuildMain } from './BuildMain.js'
@@ -37,7 +37,7 @@ if (keyword === '') {
  * Crée les differentes instances pour construire le DOM
  * @param {EventListener} keyword récupère le keyword dans l'input
  * @param {string} reset vide l'array pour mettre à jours
- * @param {string} Search.selectMain remplit l'array avec le keyword
+ * @param {string} SearchMain.selectMain remplit l'array avec le keyword
  * @returns {Object} Construit le DOM
  */
 
@@ -45,41 +45,41 @@ document.querySelector('#searchbar').addEventListener('input', e => {
   keyword = splitWords(e.target.value)
 
   console.log(keyword)
-  console.log(Search.selected.main)
+  console.log(SearchMain.selected.main)
 
-  Search.reset()
-  Search.selectMain(keyword)
+  SearchMain.reset()
+  SearchMain.selectMain(keyword)
   // updateView()
 
   new BuildMain(dataFetch.recipes)
 })
 
-document.querySelector('#inputIngredient').addEventListener('input', e => {
-  keyword = e.target.value
-  Search.reset()
-  Search.selectIngredient(keyword)
-  updateView()
-
-  new BuildTags(dataFetch.recipes)
-})
-
-document.querySelector('#applianceInput').addEventListener('input', e => {
-  keyword = e.target.value
-  Search.reset()
-  Search.selectAppliance(keyword)
-  updateView()
-
-  new BuildTags(dataFetch.recipes)
-})
-
-document.querySelector('#ustensileInput').addEventListener('input', e => {
-  keyword = e.target.value
-  Search.reset()
-  Search.selectUstensils(keyword)
-  updateView()
-
-  new BuildTags(dataFetch.recipes)
-})
+// document.querySelector('#inputIngredient').addEventListener('input', e => {
+//   keyword = e.target.value
+//   SearchMain.reset()
+//   SearchMain.selectIngredient(keyword)
+//   updateView()
+//
+//   new BuildTags(dataFetch.recipes)
+// })
+//
+// document.querySelector('#applianceInput').addEventListener('input', e => {
+//   keyword = e.target.value
+//   SearchMain.reset()
+//   SearchMain.selectAppliance(keyword)
+//   updateView()
+//
+//   new BuildTags(dataFetch.recipes)
+// })
+//
+// document.querySelector('#ustensileInput').addEventListener('input', e => {
+//   keyword = e.target.value
+//   SearchMain.reset()
+//   SearchMain.selectUstensils(keyword)
+//   updateView()
+//
+//   new BuildTags(dataFetch.recipes)
+// })
 
 /**
  * Récupère les tags
