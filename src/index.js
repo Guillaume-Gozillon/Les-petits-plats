@@ -24,6 +24,7 @@ const splitWords = str => {
 }
 
 let keyword = ''
+let tags = ''
 
 if (keyword === '') {
   new BuildFilter(dataFetch.recipes)
@@ -46,6 +47,23 @@ document.querySelector('#searchbar').addEventListener('input', e => {
   updateView()
 
   new BuildFilter(dataFetch.recipes)
+})
+
+document.querySelector('#inputIngredient').addEventListener('click', () => {
+  tags = [document.querySelectorAll('.tagAdd')]
+  tags.forEach(x => {
+    console.log(x)
+  })
+})
+
+document.querySelector('#applianceInput').addEventListener('click', e => {
+  tags = document.querySelectorAll('.tagAdd')
+  console.log(tags)
+})
+
+document.querySelector('#ustensileInput').addEventListener('click', e => {
+  tags = document.querySelectorAll('.tagAdd')
+  console.log(tags)
 })
 
 document.querySelector('#inputIngredient').addEventListener('input', e => {
@@ -78,3 +96,29 @@ document.querySelector('#ustensileInput').addEventListener('input', e => {
 new DropdownIngredient()
 new DropdownAppliance()
 new DropdownUstensile()
+
+/*
+const observer = new MutationObserver(function (mutations) {
+  mutations.forEach(function (mutation) {
+    if (mutation.addedNodes.length) {
+      const test = [...mutation.addedNodes]
+
+      for (let i = 0; i < test.length; i++) {
+        const autre = document.querySelectorAll('.tagAdd')
+
+        // autre.forEach(x => console.log(x.textContent))
+        for (let i = 0; i < autre.length; i++) {
+          const test = autre[i].textContent
+          console.log(test)
+        }
+      }
+    }
+  })
+})
+
+const tags = document.getElementById('tags')
+
+observer.observe(tags, {
+  childList: true
+})
+*/

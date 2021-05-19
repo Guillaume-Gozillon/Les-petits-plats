@@ -10,6 +10,7 @@ import { dataFetch } from './Fetch.js'
 const Search = {
   selected: {
     main: [],
+    tags: [],
     ingredients: [],
     appliance: [],
     ustensils: []
@@ -17,6 +18,7 @@ const Search = {
   reset: function () {
     this.selected = {
       main: [],
+      tags: [],
       ingredients: [],
       appliance: [],
       ustensils: []
@@ -26,6 +28,11 @@ const Search = {
   selectMain: function (main) {
     console.log('TEST', this.selected.main)
     this.selected.main.push(main)
+    dataFetch.updateRecipes()
+  },
+  selectTags: function (tags) {
+    console.log('TEST', this.selected.main)
+    this.selected.tags.push(tags)
     dataFetch.updateRecipes()
   },
   selectIngredient: function (ingredient) {

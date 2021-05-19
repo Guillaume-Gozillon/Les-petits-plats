@@ -298,20 +298,30 @@ main .container .content {
   flex-wrap: wrap;
   margin: 20px 5%;
 }
-#tags .tagAdd {
+#tags .tagContainer {
+  display: flex;
+  align-items: center;
   color: white;
   margin: 10px 15px;
-  padding: 6px 19px;
+  padding: 9px 19px;
   border-radius: 8px;
 }
-#tags .tagAdd.appliance {
+#tags .tagContainer.appliance {
   background-color: #68D9A4;
 }
-#tags .tagAdd.ingredient {
+#tags .tagContainer.ingredientTag {
   background-color: #3282F7;
 }
-#tags .tagAdd.ustensils {
+#tags .tagContainer.ustensils {
   background-color: #ED6454;
+}
+#tags .tagContainer i {
+  margin-left: 10px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+#tags .tagContainer i:hover {
+  transform: scale(1.2);
 }
 
 /*# sourceMappingURL=style.css.map */

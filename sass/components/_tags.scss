@@ -3,21 +3,30 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin: 20px 5%;
-    & .tagAdd{
+    .tagContainer{
+        display: flex;
+        align-items: center;
         color: rgb(255, 255, 255);
         margin: 10px 15px;
-        padding: 6px 19px;
+        padding: 9px 19px;
         border-radius: 8px;
         &.appliance{
             background-color: #68D9A4;
         }
-        &.ingredient{
+        &.ingredientTag{
             background-color: #3282F7;
         }
         &.ustensils{
             background-color: #ED6454;
         }
+        & i{
+            margin-left: 10px;
+            transition: .2s;
+            cursor: pointer;
+            &:hover{
+                transform: scale(1.2);
+            }
+        }
     }
 }
-
 

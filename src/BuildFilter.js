@@ -1,3 +1,5 @@
+import { Search } from './Search.js'
+
 class BuildFilter {
   constructor (data) {
     this.recipes = data
@@ -10,6 +12,17 @@ class BuildFilter {
     this.ingredientTag()
     this.applianceTag()
     this.ustensilsTag()
+
+    this.closeTags()
+
+    this.buildTags()
+
+    this.tag = document.querySelectorAll('.tagAdd')
+    console.log(this.tag);
+  }
+
+  buildTags () {
+    return this.tag
   }
 
   buildIngredient (data) {
@@ -51,15 +64,21 @@ class BuildFilter {
     document.querySelector('#searchIngredient').addEventListener('click', e => {
       document.querySelector('#tags')
         .insertAdjacentHTML('afterbegin', `
-        <p class="tagAdd ingredient">${e.target.textContent}</p>`)
+      <div class="tagContainer ingredientTag">
+        <p class="tagAdd">${e.target.textContent}</p>
+        <i class="far fa-times-circle closeTag"></i>
+      </div>`)
     })
   }
 
-  applianceTag () {
+  applianceTag (test) {
     document.querySelector('#searchAppliance').addEventListener('click', e => {
       document.querySelector('#tags')
         .insertAdjacentHTML('afterbegin', `
-        <p class="tagAdd appliance">${e.target.textContent}</p>`)
+      <div class="tagContainer appliance">
+        <p class="tagAdd">${e.target.textContent}</p>
+        <i class="far fa-times-circle closeTag"></i>
+      </div>`)
     })
   }
 
@@ -67,11 +86,21 @@ class BuildFilter {
     document.querySelector('#searchUstensile').addEventListener('click', e => {
       document.querySelector('#tags')
         .insertAdjacentHTML('afterbegin', `
-      <p class="tagAdd ustensils">${e.target.textContent}</p>`)
+      <div class="tagContainer ustensils">
+        <p class="tagAdd">${e.target.textContent}</p>
+        <i class="far fa-times-circle closeTag"></i>
+      </div>`)
     })
   }
 
-  // POUR CONSTRUIRE LE TABLEAU IL FAUT FAIRE UN RESET
+  closeTags () {
+    document.addEventListener('click', e => {
+      const tagsNode = e.target.classList[2]
+      if (tagsNode === 'closeTag') {
+        e.target.parentNode.remove()
+      }
+    })
+  }
 
   buildRecipes (data) {
     document.querySelector('main').innerHTML = data.map(recipe => (`
