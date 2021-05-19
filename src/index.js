@@ -4,7 +4,9 @@ import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
 
 import { Search } from './Search.js'
 import { dataFetch } from './Fetch.js'
+
 import { BuildFilter } from './BuildFilter.js'
+import { BuildTags } from './BuildTags.js'
 
 function updateView () {
   console.log(dataFetch.recipes, `${dataFetch.recipes.length} Recettes trouvées`)
@@ -28,6 +30,7 @@ let tags = ''
 
 if (keyword === '') {
   new BuildFilter(dataFetch.recipes)
+  new BuildTags(dataFetch.recipes)
 }
 
 /**
@@ -40,20 +43,53 @@ if (keyword === '') {
 
 document.querySelector('#searchbar').addEventListener('input', e => {
   keyword = splitWords(e.target.value)
+
   console.log(keyword)
+  console.log(Search.selected.main)
 
   Search.reset()
   Search.selectMain(keyword)
-  updateView()
+  // updateView()
 
   new BuildFilter(dataFetch.recipes)
 })
 
+document.querySelector('#inputIngredient').addEventListener('input', e => {
+  keyword = e.target.value
+  Search.reset()
+  Search.selectIngredient(keyword)
+  updateView()
+
+  new BuildTags(dataFetch.recipes)
+})
+
+document.querySelector('#applianceInput').addEventListener('input', e => {
+  keyword = e.target.value
+  Search.reset()
+  Search.selectAppliance(keyword)
+  updateView()
+
+  new BuildTags(dataFetch.recipes)
+})
+
+document.querySelector('#ustensileInput').addEventListener('input', e => {
+  keyword = e.target.value
+  Search.reset()
+  Search.selectUstensils(keyword)
+  updateView()
+
+  new BuildTags(dataFetch.recipes)
+})
+
+/**
+ * Récupère les tags
+ * @param {EventListener} tags récupère le tag
+ */
+
 document.querySelector('#inputIngredient').addEventListener('click', () => {
-  tags = [document.querySelectorAll('.tagAdd')]
-  tags.forEach(x => {
-    console.log(x)
-  })
+  tags = document.querySelectorAll('.tagAdd')
+
+  tags.forEach(x => console.log(x))
 })
 
 document.querySelector('#applianceInput').addEventListener('click', e => {
@@ -64,33 +100,6 @@ document.querySelector('#applianceInput').addEventListener('click', e => {
 document.querySelector('#ustensileInput').addEventListener('click', e => {
   tags = document.querySelectorAll('.tagAdd')
   console.log(tags)
-})
-
-document.querySelector('#inputIngredient').addEventListener('input', e => {
-  keyword = e.target.value
-  Search.reset()
-  Search.selectIngredient(keyword)
-  updateView()
-
-  new BuildFilter(dataFetch.recipes)
-})
-
-document.querySelector('#applianceInput').addEventListener('input', e => {
-  keyword = e.target.value
-  Search.reset()
-  Search.selectAppliance(keyword)
-  updateView()
-
-  new BuildFilter(dataFetch.recipes)
-})
-
-document.querySelector('#ustensileInput').addEventListener('input', e => {
-  keyword = e.target.value
-  Search.reset()
-  Search.selectUstensils(keyword)
-  updateView()
-
-  new BuildFilter(dataFetch.recipes)
 })
 
 new DropdownIngredient()
