@@ -8,7 +8,6 @@ import { Search } from './Search.js'
 
 const dataFetch = {
   recipes: Recipes,
-
   updateRecipes: function () {
     this.recipes = Recipes.filter(sortDataBy => {
       // MATCH AVEC LES INGREDIENTS SELECTIONNÉS = TRUE sinon FALSE (n'est pas ajouté a la list)
