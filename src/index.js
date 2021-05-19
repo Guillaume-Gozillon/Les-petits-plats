@@ -7,10 +7,7 @@ import { dataFetch } from './Fetch.js'
 
 import { BuildMain } from './BuildMain.js'
 import { BuildTags } from './BuildTags.js'
-
-function updateView () {
-  console.log(dataFetch.recipes, `${dataFetch.recipes.length} Recettes trouvées`)
-}
+import { tagInit } from './TagInit.js'
 
 /**
  * Retourn les differents valeurs separée dans un array
@@ -22,7 +19,6 @@ const splitWords = str => {
   return str
     .trim()
     .replace(/  +/g, ' ')
-    .split(' ')
 }
 
 let keyword = ''
@@ -41,17 +37,38 @@ if (keyword === '') {
  * @returns {Object} Construit le DOM
  */
 
-document.querySelector('#searchbar').addEventListener('input', e => {
-  keyword = splitWords(e.target.value)
-
-  console.log(keyword)
-  console.log(SearchMain.selected.main)
+document.querySelector('#searchIngredient').addEventListener('click', () => {
+  tags = document.querySelectorAll('.tagAdd')
+  tags.forEach(x => console.log(x.textContent))
 
   SearchMain.reset()
   SearchMain.selectMain(keyword)
-  // updateView()
 
   new BuildMain(dataFetch.recipes)
+})
+
+document.querySelector('#searchbar').addEventListener('input', e => {
+  keyword = splitWords(e.target.value)
+  // console.log(keyword)
+
+  tags = document.getElementsByClassName('tagAdd')
+  console.log(tags)
+
+  SearchMain.reset()
+  SearchMain.selectMain(keyword)
+
+  new BuildMain(dataFetch.recipes)
+})
+
+/**
+ * CONSTRUITS LES TAGS
+ * @param {EventListener} tags récupère le tag
+ */
+
+tagInit.ingredientsTag(dataFetch.recipes)
+
+document.addEventListener('input', () => {
+  tagInit.ingredientsTag(dataFetch.recipes)
 })
 
 // document.querySelector('#inputIngredient').addEventListener('input', e => {
@@ -104,7 +121,7 @@ const listenTags = {
 }
 
 console.log(listenTags)
-
+/*
 document.querySelector('#applianceInput').addEventListener('click', () => {
   tags = document.querySelectorAll('.tagAdd')
   console.log(tags)
@@ -112,9 +129,9 @@ document.querySelector('#applianceInput').addEventListener('click', () => {
 
 document.querySelector('#ustensileInput').addEventListener('click', () => {
   tags = document.querySelectorAll('.tagAdd')
-  console.log(tags)
+  //console.log(tags)
 })
-
+*/
 new DropdownIngredient()
 new DropdownAppliance()
 new DropdownUstensile()
@@ -143,4 +160,11 @@ const tags = document.getElementById('tags')
 observer.observe(tags, {
   childList: true
 })
+
+const splitWords = str => {
+  return str
+    .trim()
+    .replace(/  +/g, ' ')
+    .split(' ')
+}
 */

@@ -4,7 +4,7 @@ class BuildTags {
 
     this.buildAppliance(this.recipes)
     this.buildUstensils(this.recipes)
-    this.buildIngredient(this.recipes)
+    // this.buildIngredient(this.recipes)
 
     this.ingredientTag()
     this.applianceTag()

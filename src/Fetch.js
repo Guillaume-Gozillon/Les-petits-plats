@@ -14,16 +14,17 @@ const dataFetch = {
       // MATCH AVEC LES INGREDIENTS SELECTIONNÉS = TRUE sinon FALSE (n'est pas ajouté a la list)
 
       const matchMain = SearchMain.selected.main.every(item => {
-        return sortDataBy.name.includes(item) ||
-        sortDataBy.description.includes(item) ||
-        sortDataBy.ingredients.some(x => x.ingredient.includes(item))
+        return sortDataBy.name.toLowerCase().includes(item) ||
+        sortDataBy.description.toLowerCase().includes(item) ||
+        sortDataBy.ingredients.some(x => x.ingredient.toLowerCase().includes(item))
       })
       if (!matchMain) {
         return false
       }
       return true
     })
-  },
+  }
+  /*,
 
   // extract Keyword
   extractIngredient: function () {
@@ -54,6 +55,7 @@ const dataFetch = {
     })
     return ustensils.filter(item => !SearchMain.selected.ustensils.includes(item))
   }
+  */
 }
 
 export { dataFetch }
