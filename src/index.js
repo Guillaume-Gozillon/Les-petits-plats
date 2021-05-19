@@ -5,7 +5,7 @@ import { DropdownUstensile } from './dropdown/DropdownUstensile.js'
 import { Search } from './Search.js'
 import { dataFetch } from './Fetch.js'
 
-import { BuildFilter } from './BuildFilter.js'
+import { BuildMain } from './BuildMain.js'
 import { BuildTags } from './BuildTags.js'
 
 function updateView () {
@@ -29,7 +29,7 @@ let keyword = ''
 let tags = ''
 
 if (keyword === '') {
-  new BuildFilter(dataFetch.recipes)
+  new BuildMain(dataFetch.recipes)
   new BuildTags(dataFetch.recipes)
 }
 
@@ -51,7 +51,7 @@ document.querySelector('#searchbar').addEventListener('input', e => {
   Search.selectMain(keyword)
   // updateView()
 
-  new BuildFilter(dataFetch.recipes)
+  new BuildMain(dataFetch.recipes)
 })
 
 document.querySelector('#inputIngredient').addEventListener('input', e => {
@@ -86,18 +86,31 @@ document.querySelector('#ustensileInput').addEventListener('input', e => {
  * @param {EventListener} tags récupère le tag
  */
 
-document.querySelector('#inputIngredient').addEventListener('click', () => {
-  tags = document.querySelectorAll('.tagAdd')
+const listenTags = {
+  tags: {
+    ingredientSelect: []
+  },
+  testListener: function () {
+    document.querySelector('#inputIngredient').addEventListener('click', () => {
+      const tags = document.querySelectorAll('.tagAdd')
 
-  tags.forEach(x => console.log(x))
-})
+      for (let i = 0; i < tags.length; i++) {
+        const el = tags[i].textContent
+        this.tags.ingredientSelect.push(el)
+      }
+    })
+    console.log(this.tags.ingredientSelect)
+  }
+}
 
-document.querySelector('#applianceInput').addEventListener('click', e => {
+console.log(listenTags)
+
+document.querySelector('#applianceInput').addEventListener('click', () => {
   tags = document.querySelectorAll('.tagAdd')
   console.log(tags)
 })
 
-document.querySelector('#ustensileInput').addEventListener('click', e => {
+document.querySelector('#ustensileInput').addEventListener('click', () => {
   tags = document.querySelectorAll('.tagAdd')
   console.log(tags)
 })

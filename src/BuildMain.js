@@ -1,4 +1,4 @@
-class BuildFilter {
+class BuildMain {
   constructor (data) {
     this.recipes = data
 
@@ -29,4 +29,4 @@ class BuildFilter {
   }
 }
 
-export { BuildFilter }
+export { BuildMain }
