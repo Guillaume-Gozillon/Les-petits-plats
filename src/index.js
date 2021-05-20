@@ -11,8 +11,8 @@ import { BuildFilter } from './BuildFilter.js'
 
 /**
  * Retourn les differents valeurs separée dans un array
- * @param {String}
- * @returns {Array}
+ * @returns {string}
+ * @param str
  */
 
 const splitWords = str => {

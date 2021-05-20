@@ -12,17 +12,13 @@ const dataFetch = {
   recipes: Recipes,
   updateRecipes: function () {
     this.recipes = Recipes.filter(sortDataBy => {
-      const matchMain = SearchMain.selected.main.every(item => {
+      return SearchMain.selected.main.every(item => {
         return sortDataBy.name.toLowerCase().includes(item) ||
-        sortDataBy.description.toLowerCase().includes(item) ||
-        sortDataBy.appliance.toLowerCase().includes(item) ||
-        sortDataBy.ustensils.some(x => x.toLowerCase().includes(item)) ||
-        sortDataBy.ingredients.some(y => y.ingredient.toLowerCase().includes(item))
+          sortDataBy.description.toLowerCase().includes(item) ||
+          sortDataBy.appliance.toLowerCase().includes(item) ||
+          sortDataBy.ustensils.some(x => x.toLowerCase().includes(item)) ||
+          sortDataBy.ingredients.some(y => y.ingredient.toLowerCase().includes(item))
       })
-      if (!matchMain) {
-        return false
-      }
-      return true
     })
   }
 }
