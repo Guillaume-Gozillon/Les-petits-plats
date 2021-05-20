@@ -39,20 +39,22 @@ if (keyword === '') {
 
 document.querySelector('#searchIngredient').addEventListener('click', () => {
   tags = document.querySelectorAll('.tagAdd')
-  tags.forEach(x => console.log(x.textContent))
 
-  SearchMain.reset()
-  SearchMain.selectMain(keyword)
+  const tagsArr = []
+  tags.forEach(item => {
+    const tagsClicked = item.textContent
+    tagsArr.push(tagsClicked.toLowerCase())
+  })
 
+  const autreTest = tagsArr.join(' ')
+
+  SearchMain.selectMain(autreTest)
   new BuildMain(dataFetch.recipes)
+  new BuildTags(dataFetch.recipes)
 })
 
 document.querySelector('#searchbar').addEventListener('input', e => {
   keyword = splitWords(e.target.value)
-  // console.log(keyword)
-
-  tags = document.getElementsByClassName('tagAdd')
-  console.log(tags)
 
   SearchMain.reset()
   SearchMain.selectMain(keyword)
@@ -65,43 +67,22 @@ document.querySelector('#searchbar').addEventListener('input', e => {
  * @param {EventListener} tags récupère le tag
  */
 
-tagInit.ingredientsTag(dataFetch.recipes)
+tagInit.ingredientsTags(dataFetch.recipes)
 
 document.addEventListener('input', () => {
-  tagInit.ingredientsTag(dataFetch.recipes)
+  tagInit.ingredientsTags(dataFetch.recipes)
 })
-
-// document.querySelector('#inputIngredient').addEventListener('input', e => {
-//   keyword = e.target.value
-//   SearchMain.reset()
-//   SearchMain.selectIngredient(keyword)
-//   updateView()
-//
-//   new BuildTags(dataFetch.recipes)
-// })
-//
-// document.querySelector('#applianceInput').addEventListener('input', e => {
-//   keyword = e.target.value
-//   SearchMain.reset()
-//   SearchMain.selectAppliance(keyword)
-//   updateView()
-//
-//   new BuildTags(dataFetch.recipes)
-// })
-//
-// document.querySelector('#ustensileInput').addEventListener('input', e => {
-//   keyword = e.target.value
-//   SearchMain.reset()
-//   SearchMain.selectUstensils(keyword)
-//   updateView()
-//
-//   new BuildTags(dataFetch.recipes)
-// })
 
 /**
  * Récupère les tags
  * @param {EventListener} tags récupère le tag
  */
+
+new DropdownIngredient()
+new DropdownAppliance()
+new DropdownUstensile()
+
+/*
 
 const listenTags = {
   tags: {
@@ -121,50 +102,4 @@ const listenTags = {
 }
 
 console.log(listenTags)
-/*
-document.querySelector('#applianceInput').addEventListener('click', () => {
-  tags = document.querySelectorAll('.tagAdd')
-  console.log(tags)
-})
-
-document.querySelector('#ustensileInput').addEventListener('click', () => {
-  tags = document.querySelectorAll('.tagAdd')
-  //console.log(tags)
-})
-*/
-new DropdownIngredient()
-new DropdownAppliance()
-new DropdownUstensile()
-
-/*
-const observer = new MutationObserver(function (mutations) {
-  mutations.forEach(function (mutation) {
-    if (mutation.addedNodes.length) {
-      const test = [...mutation.addedNodes]
-
-      for (let i = 0; i < test.length; i++) {
-        const autre = document.querySelectorAll('.tagAdd')
-
-        // autre.forEach(x => console.log(x.textContent))
-        for (let i = 0; i < autre.length; i++) {
-          const test = autre[i].textContent
-          console.log(test)
-        }
-      }
-    }
-  })
-})
-
-const tags = document.getElementById('tags')
-
-observer.observe(tags, {
-  childList: true
-})
-
-const splitWords = str => {
-  return str
-    .trim()
-    .replace(/  +/g, ' ')
-    .split(' ')
-}
 */

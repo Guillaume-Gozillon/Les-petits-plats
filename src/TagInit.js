@@ -1,31 +1,32 @@
 /* eslint-disable no-extend-native */
-const domIngredient = document.getElementById('inputIngredient')
+const ingredientNode = document.getElementById('inputIngredient')
 let ingredientKeyword = ''
 
 const tagInit = {
-  ingredientsTag: function (data) {
+  ingredientsTags: function (data) {
     const ingredientArr = []
 
-    data.forEach(x => {
-      const dataTag = x.ingredients
-      dataTag.forEach(y => ingredientArr.push(y.ingredient))
+    data.forEach(obj => {
+      const dataTag = obj.ingredients
+      dataTag.forEach(item => ingredientArr.push(item.ingredient))
     })
 
-    const dataDom = ingredientArr.unique()
+    const tagsDom = ingredientArr.unique()
 
-    domIngredient.addEventListener('click', () => {
+    ingredientNode.addEventListener('click', () => {
       document.querySelector('#searchIngredient').innerHTML =
-      dataDom.map(item => `<li>${item}</li>`).join('')
+      tagsDom.map(item => `<li>${item}</li>`).join('')
     })
 
-    domIngredient.addEventListener('input', e => {
+    ingredientNode.addEventListener('input', e => {
       ingredientKeyword = e.target.value.toLocaleLowerCase()
 
-      const IngredientsSorted = dataDom.filter(x =>
-        x.toLocaleLowerCase().includes(ingredientKeyword))
+      const ingredientsSorted = tagsDom.filter(item =>
+        item.toLocaleLowerCase()
+          .includes(ingredientKeyword))
 
       document.querySelector('#searchIngredient').innerHTML =
-      IngredientsSorted.map(item => `<li>${item}</li>`).join('')
+      ingredientsSorted.map(item => `<li>${item}</li>`).join('')
     })
   }
 }
