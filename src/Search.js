@@ -7,44 +7,20 @@ import { dataFetch } from './Fetch.js'
  * @param {String} selectMain => array.push(keyword)
  */
 
-const Search = {
+const SearchMain = {
   selected: {
-    main: [],
-    tags: [],
-    ingredients: [],
-    appliance: [],
-    ustensils: []
+    main: []
   },
   reset: function () {
     this.selected = {
-      main: [],
-      tags: [],
-      ingredients: [],
-      appliance: [],
-      ustensils: []
+      main: []
     }
     dataFetch.updateRecipes()
   },
   selectMain: function (main) {
     this.selected.main.push(main)
     dataFetch.updateRecipes()
-  },
-  selectTags: function (tags) {
-    this.selected.tags.push(tags)
-    dataFetch.updateRecipes()
-  },
-  selectIngredient: function (ingredient) {
-    this.selected.ingredients.push(ingredient)
-    dataFetch.updateRecipes()
-  },
-  selectAppliance: function (appliance) {
-    this.selected.appliance.push(appliance)
-    dataFetch.updateRecipes()
-  },
-  selectUstensils: function (ustensil) {
-    this.selected.ustensils.push(ustensil)
-    dataFetch.updateRecipes()
   }
 }
 
-export { Search }
+export { SearchMain }
