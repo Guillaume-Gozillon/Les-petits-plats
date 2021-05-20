@@ -46,11 +46,10 @@ document.querySelector('#searchIngredient').addEventListener('click', () => {
     tagsArr.push(tagsClicked.toLowerCase())
   })
 
-  const autreTest = tagsArr.join(' ')
+  const keywordToSort = tagsArr.join(' ')
 
-  SearchMain.selectMain(autreTest)
+  SearchMain.selectMain(keywordToSort)
   new BuildMain(dataFetch.recipes)
-  new BuildTags(dataFetch.recipes)
 })
 
 document.querySelector('#searchAppliance').addEventListener('click', () => {
@@ -62,11 +61,25 @@ document.querySelector('#searchAppliance').addEventListener('click', () => {
     tagsArr.push(tagsClicked.toLowerCase())
   })
 
-  const autreTest = tagsArr.join(' ')
+  const keywordToSort = tagsArr.join(' ')
 
-  SearchMain.selectMain(autreTest)
+  SearchMain.selectMain(keywordToSort)
   new BuildMain(dataFetch.recipes)
-  new BuildTags(dataFetch.recipes)
+})
+
+document.querySelector('#searchUstensile').addEventListener('click', () => {
+  tags = document.querySelectorAll('.tagAdd')
+
+  const tagsArr = []
+  tags.forEach(item => {
+    const tagsClicked = item.textContent
+    tagsArr.push(tagsClicked.toLowerCase())
+  })
+
+  const keywordToSort = tagsArr.join(' ')
+
+  SearchMain.selectMain(keywordToSort)
+  new BuildMain(dataFetch.recipes)
 })
 
 document.querySelector('#searchbar').addEventListener('input', e => {
@@ -74,7 +87,6 @@ document.querySelector('#searchbar').addEventListener('input', e => {
 
   SearchMain.reset()
   SearchMain.selectMain(keyword)
-
   new BuildMain(dataFetch.recipes)
 })
 
@@ -85,10 +97,18 @@ document.querySelector('#searchbar').addEventListener('input', e => {
 
 tagInit.ingredientsTags(dataFetch.recipes)
 tagInit.applianceTags(dataFetch.recipes)
+tagInit.ustensileTags(dataFetch.recipes)
 
 document.addEventListener('input', () => {
   tagInit.ingredientsTags(dataFetch.recipes)
   tagInit.applianceTags(dataFetch.recipes)
+  tagInit.ustensileTags(dataFetch.recipes)
+})
+
+document.addEventListener('click', () => {
+  tagInit.ingredientsTags(dataFetch.recipes)
+  tagInit.applianceTags(dataFetch.recipes)
+  tagInit.ustensileTags(dataFetch.recipes)
 })
 
 /**

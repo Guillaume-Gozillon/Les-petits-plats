@@ -2,37 +2,13 @@ class BuildTags {
   constructor (data) {
     this.recipes = data
 
-    this.buildAppliance(this.recipes)
-    this.buildUstensils(this.recipes)
-    // this.buildIngredient(this.recipes)
+    // this.buildUstensils(this.recipes)
 
     this.ingredientTag()
     this.applianceTag()
     this.ustensilsTag()
 
     this.removeTags()
-  }
-
-  buildIngredient (data) {
-    const ingredientArr = []
-
-    data.forEach(multiArrIngredients => {
-      const ingredient = multiArrIngredients.ingredients
-      ingredient.forEach(arrIngredient =>
-        ingredientArr.push(arrIngredient.ingredient))
-    })
-
-    const ingredientsDom = [...new Set(ingredientArr)].slice(0, 30)
-    document.querySelector('#searchIngredient').innerHTML =
-        ingredientsDom.map(item => `<li>${item}</li>`).join('')
-  }
-
-  buildAppliance (data) {
-    const dataAppliance = data.map(x => x.appliance)
-    const applianceArray = [...new Set(dataAppliance)]
-
-    document.querySelector('#searchAppliance').innerHTML =
-      applianceArray.map(item => `<li class="liTargeted">${item}</li>`).join('')
   }
 
   buildUstensils (data) {

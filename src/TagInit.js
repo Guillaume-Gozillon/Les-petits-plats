@@ -1,8 +1,11 @@
 /* eslint-disable no-extend-native */
 const ingredientNode = document.getElementById('inputIngredient')
 const applianceNode = document.getElementById('applianceInput')
+const ustensileNode = document.getElementById('ustensileInput')
+
 let ingredientKeyword = ''
 let applianceKeyword = ''
+let ustensileKeyword = ''
 
 const tagInit = {
   ingredientsTags: function (data) {
@@ -52,6 +55,32 @@ const tagInit = {
 
       document.querySelector('#searchAppliance').innerHTML =
       applianceSorted.map(item => `<li>${item}</li>`).join('')
+    })
+  },
+  ustensileTags: function (data) {
+    const ustensileArr = []
+
+    data.forEach(obj => {
+      const dataTag = obj.ustensils
+      dataTag.forEach(item => ustensileArr.push(item))
+    })
+
+    const ustensilesTagsDom = ustensileArr.unique()
+
+    ustensileNode.addEventListener('click', () => {
+      document.querySelector('#searchAppliance').innerHTML =
+      ustensilesTagsDom.map(item => `<li>${item}</li>`).join('')
+    })
+
+    ustensileNode.addEventListener('input', e => {
+      ustensileKeyword = e.target.value.toLocaleLowerCase()
+
+      const ustensileSorted = ustensilesTagsDom.filter(item =>
+        item.toLocaleLowerCase()
+          .includes(ustensileKeyword))
+
+      document.querySelector('#searchUstensile').innerHTML =
+      ustensileSorted.map(item => `<li>${item}</li>`).join('')
     })
   }
 }
