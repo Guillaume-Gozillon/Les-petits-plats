@@ -53,6 +53,22 @@ document.querySelector('#searchIngredient').addEventListener('click', () => {
   new BuildTags(dataFetch.recipes)
 })
 
+document.querySelector('#searchAppliance').addEventListener('click', () => {
+  tags = document.querySelectorAll('.tagAdd')
+
+  const tagsArr = []
+  tags.forEach(item => {
+    const tagsClicked = item.textContent
+    tagsArr.push(tagsClicked.toLowerCase())
+  })
+
+  const autreTest = tagsArr.join(' ')
+
+  SearchMain.selectMain(autreTest)
+  new BuildMain(dataFetch.recipes)
+  new BuildTags(dataFetch.recipes)
+})
+
 document.querySelector('#searchbar').addEventListener('input', e => {
   keyword = splitWords(e.target.value)
 
@@ -68,9 +84,11 @@ document.querySelector('#searchbar').addEventListener('input', e => {
  */
 
 tagInit.ingredientsTags(dataFetch.recipes)
+tagInit.applianceTags(dataFetch.recipes)
 
 document.addEventListener('input', () => {
   tagInit.ingredientsTags(dataFetch.recipes)
+  tagInit.applianceTags(dataFetch.recipes)
 })
 
 /**
