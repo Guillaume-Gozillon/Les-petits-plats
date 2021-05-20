@@ -7,7 +7,7 @@ import { dataFetch } from './Fetch.js'
 
 import { BuildMain } from './BuildMain.js'
 import { BuildTags } from './BuildTags.js'
-import { tagInit } from './TagInit.js'
+import { BuildFilter } from './BuildFilter.js'
 
 /**
  * Retourn les differents valeurs separée dans un array
@@ -24,10 +24,8 @@ const splitWords = str => {
 let keyword = ''
 let tags = ''
 
-if (keyword === '') {
-  new BuildMain(dataFetch.recipes)
-  new BuildTags(dataFetch.recipes)
-}
+new BuildMain(dataFetch.recipes)
+new BuildTags()
 
 /**
  * Crée les differentes instances pour construire le DOM
@@ -95,20 +93,20 @@ document.querySelector('#searchbar').addEventListener('input', e => {
  * @param {EventListener} tags récupère le tag
  */
 
-tagInit.ingredientsTags(dataFetch.recipes)
-tagInit.applianceTags(dataFetch.recipes)
-tagInit.ustensileTags(dataFetch.recipes)
+BuildFilter.ingredientsTags(dataFetch.recipes)
+BuildFilter.applianceTags(dataFetch.recipes)
+BuildFilter.ustensileTags(dataFetch.recipes)
 
 document.addEventListener('input', () => {
-  tagInit.ingredientsTags(dataFetch.recipes)
-  tagInit.applianceTags(dataFetch.recipes)
-  tagInit.ustensileTags(dataFetch.recipes)
+  BuildFilter.ingredientsTags(dataFetch.recipes)
+  BuildFilter.applianceTags(dataFetch.recipes)
+  BuildFilter.ustensileTags(dataFetch.recipes)
 })
 
 document.addEventListener('click', () => {
-  tagInit.ingredientsTags(dataFetch.recipes)
-  tagInit.applianceTags(dataFetch.recipes)
-  tagInit.ustensileTags(dataFetch.recipes)
+  BuildFilter.ingredientsTags(dataFetch.recipes)
+  BuildFilter.applianceTags(dataFetch.recipes)
+  BuildFilter.ustensileTags(dataFetch.recipes)
 })
 
 /**
@@ -119,25 +117,3 @@ document.addEventListener('click', () => {
 new DropdownIngredient()
 new DropdownAppliance()
 new DropdownUstensile()
-
-/*
-
-const listenTags = {
-  tags: {
-    ingredientSelect: []
-  },
-  testListener: function () {
-    document.querySelector('#inputIngredient').addEventListener('click', () => {
-      const tags = document.querySelectorAll('.tagAdd')
-
-      for (let i = 0; i < tags.length; i++) {
-        const el = tags[i].textContent
-        this.tags.ingredientSelect.push(el)
-      }
-    })
-    console.log(this.tags.ingredientSelect)
-  }
-}
-
-console.log(listenTags)
-*/

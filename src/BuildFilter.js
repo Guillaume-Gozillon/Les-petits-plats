@@ -7,7 +7,7 @@ let ingredientKeyword = ''
 let applianceKeyword = ''
 let ustensileKeyword = ''
 
-const tagInit = {
+const BuildFilter = {
   ingredientsTags: function (data) {
     const ingredientArr = []
 
@@ -68,7 +68,7 @@ const tagInit = {
     const ustensilesTagsDom = ustensileArr.unique()
 
     ustensileNode.addEventListener('click', () => {
-      document.querySelector('#searchAppliance').innerHTML =
+      document.querySelector('#searchUstensile').innerHTML =
       ustensilesTagsDom.map(item => `<li>${item}</li>`).join('')
     })
 
@@ -91,4 +91,4 @@ Array.prototype.unique = function () {
   })
 }
 
-export { tagInit }
+export { BuildFilter }

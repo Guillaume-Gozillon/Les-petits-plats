@@ -1,27 +1,10 @@
 class BuildTags {
-  constructor (data) {
-    this.recipes = data
-
-    // this.buildUstensils(this.recipes)
-
+  constructor () {
     this.ingredientTag()
     this.applianceTag()
     this.ustensilsTag()
 
     this.removeTags()
-  }
-
-  buildUstensils (data) {
-    const ustensilArr = []
-
-    data.forEach(multiArrUstensils => {
-      const ustensil = multiArrUstensils.ustensils
-      ustensil.forEach(ArrUstensils => ustensilArr.push(ArrUstensils))
-    })
-
-    const ustensilsDom = [...new Set(ustensilArr)]
-    document.querySelector('#searchUstensile').innerHTML =
-        ustensilsDom.map(item => `<li>${item}</li>`).join('')
   }
 
   ingredientTag () {
