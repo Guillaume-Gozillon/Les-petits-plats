@@ -10,7 +10,7 @@ import { BuildTags } from './BuildTags.js'
 import { BuildFilter } from './BuildFilter.js'
 
 /**
- * Retourn les differents valeurs separée dans un array
+ * Retourn les differents valeurs séparée dans un array
  * @returns {string}
  * @param str
  */
@@ -24,6 +24,9 @@ const splitWords = str => {
 let keyword = ''
 let tags = ''
 
+// const testArr = ['couteau', 'oignon', "cocotte"]
+
+// SearchMain.selectMain(testArr)
 new BuildMain(dataFetch.recipes)
 new BuildTags()
 
@@ -45,6 +48,7 @@ document.querySelector('#searchIngredient').addEventListener('click', () => {
   })
 
   const keywordToSort = tagsArr.join(' ')
+  console.log(keywordToSort)
 
   SearchMain.selectMain(keywordToSort)
   new BuildMain(dataFetch.recipes)
@@ -108,6 +112,32 @@ document.addEventListener('click', () => {
   BuildFilter.applianceTags(dataFetch.recipes)
   BuildFilter.ustensileTags(dataFetch.recipes)
 })
+
+// console.log(SearchMain.selected);
+
+/*
+const closeNode = document.getElementsByClassName('closeTag')
+
+const test = new Promise((resolve, reject) => {
+  const isTrue = true
+
+  // closeNode.addEventListener('click', () => {
+  //   console.log('hey')
+  // })
+
+  if (isTrue === true) {
+    resolve()
+  } else if (isTrue === false) {
+    reject()
+  }
+})
+
+test.then(() => {
+  console.log('good')
+}).catch(() => {
+  console.log('fail')
+})
+/*
 
 /**
  * Récupère les tags

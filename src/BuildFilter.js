@@ -24,7 +24,7 @@ const BuildFilter = {
     })
 
     ingredientNode.addEventListener('input', e => {
-      ingredientKeyword = e.target.value.toLocaleLowerCase()
+      ingredientKeyword = e.target.value
 
       const ingredientsSorted = ingTagsDom.filter(item =>
         item.toLocaleLowerCase()
@@ -47,7 +47,7 @@ const BuildFilter = {
     })
 
     applianceNode.addEventListener('input', e => {
-      applianceKeyword = e.target.value.toLocaleLowerCase()
+      applianceKeyword = e.target.value
 
       const applianceSorted = applianceTagsDom.filter(item =>
         item.toLocaleLowerCase()
@@ -73,7 +73,7 @@ const BuildFilter = {
     })
 
     ustensileNode.addEventListener('input', e => {
-      ustensileKeyword = e.target.value.toLocaleLowerCase()
+      ustensileKeyword = e.target.value
 
       const ustensileSorted = ustensilesTagsDom.filter(item =>
         item.toLocaleLowerCase()

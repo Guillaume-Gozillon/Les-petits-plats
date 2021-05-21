@@ -1,8 +1,7 @@
 class BuildMain {
   constructor (data) {
-    this.recipes = data
-
-    this.buildRecipes(this.recipes)
+    this.buildRecipes(data)
+    console.log(data);
   }
 
   buildRecipes (data) {
