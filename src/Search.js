@@ -7,6 +7,13 @@ import { dataFetch } from './Fetch.js'
  * @param {String} selectMain => array.push(keyword)
  */
 
+const splitString = str => {
+  return str
+    .trim()
+    .replace(/  +/g, ' ')
+    .split(' ')
+}
+
 const SearchMain = {
   selected: {
     main: []
@@ -18,8 +25,9 @@ const SearchMain = {
     dataFetch.updateRecipes()
   },
   selectMain: function (main) {
+    // this.selected.main.push(main)
     for (let i = 0; i < main.length; i++) {
-      this.selected.main.push(main[i])
+      this.selected.main.push(splitString(main[i]))
     }
     dataFetch.updateRecipes()
   }

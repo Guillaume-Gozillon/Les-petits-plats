@@ -15,18 +15,16 @@ import { BuildFilter } from './BuildFilter.js'
  * @param str
  */
 
-const splitWords = str => {
+const splitString = str => {
   return str
     .trim()
     .replace(/  +/g, ' ')
+    .split(' ')
 }
 
 let keyword = ''
 let tags = ''
 
-// const testArr = ['couteau', 'oignon', "cocotte"]
-
-// SearchMain.selectMain(testArr)
 new BuildMain(dataFetch.recipes)
 new BuildTags()
 
@@ -48,9 +46,8 @@ document.querySelector('#searchIngredient').addEventListener('click', () => {
   })
 
   const keywordToSort = tagsArr.join(' ')
-  console.log(keywordToSort)
 
-  SearchMain.selectMain(keywordToSort)
+  SearchMain.selectMain(splitString(keywordToSort))
   new BuildMain(dataFetch.recipes)
 })
 
@@ -65,7 +62,7 @@ document.querySelector('#searchAppliance').addEventListener('click', () => {
 
   const keywordToSort = tagsArr.join(' ')
 
-  SearchMain.selectMain(keywordToSort)
+  SearchMain.selectMain(splitString(keywordToSort))
   new BuildMain(dataFetch.recipes)
 })
 
@@ -80,14 +77,13 @@ document.querySelector('#searchUstensile').addEventListener('click', () => {
 
   const keywordToSort = tagsArr.join(' ')
 
-  SearchMain.selectMain(keywordToSort)
+  SearchMain.selectMain(splitString(keywordToSort))
   new BuildMain(dataFetch.recipes)
 })
 
 document.querySelector('#searchbar').addEventListener('input', e => {
-  keyword = splitWords(e.target.value)
+  keyword = splitString(e.target.value)
 
-  SearchMain.reset()
   SearchMain.selectMain(keyword)
   new BuildMain(dataFetch.recipes)
 })
@@ -112,37 +108,6 @@ document.addEventListener('click', () => {
   BuildFilter.applianceTags(dataFetch.recipes)
   BuildFilter.ustensileTags(dataFetch.recipes)
 })
-
-// console.log(SearchMain.selected);
-
-/*
-const closeNode = document.getElementsByClassName('closeTag')
-
-const test = new Promise((resolve, reject) => {
-  const isTrue = true
-
-  // closeNode.addEventListener('click', () => {
-  //   console.log('hey')
-  // })
-
-  if (isTrue === true) {
-    resolve()
-  } else if (isTrue === false) {
-    reject()
-  }
-})
-
-test.then(() => {
-  console.log('good')
-}).catch(() => {
-  console.log('fail')
-})
-/*
-
-/**
- * Récupère les tags
- * @param {EventListener} tags récupère le tag
- */
 
 new DropdownIngredient()
 new DropdownAppliance()
