@@ -113,3 +113,23 @@ document.addEventListener('click', () => {
 new DropdownIngredient()
 new DropdownAppliance()
 new DropdownUstensile()
+
+/*
+ const closeNode = document.getElementsByClassName('closeTag')
+ const test = new Promise((resolve, reject) => {
+   const isTrue = true
+   // closeNode.addEventListener('click', () => {
+   //   console.log('hey')
+   // })
+   if (isTrue === true) {
+     resolve()
+   } else if (isTrue === false) {
+     reject()
+   }
+ })
+ test.then(() => {
+   console.log('good')
+ }).catch(() => {
+   console.log('fail')
+ })
+*/
