@@ -114,6 +114,9 @@ new DropdownIngredient()
 new DropdownAppliance()
 new DropdownUstensile()
 
+const closeNode = document.getElementsByClassName('closeTag')
+console.log(closeNode)
+
 /*
  const closeNode = document.getElementsByClassName('closeTag')
  const test = new Promise((resolve, reject) => {
