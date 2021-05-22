@@ -84,6 +84,7 @@ document.querySelector('#searchUstensile').addEventListener('click', () => {
 document.querySelector('#searchbar').addEventListener('input', e => {
   keyword = splitString(e.target.value)
 
+  SearchMain.reset()
   SearchMain.selectMain(keyword)
   new BuildMain(dataFetch.recipes)
 })
