@@ -36,6 +36,21 @@ new BuildTags()
  * @returns {Object} Construit le DOM
  */
 
+document.querySelector('#searchbar').addEventListener('input', e => {
+  const startProject = e.target.value
+  keyword = splitString(e.target.value)
+
+  if (startProject.length >= 3) {
+    SearchMain.reset()
+    SearchMain.selectMain(keyword)
+    new BuildMain(dataFetch.recipes)
+  } else if (startProject < 3) {
+    SearchMain.reset()
+    SearchMain.selectMain(keyword)
+    new BuildMain(dataFetch.recipes)
+  }
+})
+
 document.querySelector('#searchIngredient').addEventListener('click', () => {
   tags = document.querySelectorAll('.tagAdd')
 
@@ -81,14 +96,6 @@ document.querySelector('#searchUstensile').addEventListener('click', () => {
   new BuildMain(dataFetch.recipes)
 })
 
-document.querySelector('#searchbar').addEventListener('input', e => {
-  keyword = splitString(e.target.value)
-
-  SearchMain.reset()
-  SearchMain.selectMain(keyword)
-  new BuildMain(dataFetch.recipes)
-})
-
 /**
  * CONSTRUITS LES TAGS
  * @param {EventListener} tags récupère le tag
@@ -113,26 +120,3 @@ document.addEventListener('click', () => {
 new DropdownIngredient()
 new DropdownAppliance()
 new DropdownUstensile()
-
-const closeNode = document.getElementsByClassName('closeTag')
-console.log(closeNode)
-
-/*
- const closeNode = document.getElementsByClassName('closeTag')
- const test = new Promise((resolve, reject) => {
-   const isTrue = true
-   // closeNode.addEventListener('click', () => {
-   //   console.log('hey')
-   // })
-   if (isTrue === true) {
-     resolve()
-   } else if (isTrue === false) {
-     reject()
-   }
- })
- test.then(() => {
-   console.log('good')
- }).catch(() => {
-   console.log('fail')
- })
-*/

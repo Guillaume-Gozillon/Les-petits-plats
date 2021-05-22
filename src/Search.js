@@ -25,7 +25,6 @@ const SearchMain = {
     dataFetch.updateRecipes()
   },
   selectMain: function (main) {
-    // this.selected.main.push(main)
     for (let i = 0; i < main.length; i++) {
       this.selected.main.push(splitString(main[i]))
     }
