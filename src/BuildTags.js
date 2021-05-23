@@ -2,7 +2,6 @@ import { BuildMain } from './BuildMain.js'
 import { dataFetch } from './Fetch.js'
 import { SearchMain } from './Search.js'
 
-
 class BuildTags {
   constructor () {
     this.ingredientTag()

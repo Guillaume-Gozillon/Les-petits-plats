@@ -1,10 +1,8 @@
 import { dataFetch } from './Fetch.js'
 
 /**
- * Met à jours le tableau des mots clefs
- * @param {[Object]} selected | Tableau contenant les keywords
- * @param {Array} reset => vide le tableau
- * @param {String} selectMain => array.push(keyword)
+ * Sépare les mots clef en differents tableau
+ * @param str
  */
 
 const splitString = str => {
@@ -13,6 +11,13 @@ const splitString = str => {
     .replace(/  +/g, ' ')
     .split(' ')
 }
+
+/**
+ * Met à jours le tableau des mots clefs
+ * @param {[Object]} selected | Tableau contenant les keywords
+ * @param {Array} reset => vide le tableau
+ * @param {String} selectMain => array.push(keyword)
+ */
 
 const SearchMain = {
   selected: {

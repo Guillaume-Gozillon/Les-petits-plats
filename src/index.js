@@ -11,7 +11,7 @@ import { BuildFilter } from './BuildFilter.js'
 
 /**
  * Retourn les differents valeurs séparée dans un array
- * @returns {string}
+ * @returns {string[]}
  * @param str
  */
 
