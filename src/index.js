@@ -10,15 +10,16 @@ import { BuildTags } from './BuildTags.js'
 import { BuildFilter } from './BuildFilter.js'
 
 /**
- * Retourn les differents valeurs separée dans un array
- * @param {String}
- * @returns {Array}
+ * Retourn les differents valeurs séparée dans un array
+ * @returns {string[]}
+ * @param str
  */
 
-const splitWords = str => {
+const splitString = str => {
   return str
     .trim()
     .replace(/  +/g, ' ')
+    .split(' ')
 }
 
 let keyword = ''
@@ -35,6 +36,21 @@ new BuildTags()
  * @returns {Object} Construit le DOM
  */
 
+document.querySelector('#searchbar').addEventListener('input', e => {
+  const startProject = e.target.value
+  keyword = splitString(e.target.value)
+
+  if (startProject.length >= 3) {
+    SearchMain.reset()
+    SearchMain.selectMain(keyword)
+    new BuildMain(dataFetch.recipes)
+  } else if (startProject < 3) {
+    SearchMain.reset()
+    SearchMain.selectMain(keyword)
+    new BuildMain(dataFetch.recipes)
+  }
+})
+
 document.querySelector('#searchIngredient').addEventListener('click', () => {
   tags = document.querySelectorAll('.tagAdd')
 
@@ -46,7 +62,7 @@ document.querySelector('#searchIngredient').addEventListener('click', () => {
 
   const keywordToSort = tagsArr.join(' ')
 
-  SearchMain.selectMain(keywordToSort)
+  SearchMain.selectMain(splitString(keywordToSort))
   new BuildMain(dataFetch.recipes)
 })
 
@@ -61,7 +77,7 @@ document.querySelector('#searchAppliance').addEventListener('click', () => {
 
   const keywordToSort = tagsArr.join(' ')
 
-  SearchMain.selectMain(keywordToSort)
+  SearchMain.selectMain(splitString(keywordToSort))
   new BuildMain(dataFetch.recipes)
 })
 
@@ -76,15 +92,7 @@ document.querySelector('#searchUstensile').addEventListener('click', () => {
 
   const keywordToSort = tagsArr.join(' ')
 
-  SearchMain.selectMain(keywordToSort)
-  new BuildMain(dataFetch.recipes)
-})
-
-document.querySelector('#searchbar').addEventListener('input', e => {
-  keyword = splitWords(e.target.value)
-
-  SearchMain.reset()
-  SearchMain.selectMain(keyword)
+  SearchMain.selectMain(splitString(keywordToSort))
   new BuildMain(dataFetch.recipes)
 })
 
@@ -108,11 +116,6 @@ document.addEventListener('click', () => {
   BuildFilter.applianceTags(dataFetch.recipes)
   BuildFilter.ustensileTags(dataFetch.recipes)
 })
-
-/**
- * Récupère les tags
- * @param {EventListener} tags récupère le tag
- */
 
 new DropdownIngredient()
 new DropdownAppliance()
