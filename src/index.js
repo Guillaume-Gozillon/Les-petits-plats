@@ -33,7 +33,7 @@ new BuildTags()
  * @param {EventListener} keyword récupère le keyword dans l'input
  * @param {string} reset vide l'array pour mettre à jours
  * @param {string} SearchMain.selectMain remplit l'array avec le keyword
- * @returns {Object} Construit le DOM
+ * @returns {VoidFunction} Construit le DOM
  */
 
 document.querySelector('#searchbar').addEventListener('input', e => {
