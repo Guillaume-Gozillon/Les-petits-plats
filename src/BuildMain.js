@@ -15,7 +15,7 @@ class BuildMain {
         <div class="recette">
         <div class="ingredient">
           ${recipe.ingredients.map(x =>
-            `<p><span class="bolder">${x.ingredient}:</span> ${x.quantity}${x.unit}</p>`).join('')}
+            `<p><span class="bolder">${x.ingredient}:</span> ${x.quantity}${x.unit === undefined ? ' unités' : x.unit}</p>`).join('')}
         </div>
           <div class="ingredient">
         </div>
